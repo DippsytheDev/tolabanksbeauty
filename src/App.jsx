@@ -1,5 +1,11 @@
+<<<<<<< HEAD
 import React from  "react"
 
+=======
+import { useState } from "react";
+import First from "./First";
+import { people } from "./data";
+>>>>>>> c37bd255c1785a93f257644ef205f23d77b3d51b
 function App() {
   return (
     <>
@@ -10,8 +16,9 @@ function App() {
         <li>Contact</li>
       </ul>
       <section className="first">
-        <div className="box boxed">
+        <div className="box header">
           <p>CALGARY</p>
+
           <p className="makeup">MAKEUP</p>
           <p>ARTIST</p>
         </div>
@@ -48,17 +55,23 @@ function App() {
           </ul>
         </div>
       </section>
-      <section className="second">
-        <div>
-          <h1>BOOK A SERVICE</h1>
+      <article>
+        <h1>BOOK A SERVICE</h1>
+        <div className="second">
+          <div>
+            {people.map((make) => {
+              const { id, name, Duration, Price } = make;
+              return (
+                <div key={id}>
+                  <h2>{name}</h2>
+                  <h3>{Duration}</h3>
+                  <h4>{Price}</h4>
+                </div>
+              );
+            })}
+          </div>
         </div>
-        <div className="boxed">1</div>
-        <div className="boxed">2</div>
-        <div className="boxed">3</div>
-        <div className="boxed">4</div>
-        <div className="boxed">5</div>
-        <div className="boxed">6</div>
-      </section>
+      </article>
       <section className="third">
         <div className="boxer">1</div>
         <div className="boxer">2</div>
@@ -71,6 +84,9 @@ function App() {
         <div className="boxer">9</div>
         <div className="boxer">10</div>
         <div className="boxer">12</div>
+      </section>
+      <section className="fourth">
+        <div className="boxes">1</div>
       </section>
     </>
   );
