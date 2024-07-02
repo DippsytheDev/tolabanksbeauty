@@ -1,0 +1,24 @@
+.ContactCard-container {
+  display: flex;
+  flex-direction: column;
+  width: 350px;
+  height: 350px;
+  border: none;
+  align-items: center;
+  justify-content: center;
+  /* border-radius: ; */
+  gap: 20px;
+}
+.ContactCard-container:hover {
+  border: 1px solid black;
+  scale: 1.01;
+  transition: border 0.5s ease-in-out;
+}
+.ContactCard-container > img {
+  width: 30px;
+  height: 30px;
+}
+.ContactCard-container > p {
+  font-family: sans-serif;
+  font-weight: bold;
+}
