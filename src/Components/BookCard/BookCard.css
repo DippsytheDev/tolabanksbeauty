@@ -1,24 +1,70 @@
 .second {
-  display: grid;
-  background-color: blue;
+  display: flex;
+  flex-direction: column;
+  background-color: orange;
   color: white;
-  margin: 10px;
-  grid-template-columns: repeat(1, fr);
-  margin: 2rem;
-  padding: 1rem;
-  width: 100%;
+  width: calc(100% - 8rem);
+  margin: 4rem auto;
+  /*  padding: 1rem; */
+  max-width: 1300px;
 }
 .second li {
   display: flex;
-  margin: 1rem;
+  flex-direction: column;
+  margin: 2rem 0;
   width: 100%;
   padding: 1rem 0.2rem;
   text-align: left;
-  font-size: 1.3rem;
-  justify-content: space-evenly;
+  font-size: 0.9rem;
+  align-items: center;
 }
+
+.texts {
+  display: flex;
+  flex-direction: column;
+  margin: 0.3rem;
+  flex: 1;
+}
+
 .second img {
   width: 10%;
   height: auto;
   border-radius: 50%;
+}
+.btn {
+  background-color: wheat;
+  font-size: 0.75rem;
+  display: inline-block;
+  width: 149px;
+  height: 35px;
+}
+.center {
+  text-align: center;
+}
+
+.info {
+  display: flex;
+  flex-direction: column;
+}
+@media (min-width: 800px) {
+  .second li {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+  .texts {
+    margin-left: 4rem;
+    font-size: 1.4rem;
+  }
+  .second img {
+    margin-bottom: 0;
+    margin-right: 0.5rem;
+    margin-left: 4rem;
+  }
+  .info {
+    margin-right: 10rem;
+    font-size: 1.4rem;
+  }
+  .btn {
+    margin-right: 1.4rem;
+  }
 }

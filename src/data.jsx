@@ -1,4 +1,4 @@
-import img1 from "../public/book1.jpg";
+import img1 from "/book1.jpg";
 
 export const people = [
   {
