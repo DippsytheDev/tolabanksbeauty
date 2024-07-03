@@ -9,11 +9,14 @@
 html {
   scroll-behavior: smooth;
 }
+img {
+  display: block;
+}
 body {
   background-color: white;
   color: black;
-  min-height: 200vh;
-  max-width: 100%;
+  min-height: 100vh;
+  max-width: 95%;
 }
 .container {
   display: flex;
@@ -100,12 +103,7 @@ body {
 .unicode {
   font-size: 4rem;
 }
-.second {
-  display: grid;
-  background-color: blue;
-  color: white;
-  margin: 10px;
-}
+
 .third {
   display: grid;
   background-color: black;

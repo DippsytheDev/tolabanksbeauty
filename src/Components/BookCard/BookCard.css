@@ -1,0 +1,24 @@
+.second {
+  display: grid;
+  background-color: blue;
+  color: white;
+  margin: 10px;
+  grid-template-columns: repeat(1, fr);
+  margin: 2rem;
+  padding: 1rem;
+  width: 100%;
+}
+.second li {
+  display: flex;
+  margin: 1rem;
+  width: 100%;
+  padding: 1rem 0.2rem;
+  text-align: left;
+  font-size: 1.3rem;
+  justify-content: space-evenly;
+}
+.second img {
+  width: 10%;
+  height: auto;
+  border-radius: 50%;
+}

@@ -1,10 +1,9 @@
-
-import React from  "react"
-
+import React from "react";
 
 import { useState } from "react";
 import ContactCard from "./Components/ContactCard/ContactCard";
-// import First from "./First";
+import BookCard from "./Components/BookCard/BookCard";
+
 import { people } from "./data";
 function App() {
   return (
@@ -55,23 +54,10 @@ function App() {
           </ul>
         </div>
       </section>
-      <article>
-        <h1>BOOK A SERVICE</h1>
-        <div className="second">
-          <div>
-            {people.map((make) => {
-              const { id, name, Duration, Price } = make;
-              return (
-                <div key={id}>
-                  <h2>{name}</h2>
-                  <h3>{Duration}</h3>
-                  <h4>{Price}</h4>
-                </div>
-              );
-            })}
-          </div>
-        </div>
-      </article>
+      <div>
+        <BookCard />
+      </div>
+
       <section className="third">
         <div className="boxer">1</div>
         <div className="boxer">2</div>
@@ -85,7 +71,7 @@ function App() {
         <div className="boxer">10</div>
         <div className="boxer">12</div>
       </section>
-      <section className="fourth" >
+      <section className="fourth">
         <ContactCard />
         <ContactCard />
         <ContactCard />
