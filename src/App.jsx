@@ -3,6 +3,7 @@ import React from "react";
 import { useState } from "react";
 import ContactCard from "./Components/ContactCard/ContactCard";
 import BookCard from "./Components/BookCard/BookCard";
+import img1 from "/book1.jpg";
 
 import { people } from "./data";
 function App() {
@@ -57,19 +58,43 @@ function App() {
       <div>
         <BookCard />
       </div>
-
       <section className="third">
-        <div className="boxer">1</div>
-        <div className="boxer">2</div>
-        <div className="boxer">3</div>
-        <div className="boxer">4</div>
-        <div className="boxer">5</div>
-        <div className="boxer">6</div>
-        <div className="boxer">7</div>
-        <div className="boxer">8</div>
-        <div className="boxer">9</div>
-        <div className="boxer">10</div>
-        <div className="boxer">12</div>
+        <div className="item">
+          <img src={img1} alt="" />
+        </div>
+        <div className="item">
+          <img src={img1} alt="" />
+        </div>
+        <div className="item">
+          <img src={img1} alt="" />
+        </div>
+        <div className="item">
+          <img src={img1} alt="" />
+        </div>
+        <div className="item">
+          <img src={img1} alt="" />
+        </div>
+        <div className="item">
+          <img src={img1} alt="" />
+        </div>
+        <div className="item">
+          <img src={img1} alt="" />
+        </div>
+        <div className="item">
+          <img src={img1} alt="" />
+        </div>
+        <div className="item">
+          <img src={img1} alt="" />
+        </div>
+        <div className="item">
+          <img src={img1} alt="" />
+        </div>
+        <div className="item">
+          <img src={img1} alt="" />
+        </div>
+        <div className="item">
+          <img src={img1} alt="" />
+        </div>
       </section>
       <section className="fourth">
         <ContactCard />
