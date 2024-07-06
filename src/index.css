@@ -34,35 +34,44 @@ body {
   z-index: 1;
   width: 100%;
 }
+.first {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  grid-auto-rows: minmax(100px, auto);
+  grid-gap: 7px;
+  justify-content: center;
+  width: calc(100% - 4rem);
+  margin: 4rem 2rem;
+}
+.first h1 {
+  text-align: center;
+}
+
 .box {
   padding: 1rem;
   background-color: black;
   color: white;
   position: relative;
 }
-.first {
-  display: grid;
-  grid-template-columns: repeat(4, 1fr);
-  grid-auto-rows: minmax(100px, auto);
-  gap: 0.2em;
-  justify-content: center;
-  margin: 2px 50px 2px 50px;
-}
+
 .box:first-child {
   grid-column: 1 / 6;
   grid-row: 1 / 4;
-  display: grid;
-  place-content: center;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
   font-size: 6rem;
-  line-height: 0.9;
+  /*  line-height: 0.9; */
   font-family: "Kanit", sans-serif;
   font-weight: bolder;
-  /*   margin-top: 0;
-  margin-bottom: 0;
-  grid-template-columns: 1fr;
-  grid-auto-rows: 60px;
-  text-align: center; */
-  margin-top: 30px;
+  align-items: center;
+  text-align: center;
+}
+.header p {
+  line-height: 1;
+}
+.header p:focus {
+  outline: none;
 }
 .makeup {
   font-family: "Amita", serif;
@@ -102,7 +111,7 @@ body {
   place-content: center;
 }
 .unicode {
-  font-size: 4rem;
+  font-size: 1.1rem;
 }
 
 .third {
@@ -114,6 +123,15 @@ body {
   grid-gap: 13px;
   width: calc(100% - 12rem);
   margin: 6rem auto;
+  animation: fade 2s ease-in-out 1s;
+}
+@keyframes fade {
+  from {
+    transform: translateY(100px);
+  }
+  to {
+    transform: translateY(0);
+  }
 }
 .third img {
   width: 100%;
@@ -208,16 +226,41 @@ body {
 }
 @media screen and (max-width: 480px) {
   .third {
-    grid-template-columns: 1fr;
-    grid-auto-rows: minmax(100px, auto);
+    grid-template-columns: repeat(2, 1fr);
+    /* grid-auto-rows: minmax(100px, auto); */
     padding-bottom: 10px;
+    width: calc(100% - 6rem);
+    margin: 6rem auto;
   }
   .item {
     grid-column: span 1;
     grid-row: span 1;
   }
   .item:nth-child(1) {
+    grid-column: span 2;
+    grid-row: span 2;
+  }
+  .item:nth-child(2) {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+  .item:nth-child(3) {
     grid-column: span 1;
     grid-row: span 2;
   }
+  .item:nth-child(4) {
+    grid-column: span 1;
+    grid-row: span 1;
+  }
+  .item:nth-child(10) {
+    grid-column: span 1;
+    grid-row: span 2;
+  }
+  .item:nth-child(11) {
+    grid-column: span 1;
+    grid-row: span 2;
+  }
+}
+.center {
+  text-align: center;
 }

@@ -5,7 +5,6 @@ import ContactCard from "./Components/ContactCard/ContactCard";
 import BookCard from "./Components/BookCard/BookCard";
 import img1 from "/book1.jpg";
 
-import { people } from "./data";
 function App() {
   return (
     <>
@@ -15,7 +14,7 @@ function App() {
         <li>Bookings</li>
         <li>Contact</li>
       </ul>
-      <section className="first">
+      <div className="first">
         <div className="box header">
           <p>CALGARY</p>
 
@@ -25,6 +24,7 @@ function App() {
         <div className="box">2</div>
         <div className="box">
           <h1>About Me</h1>
+          <h1 className="unicode">&#9660;</h1>
           <p>
             Calgary Makeup Artist Lorem ipsum dolor sit amet consectetur
             adipisicing elit. Natus quasi commodi voluptas amet dolores dolorem,
@@ -34,8 +34,8 @@ function App() {
         </div>
         <div className="box">
           <h1>SERVICES</h1>
-          <h2 className="unicode">&#709;</h2>
-          <ul>
+          <h1 className="unicode">&#9660;</h1>
+          <ul className="center">
             <li>Bridal Makeup</li>
             <li>Group Makeup</li>
             <li>Events Makeup</li>
@@ -46,15 +46,15 @@ function App() {
         <div className="box">6</div>
         <div className="box">
           <h1>CLIENTS</h1>
-          <h2 className="unicode">&#709;</h2>
-          <ul>
+          <h1 className="unicode">&#9660;</h1>
+          <ul className="center">
             <li>Ad Works</li>
             <li>Ad Works</li>
             <li>Ad Works</li>
             <li>Ad Works</li>
           </ul>
         </div>
-      </section>
+      </div>
       <div>
         <BookCard />
       </div>
