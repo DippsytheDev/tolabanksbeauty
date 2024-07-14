@@ -145,19 +145,3 @@ input[type="text"] {
   margin-top: 9px;
   border-radius: 3px;
 }
-.react-datepicker-wrapper {
-  width: 100%;
-}
-.react-datepicker__input-container {
-  width: 100%;
-}
-.react-datepicker {
-  width: 100%;
-  border-radius: 7px;
-  font-size: 15px;
-  padding: 9px;
-  border: 1px solid#ccc;
-}
-.react-datepicker__header {
-  background-color: #f0f0f0;
-}

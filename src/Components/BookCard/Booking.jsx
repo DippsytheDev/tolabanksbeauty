@@ -2,8 +2,8 @@ import axios from "axios";
 import React, { useState } from "react";
 import DatePicker from "react-datepicker";
 import Modal from "react-modal";
-import "react-datepicker/dist/react-datepicker.css";
 import "./BookCard.css";
+import "react-datepicker/dist/react-datepicker.css";
 
 Modal.setAppElement("#root");
 
@@ -17,15 +17,11 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
   const handleNext = () => {
     if (move < 3) {
       setMove(move + 1);
-    } else if (move > 1) {
-      setMove(move - 1);
     }
   };
   const handleBack = () => {
-    if (move === 2) {
-      setMove(1);
-    } else if (move === 3) {
-      setMove(2);
+    if (move > 1) {
+      setMove(move - 1);
     }
   };
 
@@ -48,7 +44,6 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
   };
   return (
     <div>
-      {/*    <button onClick={openModal}>Book Now</button> */}
       <Modal
         isOpen={isOpen}
         onRequestClose={onRequestClose}
@@ -59,9 +54,10 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
         <span className="close" onClick={onRequestClose}>
           &times;
         </span>
-        <h2>Your Appointment</h2>
+
         {move === 1 && (
           <div className="step">
+            <h2>Your Appointment</h2>
             <p>{service.name}</p>
             <label>
               Do you want to add another appointment ?
