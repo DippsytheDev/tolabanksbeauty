@@ -1,8 +1,13 @@
-import React from "react";
+import React, { useState } from "react";
 import "./BookCard.css";
 import { people } from "../../data";
+import Booking from "./Booking";
 
-function BookCard() {
+const BookCard = ({ id, img, name, Duration, Price }) => {
+  const [bookingOpen, setBookingOpen] = useState(false);
+  const openBooking = () => setBookingOpen(true);
+  const closeBooking = () => setBookingOpen(false);
+
   return (
     <>
       <article>
@@ -21,7 +26,16 @@ function BookCard() {
                   <h4>{Price}</h4>
                 </div>
 
-                <button className="btn">Book Now</button>
+                <button className="btn" onClick={openBooking}>
+                  Book Now
+                </button>
+                {bookingOpen && (
+                  <Booking
+                    isOpen={bookingOpen}
+                    onRequestClose={closeBooking}
+                    service={{ name, id }}
+                  />
+                )}
               </li>
             );
           })}
@@ -29,6 +43,6 @@ function BookCard() {
       </article>
     </>
   );
-}
+};
 
 export default BookCard;

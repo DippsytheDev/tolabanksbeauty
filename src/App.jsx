@@ -15,14 +15,16 @@ function App() {
         <li>Contact</li>
       </ul>
       <div className="first">
-        <div className="box header">
-          <p>CALGARY</p>
-
-          <p className="makeup">MAKEUP</p>
-          <p>ARTIST</p>
+        <div className="intro">
+          {/* <p>CALGARY MAKEUP ARTIST</p> */}
+          <h1>CALGARY</h1>
+          <h1 className="makeup">MAKEUP</h1>
+          <h1>ARTIST</h1>
         </div>
-        <div className="box">2</div>
-        <div className="box">
+        <div className="main-img">
+          <img src={img1} alt="" />
+        </div>
+        <div className="about-me">
           <h1>About Me</h1>
           <h1 className="unicode">&#9660;</h1>
           <p>
@@ -32,27 +34,35 @@ function App() {
             cum quaerat nostrum ratione vel quibusdam consequuntur.
           </p>
         </div>
-        <div className="box">
+        <div className="services">
           <h1>SERVICES</h1>
           <h1 className="unicode">&#9660;</h1>
-          <ul className="center">
+          <ul>
             <li>Bridal Makeup</li>
             <li>Group Makeup</li>
             <li>Events Makeup</li>
             <li>Theatre Makeup</li>
+            <li>Theatre Makeup</li>
+            <li>Theatre Makeup</li>
           </ul>
         </div>
-        <div className="box">5</div>
-        <div className="box">6</div>
-        <div className="box">
+        <div className="image-grid">
+          <img src={img1} alt="" />
+        </div>
+        <div className="clients">
           <h1>CLIENTS</h1>
           <h1 className="unicode">&#9660;</h1>
-          <ul className="center">
+          <ul>
+            <li>Ad Works</li>
+            <li>Ad Works</li>
             <li>Ad Works</li>
             <li>Ad Works</li>
             <li>Ad Works</li>
             <li>Ad Works</li>
           </ul>
+        </div>
+        <div className="image-grids">
+          <img src={img1} alt="" />
         </div>
       </div>
       <div>
