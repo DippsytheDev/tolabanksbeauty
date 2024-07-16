@@ -7,7 +7,7 @@ import img1 from "/book1.jpg";
 
 function App() {
   return (
-    <>
+    <div className="app-container">
       <ul className="container">
         <li>Home</li>
         <li>Portfolio</li>
@@ -111,7 +111,7 @@ function App() {
         <ContactCard />
         <ContactCard />
       </section>
-    </>
+    </div>
   );
 }
 
