@@ -43,7 +43,8 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
     }
   };
   return (
-    <div>
+    <div className="modal-container">
+      <div className="modal-backdrop"></div>
       <Modal
         isOpen={isOpen}
         onRequestClose={onRequestClose}

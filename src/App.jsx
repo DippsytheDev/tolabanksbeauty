@@ -65,7 +65,7 @@ function App() {
           <img src={img1} alt="" />
         </div>
       </div>
-      <div>
+      <div className="bookCard__container">
         <BookCard />
       </div>
       <section className="third">

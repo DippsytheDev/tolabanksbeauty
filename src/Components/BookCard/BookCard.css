@@ -6,17 +6,21 @@
   width: calc(100% - 8rem);
   margin: 4rem auto;
   max-width: 1300px;
+  min-height: 2vh;
 }
-.second li {
+.second > li {
   display: flex;
   flex-direction: column;
-  margin: 2rem 0;
+  /* margin: 2rem 0; */
   width: 100%;
-  padding: 1rem 0.2rem;
+  padding: 2rem 0;
+  margin: 0rem auto;
+  /* min-height: 3rem; */
   text-align: left;
   font-size: 0.9rem;
   align-items: start;
-}
+  border: 1px solid black;
+} 
 
 .texts {
   display: flex;
@@ -25,6 +29,9 @@
   flex: 1;
   justify-content: center;
   align-items: center;
+}
+.texts:hover {
+  scale: 1.01;
 }
 
 .second img {
@@ -38,6 +45,7 @@
   display: inline-block;
   width: 149px;
   height: 35px;
+  cursor: pointer;
 }
 .center {
   text-align: center;
@@ -142,6 +150,22 @@ input[type="text"] {
   width: 100%;
   font-size: 14px;
   border: 1px solid #ccc;
-  margin-top: 9px;
+  margin-top: 9px3
   border-radius: 3px;
 }
+.modal-backdrop {
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  position: fixed;
+  background: #000;
+  overflow-y: hidden;
+  opacity: 0.3;
+  
+}
+.modal-container {
+  overflow-y: hidden;
+}cmd

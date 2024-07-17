@@ -126,6 +126,11 @@ body {
     align-content: end;
   }
 }
+.bookCard__container {
+  display: flex;
+  flex-direction :column;
+  height: 100%;
+}
 .third {
   display: grid;
   background-color: black;
@@ -213,7 +218,7 @@ body {
   display: flex;
   margin-inline: auto;
   margin-top: 20px;
-  height: 400px;
+  min-height: 400px;
 }
 .app-container {
   display: flex;
