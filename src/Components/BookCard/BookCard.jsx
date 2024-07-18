@@ -16,14 +16,16 @@ const BookCard = ({ id, img, name, Duration, Price }) => {
           {people.map((make) => {
             const { id, img, name, Duration, Price } = make;
             return (
-              <li key={id} className="texts">
+              <li key={id}>
                 <img src={img} alt="dippsycan" />
-                <div className="texts">
-                  <h2>{name}</h2>
-                </div>
-                <div className="info">
-                  <h3>{Duration}</h3>
-                  <h4>{Price}</h4>
+                <div className="content">
+                  <div className="texts">
+                    <h2>{name}</h2>
+                  </div>
+                  <div className="info">
+                    <h3>{Duration}</h3>
+                    <h4>{Price}</h4>
+                  </div>
                 </div>
 
                 <button className="btn" onClick={openBooking}>

@@ -21,12 +21,21 @@
   align-items: start;
   border: 1px solid black;
 } 
+.content{
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  flex: 1;
+  text-align: left;
+
+  
+}
 
 .texts {
   display: flex;
   flex-direction: row;
   margin: 0.3rem;
-  flex: 1;
+  flex: 2;
   justify-content: center;
   align-items: center;
 }
@@ -54,20 +63,55 @@
 .info {
   display: flex;
   flex-direction: column;
+  flex: 1;
+  white-space: nowrap;
 }
-@media (min-width: 1000px) {
+@media (min-width: 620px) {
   .second li {
     flex-direction: row;
     align-items: flex-start;
   }
   .texts {
     margin-left: 4rem;
+    font-size: 1rem;
+  }
+  .content{
+    flex-direction: column;
+    align-items: flex-start;
+
+    
+  }
+  .second img {
+    margin: 0 0.5rem 0 4rem;
+  }
+  .info {
+    font-size: 1.4rem;
+    white-space: nowrap;
+    margin: 0 10rem 0 4rem;
+  }
+  .btn {
+    margin-right: 1.4rem;
+    
+  }
+}
+@media (min-width: 1200px) {
+  .second li {
+    flex-direction: row;
+    align-items: flex-start;
+  }
+    .content{
+    flex-direction: row;
+    align-items: flex-start;
+  
+    
+    
+  }
+  .texts {
+    margin-left: 4rem;
     font-size: 1.4rem;
   }
   .second img {
-    margin-bottom: 0;
-    margin-right: 0.5rem;
-    margin-left: 4rem;
+    margin: 0 0.5rem 0 4rem;
   }
   .info {
     margin-right: 10rem;
@@ -94,7 +138,7 @@
   border-radius: 7px;
   max-width: 500px;
   position: relative;
-  width: 80%;
+  width: 85%;
   height: 70%;
 }
 .close {
@@ -150,7 +194,7 @@ input[type="text"] {
   width: 100%;
   font-size: 14px;
   border: 1px solid #ccc;
-  margin-top: 9px3
+  margin-top: 9px
   border-radius: 3px;
 }
 .modal-backdrop {
@@ -168,4 +212,4 @@ input[type="text"] {
 }
 .modal-container {
   overflow-y: hidden;
-}cmd
+}
