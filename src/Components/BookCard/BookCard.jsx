@@ -16,7 +16,7 @@ const BookCard = ({ id, img, name, Duration, Price }) => {
           {people.map((make) => {
             const { id, img, name, Duration, Price } = make;
             return (
-              <li key={id}>
+              <li className="list-tile" key={id}>
                 <img src={img} alt="dippsycan" />
                 <div className="content">
                   <div className="texts">
