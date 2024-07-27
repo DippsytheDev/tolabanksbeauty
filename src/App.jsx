@@ -1,12 +1,28 @@
 import React from "react";
-
+import { useRef } from 'react';
+import gsap from 'gsap';
+import { useGSAP } from '@gsap/react';
 import { useState } from "react";
 import ContactCard from "./Components/ContactCard/ContactCard";
 import BookCard from "./Components/BookCard/BookCard";
 import img1 from "/book1.jpg";
 
 function App() {
-  return (
+
+    gsap.registerPlugin(useGSAP);
+
+  const container = useRef();
+
+  useGSAP(
+    () => {
+        // gsap code here...
+        gsap.from('.first',{stagger: 0.3, opacity: 0, bounce: 0.5, duration: 1.5, ease: "bounce" ,  x: 400 }); // <-- automatically reverted
+        gsap.from('.squaree',{stagger: 0.25, opacity: 0, duration: 1 ,  x: 200 }); // <-- automatically reverted
+        gsap.from('.square',{stagger: 0.25, opacity: 0, duration: 1 ,  y: 150 }); // <-- automatically reverted
+    },
+    // { scope: container }
+  )
+    return (
     <div className="app-container">
       <ul className="container">
         <li>Home</li>
@@ -70,46 +86,52 @@ function App() {
       </div>
       <section className="third">
         <div className="item">
-          <img src={img1} alt="" />
+          <img className="square" src={img1} alt="" />
         </div>
         <div className="item">
-          <img src={img1} alt="" />
+          <img className="square" src={img1} alt="" />
         </div>
         <div className="item">
-          <img src={img1} alt="" />
+          <img className="square" src={img1} alt="" />
         </div>
         <div className="item">
-          <img src={img1} alt="" />
+          <img className="square" src={img1} alt="" />
         </div>
         <div className="item">
-          <img src={img1} alt="" />
+          <img className="square" src={img1} alt="" />
         </div>
         <div className="item">
-          <img src={img1} alt="" />
+          <img className="square" src={img1} alt="" />
         </div>
         <div className="item">
-          <img src={img1} alt="" />
+          <img className="square" src={img1} alt="" />
         </div>
         <div className="item">
-          <img src={img1} alt="" />
+          <img className="square" src={img1} alt="" />
         </div>
         <div className="item">
-          <img src={img1} alt="" />
+          <img className="square" src={img1} alt="" />
         </div>
         <div className="item">
-          <img src={img1} alt="" />
+          <img className="square" src={img1} alt="" />
         </div>
         <div className="item">
-          <img src={img1} alt="" />
+          <img className="square" src={img1} alt="" />
         </div>
         <div className="item">
-          <img src={img1} alt="" />
+          <img className="square" src={img1} alt="" />
         </div>
       </section>
       <section className="fourth">
-        <ContactCard />
-        <ContactCard />
-        <ContactCard />
+        <div className="squaree">
+          <ContactCard />
+        </div>
+        <div className="squaree">
+          <ContactCard />
+        </div>
+        <div className="squaree">
+          <ContactCard />
+        </div>
       </section>
     </div>
   );

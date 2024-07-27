@@ -151,7 +151,6 @@ body {
   grid-gap: 13px;
   width: calc(100% - 12rem);
   margin: 6rem auto;
-  animation: fade 2s ease-in-out 1s;
 }
 @keyframes fade {
   from {
