@@ -85,41 +85,41 @@ function App() {
         <BookCard />
       </div>
       <section className="third">
-        <div className="item">
-          <img className="square" src={img1} alt="" />
+        <div className="item square">
+          <img  src={img1} alt="" />
         </div>
-        <div className="item">
-          <img className="square" src={img1} alt="" />
+        <div className="item square">
+          <img  src={img1} alt="" />
         </div>
-        <div className="item">
-          <img className="square" src={img1} alt="" />
+        <div className="item square">
+          <img  src={img1} alt="" />
         </div>
-        <div className="item">
-          <img className="square" src={img1} alt="" />
+        <div className="item square">
+          <img  src={img1} alt="" />
         </div>
-        <div className="item">
-          <img className="square" src={img1} alt="" />
+        <div className="item square">
+          <img  src={img1} alt="" />
         </div>
-        <div className="item">
-          <img className="square" src={img1} alt="" />
+        <div className="item square">
+          <img  src={img1} alt="" />
         </div>
-        <div className="item">
-          <img className="square" src={img1} alt="" />
+        <div className="item square">
+          <img  src={img1} alt="" />
         </div>
-        <div className="item">
-          <img className="square" src={img1} alt="" />
+        <div className="item square">
+          <img  src={img1} alt="" />
         </div>
-        <div className="item">
-          <img className="square" src={img1} alt="" />
+        <div className="item square">
+          <img  src={img1} alt="" />
         </div>
-        <div className="item">
-          <img className="square" src={img1} alt="" />
+        <div className="item square">
+          <img  src={img1} alt="" />
         </div>
-        <div className="item">
-          <img className="square" src={img1} alt="" />
+        <div className="item square">
+          <img  src={img1} alt="" />
         </div>
-        <div className="item">
-          <img className="square" src={img1} alt="" />
+        <div className="item square">
+          <img  src={img1} alt="" />
         </div>
       </section>
       <section className="fourth">
