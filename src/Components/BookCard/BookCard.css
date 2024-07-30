@@ -174,6 +174,7 @@ input[type="text"] {
   font-size: 1.1rem;
   margin: 2rem 0;
   border-radius: 4px;
+  display: inline-block;
 }
 .btn-select {
   width: 100%;
@@ -183,12 +184,14 @@ input[type="text"] {
 
 .btn-back,
 .btn-next,
-.btn-confirm {
+.btn-confirm,
+.btn-new {
   padding: 10px 15px;
   border: none;
   border-radius: 3px;
   cursor: pointer;
   font-size: 14px;
+  margin-top: 1rem;
 }
 .btn-back {
   background-color: #ddd;
@@ -219,4 +222,13 @@ input[type="text"] {
 }
 .modal-container {
   overflow-y: hidden;
+}
+.addition-service {
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+.addition-service input[type="radio"] {
+  margin-right: 10px;
+  margin-bottom: 20px;
 }

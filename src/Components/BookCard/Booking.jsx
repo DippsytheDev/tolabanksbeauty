@@ -34,6 +34,15 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
     setShowDatePicker(false);
   };
 
+  const filterDates = (date) => {
+    const day = date.getDay();
+    return day !== 0 && day !== 6;
+  };
+  const filterTimes = (time) => {
+    const hour = time.getHours();
+    return hour >= 8 && hour <= 18;
+  };
+
   const handleNext = (e, requiresValidation) => {
     e.preventDefault();
     if (requiresValidation) {
@@ -111,7 +120,7 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
                 Do you want to add another appointment?
                 <div>
                   {people.map((make, index) => (
-                    <div key={index}>
+                    <div key={index} className="addition-service">
                       <input
                         type="radio"
                         id={`make-${index}`}
@@ -145,12 +154,14 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
               dateFormat="Pp"
               className="date-picker"
               ref={datePickerRef}
+              filterDate={filterDates}
+              filterTime={filterTimes}
             />
             <div className="btns">
               <button className="btn-back" onClick={handleBack}>
                 Back
               </button>
-              <button className="New-Date" onClick={handleDatePicker}>
+              <button className="btn-new" onClick={handleDatePicker}>
                 Choose New Date and Time
               </button>
               <button className="btn-next" onClick={handleNext}>
