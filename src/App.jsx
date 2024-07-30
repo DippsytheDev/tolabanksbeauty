@@ -10,16 +10,40 @@ import { ScrollTrigger } from 'gsap/ScrollTrigger';
 
 function App() {
 
-    gsap.registerPlugin(useGSAP);
-    gsap.registerPlugin(ScrollTrigger);
+  gsap.registerPlugin(useGSAP);
+  gsap.registerPlugin(ScrollTrigger);
 
   const container = useRef();
 
   useGSAP(
     () => {
         // gsap code here...
-        gsap.from('.first',{stagger: 0.3, opacity: 0, bounce: 0.5, duration: 1.5, ease: "bounce" ,  x: 400 }); // <-- automatically reverted
-        gsap.from('.squaree',{stagger: 0.25, opacity: 0, duration: 1 ,  x: 200 }); // <-- automatically reverted
+        gsap.from('.first',
+          {
+            scrollTrigger: {
+              trigger: ".first",
+              toggleActions: "play none none none",
+            },
+            stagger: 0.3, 
+            opacity: 0, 
+            bounce: 0.5, 
+            duration: 1.5, 
+            ease: "bounce" ,  
+            x: 400 
+          }
+        ); 
+        gsap.from('.squaree',
+          {
+            scrollTrigger: {
+              trigger: ".squaree",
+              toggleActions: "play none none none",
+            },
+            stagger: 0.25, 
+            opacity: 0, 
+            duration: 1 ,  
+            x: 200 
+          }
+        ); 
         gsap.from('.square',
           {
             scrollTrigger: {
@@ -31,7 +55,7 @@ function App() {
             duration: 1 ,  
             y: 150 
           }
-        ); // <-- automatically reverted
+        ); 
     },
     // { scope: container }
   )
