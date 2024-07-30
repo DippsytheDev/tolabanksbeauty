@@ -1,15 +1,14 @@
 import React from "react";
-import { useRef } from 'react';
-import gsap from 'gsap';
-import { useGSAP } from '@gsap/react';
+import { useRef } from "react";
+import gsap from "gsap";
+import { useGSAP } from "@gsap/react";
 import { useState } from "react";
 import ContactCard from "./Components/ContactCard/ContactCard";
 import BookCard from "./Components/BookCard/BookCard";
 import img1 from "/book1.jpg";
-import { ScrollTrigger } from 'gsap/ScrollTrigger';
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 function App() {
-
   gsap.registerPlugin(useGSAP);
   gsap.registerPlugin(ScrollTrigger);
 
@@ -17,49 +16,43 @@ function App() {
 
   useGSAP(
     () => {
-        // gsap code here...
-        gsap.from('.first',
-          {
-            scrollTrigger: {
-              trigger: ".first",
-              toggleActions: "play none none none",
-            },
-            stagger: 0.3, 
-            opacity: 0, 
-            bounce: 0.5, 
-            duration: 1.5, 
-            ease: "bounce" ,  
-            x: 400 
-          }
-        ); 
-        gsap.from('.squaree',
-          {
-            scrollTrigger: {
-              trigger: ".squaree",
-              toggleActions: "play none none none",
-            },
-            stagger: 0.25, 
-            opacity: 0, 
-            duration: 1 ,  
-            x: 200 
-          }
-        ); 
-        gsap.from('.square',
-          {
-            scrollTrigger: {
-              trigger: ".square",
-              toggleActions: "play none none none",
-            },
-            stagger: 0.25, 
-            opacity: 0, 
-            duration: 1 ,  
-            y: 150 
-          }
-        ); 
-    },
+      // gsap code here...
+      gsap.from(".first", {
+        scrollTrigger: {
+          trigger: ".first",
+          toggleActions: "play none none none",
+        },
+        stagger: 0.3,
+        opacity: 0,
+        bounce: 0.5,
+        duration: 1.5,
+        ease: "bounce",
+        x: 400,
+      });
+      gsap.from(".squaree", {
+        scrollTrigger: {
+          trigger: ".squaree",
+          toggleActions: "play none none none",
+        },
+        stagger: 0.25,
+        opacity: 0,
+        duration: 1,
+        x: 200,
+      });
+      gsap.from(".square", {
+        scrollTrigger: {
+          trigger: ".square",
+          toggleActions: "play none none none",
+        },
+        stagger: 0.25,
+        opacity: 0,
+        duration: 1,
+        y: 150,
+      });
+    }
     // { scope: container }
-  )
-    return (
+  );
+  return (
     <div className="app-container">
       <ul className="container">
         <li>Home</li>
@@ -123,53 +116,46 @@ function App() {
       </div>
       <section className="third">
         <div className="item square">
-          <img  src={img1} alt="" />
+          <img src={img1} alt="" />
         </div>
         <div className="item square">
-          <img  src={img1} alt="" />
+          <img src={img1} alt="" />
         </div>
         <div className="item square">
-          <img  src={img1} alt="" />
+          <img src={img1} alt="" />
         </div>
         <div className="item square">
-          <img  src={img1} alt="" />
+          <img src={img1} alt="" />
         </div>
         <div className="item square">
-          <img  src={img1} alt="" />
+          <img src={img1} alt="" />
         </div>
         <div className="item square">
-          <img  src={img1} alt="" />
+          <img src={img1} alt="" />
         </div>
         <div className="item square">
-          <img  src={img1} alt="" />
+          <img src={img1} alt="" />
         </div>
         <div className="item square">
-          <img  src={img1} alt="" />
+          <img src={img1} alt="" />
         </div>
         <div className="item square">
-          <img  src={img1} alt="" />
+          <img src={img1} alt="" />
         </div>
         <div className="item square">
-          <img  src={img1} alt="" />
+          <img src={img1} alt="" />
         </div>
         <div className="item square">
-          <img  src={img1} alt="" />
+          <img src={img1} alt="" />
         </div>
         <div className="item square">
-          <img  src={img1} alt="" />
+          <img src={img1} alt="" />
         </div>
       </section>
-      <section className="fourth">
-        <div className="squaree">
-          <ContactCard />
-        </div>
-        <div className="squaree">
-          <ContactCard />
-        </div>
-        <div className="squaree">
-          <ContactCard />
-        </div>
-      </section>
+
+      <div>
+        <ContactCard />
+      </div>
     </div>
   );
 }

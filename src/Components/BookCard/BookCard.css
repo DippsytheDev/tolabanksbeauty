@@ -1,34 +1,43 @@
+.booking-container {
+  width: 100%;
+}
+
 .second {
   display: flex;
   flex-direction: column;
-  background-color: orange;
-  color: white;
+
+  color: black;
   width: calc(100% - 8rem);
   margin: 4rem auto;
   max-width: 1300px;
   min-height: 2vh;
 }
-.second > li {
+.list-tile {
   display: flex;
   flex-direction: column;
-  /* margin: 2rem 0; */
   width: 100%;
   padding: 2rem 0;
   margin: 0rem auto;
-  /* min-height: 3rem; */
   text-align: left;
   font-size: 0.9rem;
   align-items: start;
-  border: 1px solid black;
-} 
-.content{
+  border: 1px solid #4b2e4b;
+}
+li.list-tile {
+  background-color: #9b6032;
+}
+
+.second img {
+  width: 10%;
+  height: auto;
+  border-radius: 50%;
+}
+.content {
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   flex: 1;
   text-align: left;
-
-  
 }
 
 .texts {
@@ -43,11 +52,6 @@
   scale: 1.01;
 }
 
-.second img {
-  width: 10%;
-  height: auto;
-  border-radius: 50%;
-}
 .btn {
   background-color: wheat;
   font-size: 0.75rem;
@@ -74,11 +78,9 @@
     margin-left: 4rem;
     font-size: 1rem;
   }
-  .content{
+  .content {
     flex-direction: column;
     align-items: flex-start;
-
-    
   }
   .second img {
     margin: 0 0.5rem 0 4rem;
@@ -90,7 +92,6 @@
   }
   .btn {
     margin-right: 1.4rem;
-    
   }
 }
 @media (min-width: 1200px) {
@@ -98,12 +99,9 @@
     flex-direction: row;
     align-items: flex-start;
   }
-    .content{
+  .content {
     flex-direction: row;
     align-items: flex-start;
-  
-    
-    
   }
   .texts {
     margin-left: 4rem;
@@ -166,35 +164,46 @@ input[type="text"] {
   border-radius: 3px;
   width: 100%;
 }
-.buttons {
+.btns {
   display: flex;
   justify-content: space-between;
   width: 100%;
 }
-.button-back,
-.button-next,
-.button-confirm {
+.btn-service {
+  width: 100%;
+  font-size: 1.1rem;
+  margin: 2rem 0;
+  border-radius: 4px;
+}
+.btn-select {
+  width: 100%;
+  font-size: 1.1rem;
+  border-radius: 4px;
+}
+
+.btn-back,
+.btn-next,
+.btn-confirm {
   padding: 10px 15px;
   border: none;
   border-radius: 3px;
   cursor: pointer;
   font-size: 14px;
 }
-.button-back {
+.btn-back {
   background-color: #ddd;
 }
-.button-next {
+.btn-next {
   background-color: #4caf50;
 }
-.button-next {
+.btn-confirm {
   background-color: #2196f3;
 }
 .date-picker {
   width: 100%;
   font-size: 14px;
   border: 1px solid #ccc;
-  margin-top: 9px
-  border-radius: 3px;
+  margin-top: 9px;
 }
 .modal-backdrop {
   width: 100vw;
@@ -207,7 +216,6 @@ input[type="text"] {
   background: #000;
   overflow-y: hidden;
   opacity: 0.3;
-  
 }
 .modal-container {
   overflow-y: hidden;

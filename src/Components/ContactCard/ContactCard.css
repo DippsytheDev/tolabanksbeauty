@@ -1,24 +1,89 @@
-.ContactCard-container {
+.footer {
+  background: linear-gradient(135deg, #222, #333);
+  color: #fff;
+  padding: 60px 0;
+  text-align: center;
+  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+  width: calc(100% - 4rem);
+  margin: 0 auto;
+  border-radius: 20px;
+}
+
+.footer-container {
   display: flex;
-  flex-direction: column;
-  min-width: 300px;
-  min-height: 300px;
-  border: none;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  max-width: 1200px;
+  padding: 0 20px;
+}
+
+.footer-container > div {
+  flex: 1;
+  min-width: 200px;
+  margin: 20px;
+}
+
+.footer-about,
+.footer-contact,
+.footer-social {
+  max-width: 250px; /* Reduced the max-width for a more compact design */
+}
+
+.footer-about h2,
+.footer-contact h2,
+.footer-social h2 {
+  font-size: 18px; /* Slightly smaller font size */
+  margin-bottom: 20px;
+  color: #ffdd57;
+}
+
+.footer-about p,
+.footer-contact p {
+  font-size: 12px; /* Slightly smaller font size */
+  line-height: 1.6;
+}
+
+.footer-contact {
+  text-align: left;
+}
+
+.footer-contact p {
+  display: flex;
   align-items: center;
+  margin-bottom: 10px;
+  padding-left: 0; /* Ensure no padding to align left */
+}
+
+.footer-contact i {
+  margin-right: 10px;
+  font-size: 16px;
+}
+
+.footer-social .social-icons {
+  display: flex;
   justify-content: center;
-  /* border-radius: ; */
-  gap: 20px;
-  border: 1px solid black;
+  margin-top: 20px;
 }
-.ContactCard-container:hover {
-  scale: 1.01;
-  /* transition: border 0.5s ease-in-out; */
+
+.footer-social .social-icons a {
+  color: #fff;
+  font-size: 20px; /* Slightly smaller font size */
+  margin: 0 8px;
+  transition: color 0.3s, transform 0.3s;
 }
-.ContactCard-container > img {
-  width: 30px;
-  height: 30px;
+
+.footer-social .social-icons a:hover {
+  color: #ffdd57;
+  transform: scale(1.1);
 }
-.ContactCard-container > p {
-  font-family: sans-serif;
-  font-weight: bold;
+
+.footer-bottom {
+  margin-top: 40px;
+  border-top: 1px solid #555;
+  padding-top: 20px;
+}
+
+.footer-bottom p {
+  font-size: 12px; /* Slightly smaller font size */
+  margin: 0;
 }

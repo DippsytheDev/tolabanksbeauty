@@ -10,8 +10,8 @@ const BookCard = ({ id, img, name, Duration, Price }) => {
 
   return (
     <>
-      <article>
-        <h1 className="center">BOOK A SERVICE</h1>
+      <article className="booking-container">
+        <h1 className="center">MAKE A BOOKING</h1>
         <ul className="second">
           {people.map((make) => {
             const { id, img, name, Duration, Price } = make;
@@ -35,7 +35,7 @@ const BookCard = ({ id, img, name, Duration, Price }) => {
                   <Booking
                     isOpen={bookingOpen}
                     onRequestClose={closeBooking}
-                    service={{ name, id }}
+                    service={{ name, id, Price }}
                   />
                 )}
               </li>
