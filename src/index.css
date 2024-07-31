@@ -191,6 +191,7 @@ li {
   background-color: transparent;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: 300px;
+  /* max-height: 300000px; */
   width: calc(100% - 12rem);
   margin: 6rem auto;
 }

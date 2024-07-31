@@ -17,17 +17,17 @@ function App() {
   useGSAP(
     () => {
       // gsap code here...
-      gsap.from(".first", {
+      gsap.from(".squareee", {
         scrollTrigger: {
-          trigger: ".first",
+          trigger: ".squareee",
           toggleActions: "play none none none",
         },
         stagger: 0.3,
         opacity: 0,
         bounce: 0.5,
-        duration: 1.5,
+        duration: 1.2,
         ease: "bounce",
-        x: 400,
+        x: 200,
       });
       gsap.from(".squaree", {
         scrollTrigger: {
@@ -61,16 +61,15 @@ function App() {
         <li>Contact</li>
       </ul>
       <div className="first">
-        <div className="intro">
-          {/* <p>CALGARY MAKEUP ARTIST</p> */}
+        <div className="intro squareee">
           <h1>CALGARY</h1>
           <h1 className="makeup">MAKEUP</h1>
           <h1>ARTIST</h1>
         </div>
-        <div className="main-img">
+        <div className="main-img squareee">
           <img src={img1} alt="" />
         </div>
-        <div className="about-me">
+        <div className="about-me squareee">
           <h1>About Me</h1>
           <h1 className="unicode">&#9660;</h1>
           <p>
@@ -80,7 +79,7 @@ function App() {
             cum quaerat nostrum ratione vel quibusdam consequuntur.
           </p>
         </div>
-        <div className="services">
+        <div className="services squareee">
           <h1>SERVICES</h1>
           <h1 className="unicode">&#9660;</h1>
           <ul>
@@ -92,10 +91,10 @@ function App() {
             <li>Theatre Makeup</li>
           </ul>
         </div>
-        <div className="image-grid">
+        <div className="image-grid squareee ">
           <img src={img1} alt="" />
         </div>
-        <div className="clients">
+        <div className="clients squareee">
           <h1>CLIENTS</h1>
           <h1 className="unicode">&#9660;</h1>
           <ul>
@@ -107,7 +106,7 @@ function App() {
             <li>Ad Works</li>
           </ul>
         </div>
-        <div className="image-grids">
+        <div className="image-grids squareee">
           <img src={img1} alt="" />
         </div>
       </div>
