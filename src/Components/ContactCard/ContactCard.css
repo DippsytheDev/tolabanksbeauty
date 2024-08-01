@@ -1,12 +1,12 @@
 .footer {
   background: linear-gradient(135deg, #222, #333);
   color: #fff;
-  padding: 60px 0;
+  padding: 10px 0;
   text-align: center;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   width: 100%;
   margin: 0 auto;
-  border-radius: 20px 20px 0 0;
+  border-radius: 10px 10px 0 0;
 }
 
 .footer-container {
@@ -14,7 +14,7 @@
   flex-wrap: wrap;
   justify-content: space-around;
   max-width: 1200px;
-  padding: 0 20px;
+  padding: 0 10px;
 }
 
 .footer-container > div {
@@ -26,20 +26,20 @@
 .footer-about,
 .footer-contact,
 .footer-social {
-  max-width: 250px; /* Reduced the max-width for a more compact design */
+  max-width: 250px;
 }
 
 .footer-about h2,
 .footer-contact h2,
 .footer-social h2 {
-  font-size: 18px; /* Slightly smaller font size */
+  font-size: 18px;
   margin-bottom: 20px;
   color: #ffdd57;
 }
 
 .footer-about p,
 .footer-contact p {
-  font-size: 12px; /* Slightly smaller font size */
+  font-size: 12px;
   line-height: 1.6;
 }
 
@@ -51,7 +51,6 @@
   display: flex;
   align-items: center;
   margin-bottom: 10px;
-  padding-left: 0; /* Ensure no padding to align left */
 }
 
 .footer-contact i {
@@ -67,7 +66,7 @@
 
 .footer-social .social-icons a {
   color: #fff;
-  font-size: 20px; /* Slightly smaller font size */
+  font-size: 20px;
   margin: 0 8px;
   transition: color 0.3s, transform 0.3s;
 }
@@ -78,12 +77,12 @@
 }
 
 .footer-bottom {
-  margin-top: 40px;
+  margin-top: 20px;
   border-top: 1px solid #555;
-  padding-top: 20px;
+  padding-top: 10px;
 }
 
 .footer-bottom p {
-  font-size: 12px; /* Slightly smaller font size */
+  font-size: 12px;
   margin: 0;
 }

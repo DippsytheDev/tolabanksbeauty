@@ -3,7 +3,7 @@ import "./ContactCard.css";
 
 const ContactCard = () => {
   return (
-    <footer className="footer">
+    <footer className="footer squareee">
       <div className="footer-container">
         <div className="footer-about">
           <h2>About Us</h2>
