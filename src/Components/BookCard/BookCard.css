@@ -149,8 +149,17 @@ li.list-tile {
   display: flex;
   flex-direction: column;
   align-items: center;
+  gap: 8px;
+}
+.step > h2 {
+  font-family: sans-serif, helvetical;
+  font-weight: bold;
+  color: brown;
+  font-size:32px;
 }
 .step p {
+  font-family: sans-serif;
+  font-size: 18px;
 }
 label {
   display: flex;
@@ -162,19 +171,34 @@ input[type="text"] {
   padding: 10px;
   margin-top: 9px;
   border-radius: 3px;
+  font-family: sans-serif;
   width: 100%;
 }
 .btns {
   display: flex;
-  justify-content: space-between;
+  justify-content: center;
+  gap: 30px;
   width: 100%;
 }
-.btn-service {
+.btn-service,
+.btn-select {
   width: 100%;
   font-size: 1.1rem;
+  padding: 5px;
+  border: 1px solid brown;
+  background: brown;
+  color: white;
+  cursor: pointer;
   margin: 2rem 0;
   border-radius: 4px;
   display: inline-block;
+}
+.btn-service:hover,
+.btn-select:hover {
+  background: white;
+  color: brown;
+  border: 1px solid brown;
+  transition: 0.5s ease-in-out;
 }
 .btn-select {
   width: 100%;
@@ -188,16 +212,27 @@ input[type="text"] {
 .btn-new {
   padding: 10px 15px;
   border: none;
-  border-radius: 3px;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 14px;
   margin-top: 1rem;
 }
 .btn-back {
   background-color: #ddd;
+  color: brown;
+}
+.btn-new {
+  font-family: sans-serif;
+  font-weight: bold;
+  color: brown;
+}
+.btn-new:hover {
+  scale: 1.01;
 }
 .btn-next {
-  background-color: #4caf50;
+  /* background-color: #4caf50; */
+  background: brown;
+  color: white;
 }
 .btn-confirm {
   background-color: #2196f3;
@@ -226,9 +261,11 @@ input[type="text"] {
 .addition-service {
   display: flex;
   align-items: center;
-  margin-bottom: 10px;
+   padding-top: 5px;
+  font-family:sans-serif;
 }
 .addition-service input[type="radio"] {
+  gap: 5px;
   margin-right: 10px;
   margin-bottom: 20px;
 }
