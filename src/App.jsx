@@ -54,12 +54,14 @@ function App() {
   );
   return (
     <div className="app-container">
-      <ul className="container">
-        <li>Home</li>
-        <li>Portfolio</li>
-        <li>Bookings</li>
-        <li>Contact</li>
-      </ul>
+      <div className="container">
+        <ul className="navbar">
+          <li>Home</li>
+          <li>Portfolio</li>
+          <li>Bookings</li>
+          <li>Contact</li>
+        </ul>
+      </div>
       <div className="first">
         <div className="intro squareee">
           <h1>CALGARY</h1>
@@ -79,6 +81,7 @@ function App() {
             cum quaerat nostrum ratione vel quibusdam consequuntur.
           </p>
         </div>
+
         <div className="services squareee">
           <h1>SERVICES</h1>
           <h1 className="unicode">&#9660;</h1>
@@ -94,7 +97,7 @@ function App() {
         <div className="image-grid squareee ">
           <img src={img1} alt="" />
         </div>
-        <div className="clients squareee">
+        <div className="hide clients squareee">
           <h1>CLIENTS</h1>
           <h1 className="unicode">&#9660;</h1>
           <ul>
