@@ -3,7 +3,7 @@ import "./BookCard.css";
 import { people } from "../../data";
 import Booking from "./Booking";
 
-const BookCard = ({ id, img, name, Duration, Price }) => {
+const BookCard = () => {
   const [bookingOpen, setBookingOpen] = useState(false);
   const openBooking = () => setBookingOpen(true);
   const closeBooking = () => setBookingOpen(false);
@@ -18,26 +18,28 @@ const BookCard = ({ id, img, name, Duration, Price }) => {
             return (
               <li className="list-tile" key={id}>
                 <img src={img} alt="dippsycan" />
-                <div className="content">
-                  <div className="texts">
-                    <h2>{name}</h2>
+                <div className="all-content">
+                  <div className="content">
+                    <div className="texts">
+                      <h2>{name}</h2>
+                    </div>
+                    <div className="info">
+                      <h3>{Duration}</h3>
+                      <h4>{Price}</h4>
+                    </div>
                   </div>
-                  <div className="info">
-                    <h3>{Duration}</h3>
-                    <h4>{Price}</h4>
-                  </div>
-                </div>
 
-                <button className="btn" onClick={openBooking}>
-                  Book Now
-                </button>
-                {bookingOpen && (
-                  <Booking
-                    isOpen={bookingOpen}
-                    onRequestClose={closeBooking}
-                    service={{ name, id, Price }}
-                  />
-                )}
+                  <button className="btn" onClick={openBooking}>
+                    Book Now
+                  </button>
+                  {bookingOpen && (
+                    <Booking
+                      isOpen={bookingOpen}
+                      onRequestClose={closeBooking}
+                      service={{ name, id, Price }}
+                    />
+                  )}
+                </div>
               </li>
             );
           })}
