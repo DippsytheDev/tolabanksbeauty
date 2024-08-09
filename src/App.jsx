@@ -58,11 +58,6 @@ function App() {
         </ul>
       </div>
       <div className="first">
-        <div className="intro squareee">
-          <h1>CALGARY</h1>
-          <h1 className="makeup">MAKEUP</h1>
-          <h1>ARTIST</h1>
-        </div>
         <div className="main-img squareee">
           <img src="/Images/img7.jpeg" alt="" />
         </div>
@@ -70,13 +65,13 @@ function App() {
           <h1>About Me</h1>
           <h1 className="unicode">&#9660;</h1>
           <p>
-            Hi, I’m Bims, A Calgary-based makeup artist with over eight years of
-            experience in the beauty industry, specializing in glamorous and
-            skin-enhancing makeup for various occasions, including weddings,
-            birthday parties, and other social events. My goal at Makeupbybims
-            is to not only enhance natural beauty but also to boost individuals'
-            confidence, surpassing expectations and setting a new benchmark in
-            the makeup industry.
+            <span className="one">Hi, I’m Bims...</span>I'm a Calgary-based
+            makeup artist with over eight years of experience in the beauty
+            industry, specializing in glamorous and skin-enhancing makeup for
+            various occasions, including weddings, birthday parties, and other
+            social events. My goal at Makeupbybims is to not only enhance
+            natural beauty but also to boost individuals' confidence, surpassing
+            expectations and setting a new benchmark in the makeup industry.
           </p>
         </div>
 
@@ -114,27 +109,30 @@ function App() {
       <div className="bookCard__container">
         <BookCard />
       </div>
-      <section className="third">
-        <div className="item square">
-          <img src="/Images/img10.jpg" alt="" />
-        </div>
-        <div className="item square">
-          <img src="/Images/img2.jpg" alt="" />
-        </div>
-        <div className="item square">
-          <img src="/Images/img3.jpg" alt="" />
-        </div>
-        <div className="item square">
-          <img src="/Images/img4.jpg" alt="" />
-        </div>
-        <div className="item square">
-          <img src="/Images/img5.jpg" alt="" />
-        </div>
-        <div className="item square">
-          <img src="/Images/img6.jpg" alt="" />
-        </div>
-        <div className="item square">
-          <img src="/Images/img1.jpg" alt="" />
+      <section className="Portfolio">
+        <h1 className="center port">PORTFOLIO</h1>
+        <div className="third">
+          <div className="item square">
+            <img src="/Images/img10.jpg" alt="" />
+          </div>
+          <div className="item square">
+            <img src="/Images/img2.jpg" alt="" />
+          </div>
+          <div className="item square">
+            <img src="/Images/img3.jpg" alt="" />
+          </div>
+          <div className="item square">
+            <img src="/Images/img4.jpg" alt="" />
+          </div>
+          <div className="item square">
+            <img src="/Images/img5.jpg" alt="" />
+          </div>
+          <div className="item square">
+            <img src="/Images/img6.jpg" alt="" />
+          </div>
+          <div className="item square">
+            <img src="/Images/img1.jpg" alt="" />
+          </div>
         </div>
       </section>
 
