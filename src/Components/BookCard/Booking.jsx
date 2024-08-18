@@ -15,6 +15,7 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
   const [showAdditionalService, setShowAdditionalService] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [number, setNumber] = useState("");
   const [address, setAddress] = useState("");
   const [message, setMessage] = useState("");
   const [loading, setLoading] = useState(false);
@@ -70,6 +71,7 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
       await axios.post("http://localhost:3001/book", {
         name,
         email,
+        number,
         address,
         message,
         service: service.name ? service.Price : "",
@@ -185,12 +187,21 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
                 />
               </label>
               <label>
-                Email:
+                Number:
                 <input
-                  type="email"
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Your Email"
+                  placeholder="Your Number"
+                  required
+                />
+              </label>
+              <label>
+                Address:
+                <input
+                  type="text"
+                  value={address}
+                  onChange={(e) => setAddress(e.target.value)}
+                  placeholder="Your Address"
                   required
                 />
               </label>

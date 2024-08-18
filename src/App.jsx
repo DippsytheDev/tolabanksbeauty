@@ -48,13 +48,21 @@ function App() {
     });
   });
   return (
-    <div className="app-container">
+    <div className="app-container" id="Home">
       <div className="container">
         <ul className="navbar">
-          <li>Home</li>
-          <li>Portfolio</li>
-          <li>Bookings</li>
-          <li>Contact</li>
+          <li>
+            <a href="#Home">Home</a>
+          </li>
+          <li>
+            <a href="#Bookings">Bookings</a>
+          </li>
+          <li>
+            <a href="#Portfolio">Portfolio</a>
+          </li>
+          <li>
+            <a href="#Contact">Contact</a>
+          </li>
         </ul>
       </div>
       <div className="first">
@@ -106,10 +114,10 @@ function App() {
           <img src="/Images/img8.jpeg" alt="" />
         </div>
       </div>
-      <div className="bookCard__container">
+      <div className="bookCard__container" id="Bookings">
         <BookCard />
       </div>
-      <section className="Portfolio">
+      <section className="Portfolio" id="Portfolio">
         <h1 className="center port">PORTFOLIO</h1>
         <div className="third">
           <div className="item square">
@@ -136,7 +144,7 @@ function App() {
         </div>
       </section>
 
-      <div>
+      <div id="Contact">
         <ContactCard />
       </div>
     </div>

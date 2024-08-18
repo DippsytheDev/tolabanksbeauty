@@ -11,7 +11,7 @@ const BookCard = () => {
   return (
     <>
       <article className="booking-container">
-        <h1 className="center">MAKE A BOOKING</h1>
+        <h1 className="make">MAKE A BOOKING</h1>
         <ul className="second">
           {people.map((make) => {
             const { id, img, name, Duration, Price } = make;

@@ -8,7 +8,6 @@
 }
 html {
   scroll-behavior: smooth;
-  overflow-x: hidden;
 }
 img {
   display: block;
@@ -51,9 +50,16 @@ body {
   flex: 1 1 auto;
   text-align: center;
 }
-.navbar li:hover {
-  color: #ffc300;
+
+.navbar a:visited,
+a:link {
+  color: white;
+  text-decoration: none;
 }
+.navbar a:hover {
+  color: #ffdd57;
+}
+
 .first {
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -67,12 +73,8 @@ body {
 }
 .first h1 {
   font-family: "Playfair Display", serif;
-  color: #ffc300;
+  color: #ffdd57;
 }
-/* .first p,
-li {
-  color: black;
-} */
 
 .main-img {
   grid-column: 1 / 3;
@@ -111,7 +113,7 @@ li {
   line-height: 1.4;
 }
 .one {
-  font-size: xx-large;
+  font-size: clamp(0.7rem, 3vw, 1.4rem);
   font-family: "Playfair Display", serif;
   display: block;
   font-style: italic;
@@ -164,7 +166,7 @@ li {
 .unicode {
   font-size: clamp(0.7rem, 2vw, 1.2rem);
   margin: 0.4rem 0;
-  color: #ffc0cb;
+  color: #ffdd57;
 }
 
 @media screen and (max-width: 1100px) {
@@ -200,7 +202,7 @@ li {
 }
 
 .port {
-  color: #ffc300;
+  color: #ffdd57;
   margin: 2.5rem 0 0 0;
   font-size: clamp(2.5rem, 3vw, 5rem);
   font-family: "Playfair Display", serif;
@@ -209,7 +211,6 @@ li {
 }
 .third {
   display: grid;
-  background-color: black;
   background-color: transparent;
   grid-template-columns: repeat(4, 1fr);
   grid-auto-rows: 300px;

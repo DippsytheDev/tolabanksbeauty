@@ -1,5 +1,6 @@
 .booking-container {
   width: 100%;
+  font-size: clamp(1.2rem, 2vw, 4rem);
 }
 
 .second {
@@ -7,7 +8,7 @@
   display: flex;
   flex-direction: column;
   color: black;
-  max-width: 1300px;
+  max-width: 1100px;
   min-height: 2vh;
   border: 1px solid black;
   width: calc(100% - 3rem);
@@ -18,24 +19,32 @@
   display: flex;
   flex-direction: row;
   width: 100%;
+  height: 100%;
   padding: 2rem 0;
   margin: 0rem auto;
   text-align: center;
-  font-size: 0.9rem;
   align-items: center;
   border: 1px solid black;
-  background-color: #ffc300;
+  background-color: #ffdd57;
 }
 li.list-tile {
   /* background-color: #bc6c25; */
   color: black;
 }
 
-.second img {
-  width: 15%;
-  height: auto;
-  border-radius: 50%;
+.list-tile img {
+  width: 120px;
+  height: 120px;
   margin-right: 2rem;
+  object-fit: cover;
+  border-radius: 50%;
+  object-position: 50% 20%;
+}
+.make {
+  text-align: center;
+  margin-bottom: -3rem;
+  font-family: "Playfair Display", serif;
+  color: #ffdd57;
 }
 .content {
   display: flex;
@@ -58,7 +67,7 @@ li.list-tile {
 
 .btn {
   background-color: black;
-  color: #ffd700;
+  color: #ffdd57;
   font-size: 0.75rem;
   display: inline-block;
   width: 149px;
@@ -83,7 +92,7 @@ li.list-tile {
   flex-direction: column;
   justify-content: space-between;
 }
-@media (min-width: 620px) {
+@media (min-width: 768px) {
   .second li {
     flex-direction: row;
     align-items: flex-start;
@@ -100,7 +109,6 @@ li.list-tile {
     margin: 0 0.5rem 0 4rem;
   }
   .info {
-    font-size: 1.4rem;
     white-space: nowrap;
     margin: 0 10rem 0 4rem;
   }
@@ -111,37 +119,11 @@ li.list-tile {
     display: flex;
     flex-direction: row;
     flex: 1;
-  }
-}
-@media (min-width: 1200px) {
-  .second li {
-    flex-direction: row;
-    align-items: flex-start;
-  }
-  .content {
-    flex-direction: row;
     align-items: center;
     justify-content: space-between;
   }
-  .texts {
-    margin-left: 4rem;
-    font-size: 1.4rem;
-  }
-  .second img {
-    margin: 0 0.5rem 0 4rem;
-  }
-  .info {
-    margin-right: 5rem;
-    font-size: clamp(0.9rem, 3vw, 1.5rem);
-  }
-  .btn {
-    margin-right: 1.4rem;
-  }
-  .all-content {
-    display: flex;
-    flex-direction: row;
-  }
 }
+
 .modal-overlay {
   display: flex;
   justify-content: center;
@@ -176,9 +158,9 @@ li.list-tile {
   gap: 8px;
 }
 .step > h2 {
-  font-family: sans-serif, helvetical;
+  font-family: "Playfair Display", serif;
   font-weight: bold;
-  color: brown;
+  color: #ffdd57;
   font-size: 32px;
 }
 .step p {
@@ -207,11 +189,10 @@ input[type="text"] {
 .btn-service,
 .btn-select {
   width: 100%;
-  font-size: 1.1rem;
   padding: 5px;
   border: 1px solid brown;
-  background: brown;
-  color: white;
+  background: black;
+  color: #ffdd57;
   cursor: pointer;
   margin: 2rem 0;
   border-radius: 4px;
@@ -220,13 +201,12 @@ input[type="text"] {
 .btn-service:hover,
 .btn-select:hover {
   background: white;
-  color: brown;
+  color: black;
   border: 1px solid brown;
   transition: 0.5s ease-in-out;
 }
 .btn-select {
   width: 100%;
-  font-size: 1.1rem;
   border-radius: 4px;
 }
 
@@ -238,32 +218,33 @@ input[type="text"] {
   border: none;
   border-radius: 8px;
   cursor: pointer;
-  font-size: 14px;
+
   margin-top: 1rem;
 }
 .btn-back {
-  background-color: #ddd;
-  color: brown;
+  background-color: black;
+  color: white;
 }
 .btn-new {
   font-family: sans-serif;
   font-weight: bold;
-  color: brown;
+  color: #ffc300;
+  background-color: #000;
 }
 .btn-new:hover {
   scale: 1.01;
 }
 .btn-next {
   /* background-color: #4caf50; */
-  background: brown;
+  background: black;
   color: white;
 }
 .btn-confirm {
-  background-color: #2196f3;
+  background-color: #0d8ef8;
 }
 .date-picker {
   width: 100%;
-  font-size: 14px;
+
   border: 1px solid #ccc;
   margin-top: 9px;
 }
