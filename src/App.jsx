@@ -90,24 +90,21 @@ function App() {
             <li>Bridal Makeup</li>
             <li>Group Makeup</li>
             <li>Events Makeup</li>
-            <li>Theatre Makeup</li>
-            <li>Theatre Makeup</li>
-            <li>Theatre Makeup</li>
+            <li>Makeup Class</li>
+            <li>DIY Makeup Class</li>
           </ul>
         </div>
         <div className="image-grid squareee ">
           <img src="/Images/img9.jpeg" alt="" />
         </div>
         <div className="hide clients squareee">
-          <h1>CLIENTS</h1>
+          <h1>NON-MAKEUP</h1>
           <h1 className="unicode">&#9660;</h1>
           <ul>
             <li>Ad Works</li>
-            <li>Ad Works</li>
-            <li>Ad Works</li>
-            <li>Ad Works</li>
-            <li>Ad Works</li>
-            <li>Ad Works</li>
+            <li>Colors Up</li>
+            <li>Photo Shoot</li>
+            <li>Gele Services</li>
           </ul>
         </div>
         <div className="image-grids squareee">

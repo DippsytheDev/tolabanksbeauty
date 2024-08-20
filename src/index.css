@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
+@import url("https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400..900;1,400..900&family=Raleway:ital,wght@0,100..900;1,100..900&family=Roboto:ital,wght@0,100;0,300;0,400;0,500;0,700;0,900;1,100;1,300;1,400;1,500;1,700;1,900&display=swap");
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans:ital,wght@0,100..900;1,100..900&family=Noto+Serif:ital,wght@0,100..900;1,100..900&family=Playfair+Display:ital,wght@0,400..900;1,400..900&display=swap");
 * {
   padding: 0;
@@ -16,7 +16,7 @@ body {
   background-color: white;
   color: black;
   max-width: 100%;
-  font-family: "Roboto", sans-serif;
+  font-family: "Raleway", sans-serif;
   overflow-x: hidden;
 }
 
@@ -86,7 +86,8 @@ a:link {
   display: flex;
   justify-content: center;
   align-items: center;
-  filter: brightness(0.6);
+  filter: brightness(0.7);
+  max-width: 1300px;
 }
 .main-img img {
   width: 100%;
@@ -160,7 +161,7 @@ a:link {
   height: auto;
   border-radius: 8px;
   object-fit: cover;
-  filter: brightness(0.6);
+  filter: brightness(0.7);
 }
 .unicode {
   font-size: clamp(0.7rem, 2vw, 1.2rem);
