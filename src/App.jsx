@@ -70,7 +70,7 @@ function App() {
           <img src="/Images/img7.jpeg" alt="" />
         </div>
         <div className="about-me squareee">
-          <h1>About Me</h1>
+          <h1 id="topic-text">About Me</h1>
           <h1 className="unicode">&#9660;</h1>
           <p>
             <span className="one">Hi, I’m Bims...</span>I'm a Calgary-based
@@ -84,7 +84,7 @@ function App() {
         </div>
 
         <div className="services squareee">
-          <h1>SERVICES</h1>
+          <h1 id="topic-text">SERVICES</h1>
           <h1 className="unicode">&#9660;</h1>
           <ul>
             <li>Bridal Makeup</li>
@@ -98,7 +98,7 @@ function App() {
           <img src="/Images/img9.jpeg" alt="" />
         </div>
         <div className="hide clients squareee">
-          <h1>NON-MAKEUP</h1>
+          <h1 id="topic-text">NON-MAKEUP</h1>
           <h1 className="unicode">&#9660;</h1>
           <ul>
             <li>Ad Works</li>
@@ -115,7 +115,7 @@ function App() {
         <BookCard />
       </div>
       <section className="Portfolio" id="Portfolio">
-        <h1 className="center port">PORTFOLIO</h1>
+        <h1 className="center port topic-text">PORTFOLIO</h1>
         <div className="third">
           <div className="item square">
             <img src="/Images/img10.jpg" alt="" />
