@@ -21,7 +21,6 @@
   color: black;
   max-width: 1100px;
   min-height: 2vh;
-  border: 1px solid black;
   width: calc(100% - 3rem);
   margin: 4rem auto;
   gap: 0.4rem;
@@ -36,10 +35,7 @@
   text-align: center;
   align-items: flex-start;
   border: 1px solid black;
-  background-color: #ffdd57;
-}
-li.list-tile {
-  /* background-color: #bc6c25; */
+  background-color: #fff3a4;
   color: black;
 }
 
