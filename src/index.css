@@ -140,6 +140,7 @@ a:link {
   grid-column: 2 / 3;
   grid-row: 4 / 5;
   text-align: center;
+  margin-left: 1.8rem;
 }
 .clients-heading {
   margin-top: 2rem;
