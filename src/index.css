@@ -4,7 +4,6 @@
   padding: 0;
   margin: 0;
   box-sizing: border-box;
-  overflow-x: hidden;
 }
 html {
   scroll-behavior: smooth;
@@ -17,7 +16,6 @@ body {
   color: black;
   max-width: 100%;
   font-family: "Raleway", sans-serif;
-  overflow-x: hidden;
 }
 
 .app-container {
@@ -49,6 +47,7 @@ body {
 .navbar li {
   flex: 1 1 auto;
   text-align: center;
+  list-style-type: none;
 }
 
 .navbar a:visited,
@@ -122,13 +121,38 @@ a:link {
   grid-column: 1 / 2;
   grid-row: 3 / 4;
   text-align: center;
-  margin: 1rem 0;
 }
+.service-heading {
+  margin-top: 2rem;
+}
+.services ul {
+  list-style-type: disc;
+  text-align: left;
+  list-style-position: inside;
+  margin: 0 auto;
+  display: inline-block;
+}
+.services li {
+  margin-bottom: 0.5em;
+}
+
 .clients {
   grid-column: 2 / 3;
   grid-row: 4 / 5;
   text-align: center;
-  margin: 2rem 0 1rem 0;
+}
+.clients-heading {
+  margin-top: 2rem;
+}
+.clients ul {
+  list-style-type: disc;
+  text-align: left;
+  list-style-position: inside;
+  margin: 0 auto;
+  display: inline-block;
+}
+.clients li {
+  margin-bottom: 0.5em;
 }
 .image-grid {
   grid-column: 2 / 3;
@@ -164,8 +188,8 @@ a:link {
   filter: brightness(0.7);
 }
 .unicode {
-  font-size: clamp(0.7rem, 2vw, 1.2rem);
-  margin: 0.4rem 0;
+  font-size: clamp(2rem, 3vw, 3rem);
+  margin-bottom: 0.5rem;
   color: #ffdd57;
 }
 

@@ -71,7 +71,7 @@ function App() {
         </div>
         <div className="about-me squareee">
           <h1>About Me</h1>
-          <h1 className="unicode">&#9660;</h1>
+          <h1 className="unicode">&#9013;</h1>
           <p>
             <span className="one">Hi, I’m Bims...</span>I'm a Calgary-based
             makeup artist with over eight years of experience in the beauty
@@ -84,8 +84,10 @@ function App() {
         </div>
 
         <div className="services squareee">
-          <h1>SERVICES</h1>
-          <h1 className="unicode">&#9660;</h1>
+          <div className="service-heading">
+            <h1>SERVICES</h1>
+          </div>
+          <h1 className="unicode">&#9013;</h1>
           <ul>
             <li>Bridal Makeup</li>
             <li>Group Makeup</li>
@@ -98,8 +100,10 @@ function App() {
           <img src="/Images/img9.jpeg" alt="" />
         </div>
         <div className="hide clients squareee">
-          <h1>NON-MAKEUP</h1>
-          <h1 className="unicode">&#9660;</h1>
+          <div className="clients-heading">
+            <h1>NON-MAKEUP</h1>
+          </div>
+          <h1 className="unicode">&#9013;</h1>
           <ul>
             <li>Ad Works</li>
             <li>Colors Up</li>
