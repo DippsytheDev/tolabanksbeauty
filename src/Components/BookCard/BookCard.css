@@ -1,6 +1,6 @@
 .booking-container {
   width: 100%;
-  font-size: clamp(1rem, 2vw, 4rem);
+  font-size: clamp(1rem, 2vw, 1.5rem);
 }
 .make {
   text-align: center;
@@ -164,8 +164,7 @@
   font-size: 32px;
 }
 .step p {
-  font-family: sans-serif;
-  font-size: 18px;
+  font-size: 20px;
 }
 label {
   display: flex;
@@ -190,24 +189,18 @@ input[type="text"] {
 .btn-select {
   width: 100%;
   padding: 5px;
-  border: 1px solid #ffe6a7;
   background: black;
-  color: #ffe6a7;
+  color: whitesmoke;
   cursor: pointer;
   margin: 2rem 0;
-  border-radius: 4px;
   display: inline-block;
 }
 .btn-service:hover,
 .btn-select:hover {
   background: white;
   color: black;
-  border: 1px solid brown;
+  border: 1px solid #ffdd57;
   transition: 0.5s ease-in-out;
-}
-.btn-select {
-  width: 100%;
-  border-radius: 4px;
 }
 
 .btn-back,
@@ -216,29 +209,25 @@ input[type="text"] {
 .btn-new {
   padding: 10px 15px;
   border: none;
-  border-radius: 8px;
   cursor: pointer;
-
   margin-top: 1rem;
 }
-.btn-back {
+.btn-back,
+.btn-next {
   background-color: black;
   color: white;
 }
 .btn-new {
-  font-family: sans-serif;
   font-weight: bold;
   color: #ffc300;
   background-color: #000;
 }
-.btn-new:hover {
+.btn-new:hover,
+.btn-back:hover,
+.btn-next:hover {
   scale: 1.01;
 }
-.btn-next {
-  /* background-color: #4caf50; */
-  background: black;
-  color: white;
-}
+
 .btn-confirm {
   background-color: #0d8ef8;
 }
@@ -267,10 +256,35 @@ input[type="text"] {
   display: flex;
   align-items: center;
   padding-top: 5px;
-  font-family: sans-serif;
 }
 .addition-service input[type="radio"] {
   gap: 5px;
   margin-right: 10px;
   margin-bottom: 20px;
+}
+.custom-date-picker {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centers the content horizontally */
+}
+
+.confirm-button-container {
+  margin-top: 10px;
+  display: flex;
+  justify-content: center; /* Centers the button horizontally */
+  width: 100%; /* Ensures the container takes up full width for proper centering */
+}
+
+.btn-confirm {
+  padding: 8px 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+}
+
+.btn-confirm:hover {
+  background-color: #0056b3;
 }

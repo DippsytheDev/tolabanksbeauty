@@ -1,18 +1,18 @@
 import axios from "axios";
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 import DatePicker from "react-datepicker";
 import Modal from "react-modal";
 import "./BookCard.css";
 import "react-datepicker/dist/react-datepicker.css";
 import { people } from "../../data";
+import CustomDatePicker from "./CustomPicker";
 
 Modal.setAppElement("#root");
 
 const Booking = ({ isOpen, onRequestClose, service }) => {
-  const [move, setMove] = useState(1);
+  const [step, setStep] = useState(1);
   const [additionService, setAdditionalService] = useState("");
   const [selectedDate, setSelectedDate] = useState(new Date());
-  const [showAdditionalService, setShowAdditionalService] = useState(false);
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [number, setNumber] = useState("");
@@ -23,25 +23,25 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
   const datePickerRef = useRef(null);
   const formRef = useRef(null);
   const [success, setSuccess] = useState(false);
+  const [bookedTimes, setBookedTimes] = useState([]);
+  const [showDatePicker, setShowDatePicker] = useState(false);
 
   const handleDatePicker = () => {
     if (datePickerRef.current) {
       datePickerRef.current.setFocus();
     }
   };
+  const toggleDatePicker = () => {
+    setShowDatePicker(!showDatePicker);
+  };
 
   const handleDateChange = (date) => {
     setSelectedDate(date);
-    setShowDatePicker(false);
   };
 
   const filterDates = (date) => {
     const day = date.getDay();
     return day !== 0 && day !== 6;
-  };
-  const filterTimes = (time) => {
-    const hour = time.getHours();
-    return hour >= 8 && hour <= 18;
   };
 
   const handleNext = (e, requiresValidation) => {
@@ -49,19 +49,26 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
     if (requiresValidation) {
       const form = formRef.current;
       if (form.checkValidity()) {
-        setMove(move + 1);
+        setStep(step + 1);
       } else {
         form.reportValidity();
       }
     } else {
-      setMove(move + 1);
+      setStep(step + 1);
     }
   };
 
   const handleBack = () => {
-    if (move > 1) {
-      setMove(move - 1);
+    if (step === 3) {
+      setStep(1);
+    } else if (step > 1) {
+      setStep(step - 1);
     }
+  };
+
+  const handleServiceSelect = (service) => {
+    setAdditionalService(service);
+    setStep(step + 1);
   };
 
   const handleConfirm = async () => {
@@ -91,6 +98,54 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
       setError("Failed to confirm booking, Please try again.");
     }
   };
+  const generateAllowedTimes = (bookedTimes) => {
+    const times = [];
+    let startTime = new Date();
+    startTime.setHours(0, 0, 0, 0); // Start at midnight for a full day view
+
+    while (startTime.getDate() === new Date().getDate()) {
+      // Generate times for the entire day
+      // Check if the current time slot is booked
+      const isBooked = bookedTimes.some((bookedTime) => {
+        const endBookingTime = new Date(bookedTime);
+        endBookingTime.setMinutes(endBookingTime.getMinutes() + 210); // 3 hours and 30 minutes
+        return startTime >= bookedTime && startTime < endBookingTime;
+      });
+
+      if (!isBooked) {
+        times.push(new Date(startTime)); // Push the time slot if it is not booked
+      }
+
+      // Move to the next time slot by 1 hour (or any interval you prefer)
+      startTime.setMinutes(startTime.getMinutes() + 60); // Example: moving in 1-hour intervals
+    }
+
+    return times;
+  };
+  // Fetch booked times from the backend when the date changes
+  const fetchBookedTimes = async (date) => {
+    try {
+      const response = await axios.get(
+        "http://localhost:3001/api/booked-times",
+        {
+          params: { date: date.toISOString().split("T")[0] },
+        }
+      );
+      console.log("Full Response:", response);
+      if (response.status === 200 && Array.isArray(response.data)) {
+        const times = response.data.map((time) => new Date(time));
+        setBookedTimes(times);
+        setAllowedTimes(generateAllowedTimes(times));
+      } else {
+        console.error("Unexpected response format:", response.data);
+      }
+    } catch (error) {
+      console.error("Failed to fetch booked times:", error);
+    }
+  };
+  useEffect(() => {
+    fetchBookedTimes(selectedDate);
+  }, [selectedDate]);
 
   return (
     <div className="modal-container">
@@ -105,66 +160,44 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
         <span className="close" onClick={onRequestClose}>
           &times;
         </span>
-
-        {move === 1 && (
+        {step === 1 && (
           <div className="step">
             <h2>Your Appointment</h2>
             <p>{service.name}</p>
+            <p>{service.Duration}</p>
             <p>{service.Price}</p>
-            <button
-              className="btn-service"
-              onClick={() => setShowAdditionalService(true)}
-            >
-              Add Service
+            <button className="btn-service" onClick={() => setStep(2)}>
+              + Add Extra Service
             </button>
-            {showAdditionalService && (
-              <label>
-                Do you want to add another appointment?
-                <div>
-                  {people.map((make, index) => (
-                    <div key={index} className="addition-service">
-                      <input
-                        type="radio"
-                        id={`make-${index}`}
-                        name="additionalService"
-                        value={make.name}
-                        onChange={() => setAdditionalService(make)}
-                      />
-                      <label htmlFor={`make-${index}`}>
-                        {make.name} - {make.Price}
-                      </label>
-                    </div>
-                  ))}
-                </div>
-              </label>
-            )}
-
             <div className="btns">
-              <button className="btn-select" onClick={handleNext}>
+              <button className="btn-select" onClick={() => setStep(3)}>
                 Select Date and Time
               </button>
             </div>
           </div>
         )}
-        {move === 2 && (
+        {step === 2 && (
           <div className="step">
-            <h2>Select a Date and Time</h2>
-            <DatePicker
-              selected={selectedDate}
-              onChange={handleDateChange}
-              showTimeSelect
-              dateFormat="Pp"
-              className="date-picker"
-              ref={datePickerRef}
-              filterDate={filterDates}
-              filterTime={filterTimes}
-            />
+            <h2>Select another service</h2>
+            <div>
+              {people.map((service, index) => (
+                <div key={index} className="addition-service">
+                  <input
+                    type="radio"
+                    id={`service-${index}`}
+                    name="additionalService"
+                    value={service.name}
+                    onChange={() => handleServiceSelect(service)}
+                  />
+                  <label htmlFor={`service-${index}`}>
+                    {service.name} - {service.Price}
+                  </label>
+                </div>
+              ))}
+            </div>
             <div className="btns">
               <button className="btn-back" onClick={handleBack}>
                 Back
-              </button>
-              <button className="btn-new" onClick={handleDatePicker}>
-                Choose New Date and Time
               </button>
               <button className="btn-next" onClick={handleNext}>
                 Next
@@ -172,7 +205,42 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
             </div>
           </div>
         )}
-        {move === 3 && (
+        {step === 3 && (
+          <div className="step">
+            <h2>Select a Date and Time</h2>
+
+            {showDatePicker && (
+              <CustomDatePicker
+                selectedDate={selectedDate}
+                onDateChange={handleDateChange}
+                bookedTimes={bookedTimes}
+                closeDatePicker={toggleDatePicker}
+              />
+            )}
+
+            <div className="btns">
+              <button className="btn-back" onClick={handleBack}>
+                Back
+              </button>
+              <button className="btn-new" onClick={toggleDatePicker}>
+                Choose New Date and Time
+              </button>
+              <button className="btn-next" onClick={handleNext}>
+                Next
+              </button>
+            </div>
+            <h4>
+              Your Booking:{" "}
+              {selectedDate
+                ? selectedDate.toLocaleString("en-CA", {
+                    timeZone: "America/Edmonton",
+                  })
+                : "No date selected"}
+            </h4>
+          </div>
+        )}
+
+        {step === 4 && (
           <form ref={formRef} className="step">
             <div className="step">
               <h2>Your Details</h2>
@@ -187,21 +255,21 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
                 />
               </label>
               <label>
-                Number:
+                Email:
                 <input
                   value={email}
                   onChange={(e) => setEmail(e.target.value)}
-                  placeholder="Your Number"
+                  placeholder="Your Email"
                   required
                 />
               </label>
               <label>
-                Address:
+                Number:
                 <input
                   type="text"
-                  value={address}
-                  onChange={(e) => setAddress(e.target.value)}
-                  placeholder="Your Address"
+                  value={number}
+                  onChange={(e) => setNumber(e.target.value)}
+                  placeholder="Your Number"
                   required
                 />
               </label>
@@ -238,7 +306,7 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
           </form>
         )}
 
-        {move === 4 && (
+        {step === 5 && (
           <div className="step">
             <h2>Confirm Your Booking</h2>
             {success ? (
@@ -255,6 +323,7 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
                 <p>Time: {selectedDate.toLocaleTimeString()}</p>
                 <p>Name: {name}</p>
                 <p>Email: {email}</p>
+                <p>Number: {number}</p>
                 <p>Address: {address}</p>
                 <p>Message: {message}</p>
                 {loading && <p>Loading...</p>}

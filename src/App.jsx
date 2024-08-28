@@ -90,9 +90,8 @@ function App() {
           <h1 className="unicode">&#9013;</h1>
           <ul>
             <li>Bridal Makeup</li>
-            <li>Group Makeup</li>
-            <li>Events Makeup</li>
-            <li>Makeup Class</li>
+            <li>Non-Bridal Makeup</li>
+            <li>1on1 Master Class</li>
             <li>DIY Makeup Class</li>
           </ul>
         </div>
