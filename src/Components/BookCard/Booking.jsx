@@ -1,5 +1,5 @@
 import axios from "axios";
-import React, { useRef, useState, useEffect } from "react";
+import React, { useState, useEffect } from "react";
 import Modal from "react-modal";
 import "./BookCard.css";
 import "react-datepicker/dist/react-datepicker.css";
