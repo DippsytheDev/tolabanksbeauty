@@ -83,7 +83,7 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
 
     try {
       // Send the booking data to the backend
-      await axios.post("http://localhost:3001/book", {
+      await axios.post("https://end8.vercel.app/book", {
         name: formData.name, // Captured from step 4
         email: formData.email, // Captured from step 4
         number: formData.number, // Captured from step 4
@@ -120,7 +120,7 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
     const formattedDate = moment(date).format("YYYY-MM-DD");
     axios
       .get(
-        `http://localhost:3001/bookings/unavailable-times?date=${formattedDate}`
+        `https://end8.vercel.app/bookings/unavailable-times?date=${formattedDate}`
       )
       .then((response) => {
         const bookedTimes = response.data;

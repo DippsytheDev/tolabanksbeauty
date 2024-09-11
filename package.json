@@ -13,6 +13,7 @@
   "dependencies": {
     "@gsap/react": "^2.1.1",
     "axios": "^1.7.2",
+    "cors": "^2.8.5",
     "framer-motion": "^11.3.18",
     "moment-timezone": "^0.5.45",
     "mongoose": "^8.5.3",
