@@ -36,7 +36,7 @@ const BookCard = () => {
                     <Booking
                       isOpen={bookingOpen}
                       onRequestClose={closeBooking}
-                      service={{ name, id, Price }}
+                      service={{ name, id, Price, Duration }}
                     />
                   )}
                 </div>
