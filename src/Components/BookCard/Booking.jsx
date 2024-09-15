@@ -26,6 +26,7 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
+  const [showConfirmation, setShowConfirmation] = useState(false);
 
   const handleBack = () => {
     if (step === 3) {
@@ -168,17 +169,20 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
   useEffect(() => {
     handleDateChange(selectedDate);
   }, []);
+  const handleRequestClose = () => {
+    setShowConfirmation(true);
+  };
   return (
     <div className="modal-container">
       <div className="modal-backdrop"></div>
       <Modal
         isOpen={isOpen}
-        onRequestClose={onRequestClose}
+        onRequestClose={handleRequestClose}
         contentLabel="Booking Modal"
         className="modal-content"
         overlayClassName="modal-overlay"
       >
-        <span className="close" onClick={onRequestClose}>
+        <span className="close" onClick={handleRequestClose}>
           &times;
         </span>
         {step === 1 && (
@@ -386,6 +390,30 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
                 </div>
               </>
             )}
+          </div>
+        )}
+        {showConfirmation && (
+          <div className="modal-backdrop">
+            <Modal
+              isOpen={showConfirmation}
+              onRequestClose={() => setShowConfirmation(false)}
+              className="confirm-modal"
+              overlayClassName="modal-overlay"
+            >
+              <h2>Leave without booking?</h2>
+              <p>If you leave now,your booking won't be saved.</p>
+              <div className="btns">
+                <button
+                  onClick={() => setShowConfirmation(false)}
+                  className="btn1"
+                >
+                  Continue Booking
+                </button>
+                <button onClick={onRequestClose} className="btn2">
+                  Leave Booking
+                </button>
+              </div>
+            </Modal>
           </div>
         )}
       </Modal>
