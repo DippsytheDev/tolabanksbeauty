@@ -104,8 +104,6 @@ function App() {
           </div>
           <h1 className="unicode">&#9013;</h1>
           <ul>
-            <li>Ad Works</li>
-            <li>Colors Up</li>
             <li>Photo Shoot</li>
             <li>Gele Services</li>
           </ul>

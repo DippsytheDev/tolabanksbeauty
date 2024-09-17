@@ -39,7 +39,7 @@ const ContactCard = () => {
             <a href="#" className="social-icon">
               <i className="fab fa-twitter"></i>
             </a>
-            <a href="Bimstudios@yahoo.com" className="social-icon">
+            <a href="mailto:Bimstudios@yahoo.com" className="social-icon">
               <i className="fas fa-envelope"></i>
             </a>
           </div>
