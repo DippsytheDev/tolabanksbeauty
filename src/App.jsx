@@ -106,6 +106,8 @@ function App() {
           <ul>
             <li>Photo Shoot</li>
             <li>Gele Services</li>
+            <li>Cornrows</li>
+            <li>Semi-Permanent Makeup</li>
           </ul>
         </div>
         <div className="image-grids squareee">
@@ -128,13 +130,13 @@ function App() {
             <img src="/Images/img3.jpg" alt="" />
           </div>
           <div className="item square">
-            <img src="/Images/img4.jpg" alt="" />
+            <img src="/Images/img13.jpg" alt="" />
           </div>
           <div className="item square">
             <img src="/Images/img5.jpg" alt="" />
           </div>
           <div className="item square">
-            <img src="/Images/img6.jpg" alt="" />
+            <img src="/Images/img14.jpg" alt="" />
           </div>
           <div className="item square">
             <img src="/Images/img1.jpg" alt="" />

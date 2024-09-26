@@ -1,8 +1,10 @@
 export const people = [
   {
     id: 1,
-    img: "/Images/img2.jpg",
+    img: "/Images/img13.jpg",
     name: "BRIDAL SESSION(Gold Package)",
+    description:
+      "This session includes free consultation,a bridal trial at my studio,before your wedding",
     Duration: "2hrs 30mins",
     Price: "$400",
   },
@@ -10,6 +12,8 @@ export const people = [
     id: 2,
     img: "/Images/img2.jpg",
     name: "BRIDAL SESSION(Silver Package)",
+    description:
+      "This session includes free consultation only before your wedding. N.B: No bridal is included",
     Duration: "2hrs 30mins",
     Price: "$350",
   },

@@ -320,7 +320,7 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
               {formErrors.number && (
                 <p className="error">{formErrors.number}</p>
               )}
-              {/* Show error if validation fails */}
+              {/* Show error if validation fails.. */}
             </div>
             <div className="form-group">
               <label>Address:</label>
