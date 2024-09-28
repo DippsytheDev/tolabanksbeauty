@@ -186,6 +186,11 @@ a:link {
   height: auto;
   border-radius: 8px;
   object-fit: cover;
+}
+.image-grid img {
+  filter: brightness(0.9);
+}
+.image-grids img {
   filter: brightness(0.7);
 }
 .unicode {

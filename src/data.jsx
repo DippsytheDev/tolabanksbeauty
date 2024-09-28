@@ -1,28 +1,28 @@
 export const people = [
   {
     id: 1,
-    img: "/Images/img13.jpg",
+    img: "/Images/img16.jpeg",
     name: "BRIDAL SESSION(Gold Package)",
     description:
-      "This session includes free consultation,a bridal trial at my studio,before your wedding",
-    Duration: "2hrs 30mins",
-    Price: "$400",
+      "This session includes free consultation and a bridal trial,before your wedding day.",
+    Duration: "2hrs",
+    Price: "$450",
   },
   {
     id: 2,
     img: "/Images/img2.jpg",
     name: "BRIDAL SESSION(Silver Package)",
     description:
-      "This session includes free consultation only before your wedding. N.B: No bridal is included",
-    Duration: "2hrs 30mins",
-    Price: "$350",
+      "This session includes free consultation only before your wedding day. N.B: No bridal trial is included.",
+    Duration: "2hrs",
+    Price: "$400",
   },
   {
     id: 3,
     img: "/Images/img10.jpg",
     name: "NON-BRIDAL SESSION(Home Service)",
     Duration: "1hr 30mins",
-    Price: "$180",
+    Price: "$200",
   },
   {
     id: 4,
@@ -40,7 +40,7 @@ export const people = [
   },
   {
     id: 6,
-    img: "/Images/img6.jpg",
+    img: "/Images/img14.jpg",
     name: "DIY MAKEUP CLASS",
     Duration: "3hrs",
     Price: "$250",

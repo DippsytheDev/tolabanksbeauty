@@ -21,7 +21,7 @@ const ContactCard = () => {
             <i className="fas fa-map-marker-alt"></i> Calgary, Alberta
           </p>
           <p>
-            <i className="fas fa-phone-alt"></i> +1 234 567 890
+            <i className="fas fa-phone-alt"></i> +1403 596 3700
           </p>
           <p>
             <i className="fas fa-envelope"></i> Bimstudios@yahoo.com

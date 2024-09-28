@@ -96,7 +96,7 @@ function App() {
           </ul>
         </div>
         <div className="image-grid squareee ">
-          <img src="/Images/img9.jpeg" alt="" />
+          <img src="/Images/img15.jpeg" alt="" />
         </div>
         <div className="hide clients squareee">
           <div className="clients-heading">
@@ -104,14 +104,12 @@ function App() {
           </div>
           <h1 className="unicode">&#9013;</h1>
           <ul>
-            <li>Photo Shoot</li>
-            <li>Gele Services</li>
             <li>Cornrows</li>
             <li>Semi-Permanent Makeup</li>
           </ul>
         </div>
         <div className="image-grids squareee">
-          <img src="/Images/img8.jpeg" alt="" />
+          <img src="/Images/img9.jpeg" alt="" />
         </div>
       </div>
       <div className="bookCard__container" id="Bookings">
@@ -130,7 +128,7 @@ function App() {
             <img src="/Images/img3.jpg" alt="" />
           </div>
           <div className="item square">
-            <img src="/Images/img13.jpg" alt="" />
+            <img src="/Images/img16.jpeg" alt="" />
           </div>
           <div className="item square">
             <img src="/Images/img5.jpg" alt="" />

@@ -40,6 +40,7 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
     email: "",
     number: "",
     address: "",
+    message: "",
   });
 
   // Function to validate fields
@@ -85,16 +86,16 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
     try {
       // Send the booking data to the backend
       await axios.post("https://end8.vercel.app/book", {
-        name: formData.name, // Captured from step 4
-        email: formData.email, // Captured from step 4
-        number: formData.number, // Captured from step 4
-        address: formData.address, // Captured from step 4
-        message: formData.message, // Optional, captured from step 4
-        service: service.name ? service.name : "", // Service selected earlier
-        additionService: additionService ? additionService : "", // Additional service if selected
-        price: service.Price ? service.Price : null, // Optional: you may want to include the price
-        date: selectedDate, // The selected date from step 3
-        time: formData.time, // The selected time from step 3
+        name: formData.name,
+        email: formData.email,
+        number: formData.number,
+        address: formData.address,
+        message: formData.message,
+        service: service.name ? service.name : "",
+        additionService: additionService ? additionService : "",
+        price: service.Price ? service.Price : null,
+        date: selectedDate,
+        time: formData.time,
       });
 
       // If successful, display success message and reset
@@ -279,19 +280,21 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
         )}
 
         {step === 4 && (
-          <div className="form-group">
-            <label>Name:</label>
-            <input
-              type="text"
-              name="name"
-              value={formData.name}
-              onChange={(e) =>
-                setFormData({ ...formData, name: e.target.value })
-              }
-              required
-            />
-            {formErrors.name && <p className="error">{formErrors.name}</p>}
-            {/* Show error if validation fails */}
+          <div>
+            <div className="form-group">
+              <label>Name:</label>
+              <input
+                type="text"
+                name="name"
+                value={formData.name}
+                onChange={(e) =>
+                  setFormData({ ...formData, name: e.target.value })
+                }
+                required
+              />
+              {formErrors.name && <p className="error">{formErrors.name}</p>}
+              {/* Show error if validation fails */}
+            </div>
             <div className="form-group">
               <label>Email:</label>
               <input
@@ -331,12 +334,18 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
                 onChange={(e) =>
                   setFormData({ ...formData, address: e.target.value })
                 }
-                required
               />
-              {formErrors.address && (
-                <p className="error">{formErrors.address}</p>
-              )}{" "}
-              {/* Show error if validation fails */}
+            </div>
+            <div className="form-group">
+              <label>Additional Message:</label>
+              <input
+                type="text"
+                name="message"
+                value={formData.message}
+                onChange={(e) =>
+                  setFormData({ ...formData, message: e.target.value })
+                }
+              />
             </div>
             <div className="btns">
               <button className="btn-back" onClick={handleBack}>
