@@ -163,14 +163,12 @@ a:link {
   display: flex;
   justify-content: center;
   align-items: start;
-  height: auto;
   max-width: 400px;
 }
 
 .image-grids {
   grid-column: 1 / 2;
   grid-row: 4 / 5;
-  height: auto;
   overflow: hidden;
   margin: 0 auto;
   display: flex;
@@ -178,6 +176,7 @@ a:link {
   align-items: start;
   border-radius: 6px;
   max-width: 400px;
+  max-height: 500px;
 }
 
 .image-grid img,

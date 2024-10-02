@@ -47,7 +47,6 @@
 }
 
 .footer-contact {
-  text-align: left;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -91,4 +90,20 @@
 .footer-bottom p {
   font-size: 12px;
   margin: 0;
+}
+
+@media (max-width: 424px) {
+  .footer-container {
+    justify-content: start;
+    align-items: flex-start;
+    text-align: left;
+  }
+  .footer-container > div {
+    margin-left: 5px;
+  }
+  .footer-contact p {
+    text-align: left;
+    justify-content: start;
+    align-items: flex-start;
+  }
 }
