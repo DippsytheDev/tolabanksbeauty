@@ -168,8 +168,10 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
       });
   };
   useEffect(() => {
-    handleDateChange(selectedDate);
-  }, []);
+    if (isOpen) {
+      handleDateChange(selectedDate);
+    }
+  }, [isOpen]);
   const handleRequestClose = () => {
     setShowConfirmation(true);
   };

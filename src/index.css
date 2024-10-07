@@ -229,7 +229,7 @@ a:link {
 }
 
 .port {
-  color: #ffdd57;
+  color: black;
   margin: 2.5rem 0 0 0;
   font-size: clamp(2.5rem, 3vw, 5rem);
   font-family: "Playfair Display", serif;

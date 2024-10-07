@@ -11,12 +11,12 @@
 .make {
   text-align: center;
   margin-bottom: -3rem;
-
+  /* 
   font-family: "DM sans", sans-serif;
   color: #ffdd57;
-
-  /*   font-family: "Playfair Display", serif;
-  color: black; */
+ */
+  font-family: "Playfair Display", serif;
+  color: black;
 
   font-size: clamp(2rem, 3vw, 5rem);
 }
