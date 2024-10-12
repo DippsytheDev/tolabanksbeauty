@@ -1,9 +1,5 @@
 @import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
 
-#topic-text {
-  font-family: "DM sans", sans-serif;
-  font-size: 52px;
-}
 .booking-container {
   width: 100%;
   font-size: clamp(1rem, 2vw, 1.5rem);
@@ -264,7 +260,7 @@ input[type="text"] {
 .btn-confirm {
   padding: 8px 16px;
   background-color: black;
-  color: white;
+  color: #ffdd57;
   border: none;
   border-radius: 4px;
   cursor: pointer;
