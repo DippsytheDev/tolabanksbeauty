@@ -106,7 +106,10 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
         setStep(1); // Reset to the first step
       }, 3000);
     } catch (error) {
-      console.error("Booking error:", error);
+      console.error(
+        "Booking error:",
+        error.response ? error.response.data : error.message
+      );
       setLoading(false);
       setError(
         "There was a problem submitting your booking. Please try again."

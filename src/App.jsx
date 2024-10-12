@@ -21,7 +21,6 @@ function App() {
       },
       stagger: 0.3,
       opacity: 0,
-      bounce: 0.5,
       duration: 1.2,
       ease: "bounce",
       x: 200,
