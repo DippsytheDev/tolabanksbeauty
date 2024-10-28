@@ -170,6 +170,7 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
         console.error("Error fetching unavailable times:", error);
       });
   };
+  console.log("Filtered available times:", availableTimes);
   useEffect(() => {
     if (isOpen) {
       handleDateChange(selectedDate);

@@ -29,7 +29,7 @@ export const people = [
     img: "/Images/img11.jpeg",
     name: "NON-BRIDAL SESSION(In-Studio)",
     Duration: "1hr 30mins",
-    Price: "$130",
+    Price: "$150",
   },
   {
     id: 5,
