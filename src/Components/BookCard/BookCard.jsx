@@ -22,7 +22,8 @@ const BookCard = () => {
         <h1 className="make">MAKE A BOOKING</h1>
         <ul className="second">
           {people.map((service, index) => {
-            const { id, img, name, description, Duration, Price } = service;
+            const { id, img, name, description, Duration, Price, Location } =
+              service;
             return (
               <li className="list-tile" key={id}>
                 <img src={img} alt="dippsycan" />
@@ -41,7 +42,14 @@ const BookCard = () => {
                   <button
                     className="btn"
                     onClick={() =>
-                      openBooking({ name, description, id, Price, Duration })
+                      openBooking({
+                        name,
+                        description,
+                        id,
+                        Price,
+                        Duration,
+                        Location,
+                      })
                     }
                   >
                     Book Now

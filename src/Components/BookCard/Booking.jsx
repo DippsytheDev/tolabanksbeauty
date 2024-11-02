@@ -170,7 +170,6 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
         console.error("Error fetching unavailable times:", error);
       });
   };
-  console.log("Filtered available times:", availableTimes);
   useEffect(() => {
     if (isOpen) {
       handleDateChange(selectedDate);
@@ -196,6 +195,7 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
           <div className="step">
             <h2>Your Appointment</h2>
             <p>{service.name}</p>
+            {Location && <p>{service.Location}</p>}
             <p>{service.Duration}</p>
             <p>{service.Price}</p>
             <button className="btn-service" onClick={() => setStep(2)}>
