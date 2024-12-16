@@ -84,26 +84,6 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
     setError(null);
 
     try {
-      const localDateTime = moment
-        .tz(
-          `${formData.date} ${formData.time}`,
-          "YYYY-MM-DD HH:mm",
-          "America/Edmonton"
-        )
-        .utc().toISOString;
-      console.log("Submitting booking data:", {
-        name: formData.name,
-        email: formData.email,
-        number: formData.number,
-        address: formData.address,
-        message: formData.message,
-        service: service.name ? service.name : "",
-        additionService: additionService ? additionService : "",
-        price: service.Price ? service.Price : null,
-        date: localDateTime,
-        time: formData.time,
-      });
-
       // Send the booking data to the backend
       await axios.post("https://end8.vercel.app/book", {
         name: formData.name,
@@ -114,7 +94,7 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
         service: service.name ? service.name : "",
         additionService: additionService ? additionService : "",
         price: service.Price ? service.Price : null,
-        date: localDateTime,
+        date: selectedDate,
         time: formData.time,
       });
 
@@ -138,14 +118,14 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
   };
   const handleDateChange = (date) => {
     setSelectedDate(date);
-    const localDate = moment.tz(date, "America/Edmonton").format("YYYY-MM-DD");
-    setFormData({ ...formData, date: localDate });
+
+    setFormData({ ...formData, date: date.toISOString() });
 
     // Format the date before sending it to the backend
-    /* const formattedDate = calgaryDate.format("YYYY-MM-DD"); */
+    const formattedDate = moment(date).format("YYYY-MM-DD");
     axios
       .get(
-        `https://end8.vercel.app/bookings/unavailable-times?date=${localDate}`
+        `https://end8.vercel.app/bookings/unavailable-times?date=${formattedDate}`
       )
       .then((response) => {
         const bookedTimes = response.data;
@@ -181,9 +161,6 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
         ];
 
         // Exclude booked and blocked times from available times
-        /*  const unavailableTimes = bookedTimes.map((time) =>
-          moment.tz(time, "HH:mm", "UTC").tz("America/Edmonton").format("HH:mm")
-        ); */
         const availableTimes = allTimes.filter(
           (time) => !bookedTimes.includes(time)
         );
