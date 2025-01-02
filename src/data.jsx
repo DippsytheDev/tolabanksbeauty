@@ -30,7 +30,6 @@ export const people = [
     name: "NON-BRIDAL SESSION(In-Studio)",
     Duration: "1hr 30mins",
     Price: "$150",
-    Location: "Livingston, NW",
   },
   {
     id: 6,
@@ -45,6 +44,5 @@ export const people = [
     name: "DIY MAKEUP CLASS",
     Duration: "3hrs",
     Price: "$250",
-    Location: "Livingston, NW",
   },
 ];
