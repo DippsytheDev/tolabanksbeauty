@@ -195,7 +195,7 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
           <div className="step">
             <h2>Your Appointment</h2>
             <p>{service.name}</p>
-            <p>Livingston,NW</p>
+            <p>{service.Location && <p>{service.Location}</p>}</p>
             <p>{service.Duration}</p>
             <p>{service.Price}</p>
             <button className="btn-service" onClick={() => setStep(2)}>

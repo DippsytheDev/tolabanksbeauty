@@ -28,6 +28,7 @@ export const people = [
     id: 5,
     img: "/Images/img11.jpeg",
     name: "NON-BRIDAL SESSION(In-Studio)",
+    Location: "Livingston,NW",
     Duration: "1hr 30mins",
     Price: "$150",
   },
