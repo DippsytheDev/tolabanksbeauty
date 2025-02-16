@@ -3,6 +3,7 @@ export const people = [
     id: 1,
     img: "/Images/img16.jpeg",
     name: "BRIDAL SESSION(Gold Package)",
+    Location: "Within Calgary",
     description:
       "This session includes free consultation and a bridal trial,before your wedding day.",
     Duration: "2hrs",
@@ -12,6 +13,7 @@ export const people = [
     id: 2,
     img: "/Images/img2.jpg",
     name: "BRIDAL SESSION(Silver Package)",
+    Location: "Within Calgary",
     description:
       "This session includes free consultation only before your wedding day. N.B: No bridal trial is included.",
     Duration: "2hrs",
