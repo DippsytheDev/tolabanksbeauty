@@ -122,7 +122,9 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
     setFormData({ ...formData, date: date.toISOString() });
 
     // Format the date before sending it to the backend
-    const formattedDate = moment(date).format("YYYY-MM-DD");
+    const formattedDate = moment(selectedDate)
+  .tz("America/Edmonton")
+  .format("YYYY-MM-DD");
     axios
       .get(
         `https://end8.vercel.app/bookings/unavailable-times?date=${formattedDate}`
