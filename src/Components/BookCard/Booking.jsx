@@ -123,7 +123,7 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
     setFormData({ ...formData, date: date.toISOString() });
 
     // Format the date before sending it to the backend
-    const formattedDate = moment(selectedDate)
+    const formattedDate = moment(date)
   .tz("America/Edmonton")
   .format("YYYY-MM-DD");
     axios
