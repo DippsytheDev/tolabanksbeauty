@@ -83,12 +83,8 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
     setLoading(true);
     setError(null);
 
-    try 
-    {const fullDateTimeInCalgary = moment.tz(
-      `${moment(selectedDate).format("YYYY-MM-DD")} ${formData.time}`,
-      "YYYY-MM-DD HH:mm",
-      "America/Edmonton"
-    ).toISOString(); // This is what the backend expects
+    try {
+    const dateOnly = moment(selectedDate).tz("America/Edmonton").format("YYYY-MM-DD");
       // Send the booking data to the backend
       await axios.post("https://end8.vercel.app/book", {
         name: formData.name,
@@ -99,8 +95,8 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
         service: service.name ? service.name : "",
         additionService: additionService ? additionService : "",
         price: service.Price ? service.Price : null,
-        date: fullDateTimeInCalgary,
-        /* time: formData.time, */
+        date: dateOnly,
+         time: formData.time,
       });
 
       // If successful, display success message and reset
