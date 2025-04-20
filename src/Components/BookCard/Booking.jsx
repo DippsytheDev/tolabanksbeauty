@@ -117,67 +117,43 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
       );
     }
   };
-  const handleDateChange = (date) => {
+  const handleDateChange = async (date) => {
     setSelectedDate(date);
-
-    setFormData({ ...formData, date: date.toISOString() });
-
-    // Format the date before sending it to the backend
+  
     const formattedDate = moment(date)
-  .tz("America/Edmonton")
-  .format("YYYY-MM-DD");
-    axios
-      .get(
+      .tz("America/Edmonton")
+      .format("YYYY-MM-DD");
+  
+    setFormData((prev) => ({
+      ...prev,
+      date: date.toISOString(),
+    }));
+  
+    try {
+      const response = await axios.get(
         `https://end8.vercel.app/bookings/unavailable-times?date=${formattedDate}`
-      )
-      .then((response) => {
-        const bookedTimes = response.data;
-        console.log("received unavailable times from backend:", bookedTimes);
-
-        const allTimes = [
-          "06:30",
-          "07:00",
-          "07:30",
-          "08:00",
-          "08:30",
-          "09:00",
-          "09:30",
-          "10:00",
-          "10:30",
-          "11:00",
-          "11:30",
-          "12:00",
-          "12:30",
-          "13:00",
-          "13:30",
-          "14:00",
-          "14:30",
-          "15:00",
-          "15:30",
-          "16:00",
-          "16:30",
-          "17:00",
-          "17:30",
-          "18:00",
-          "18:30",
-          "19:00",
-        ];
-
-        // Exclude booked and blocked times from available times
-        const availableTimes = allTimes.filter(
-          (time) => !bookedTimes.includes(time)
-        );
-        setAvailableTimes(availableTimes);
-      })
-      .catch((error) => {
-        console.error("Error fetching unavailable times:", error);
-      });
+      );
+      const bookedTimes = response.data;
+      console.log(`Unavailable times for ${formattedDate}:`, bookedTimes);
+  
+      const allTimes = [
+        "06:30", "07:00", "07:30", "08:00", "08:30", "09:00", "09:30",
+        "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00",
+        "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30",
+        "17:00", "17:30", "18:00", "18:30", "19:00",
+      ];
+  
+      const available = allTimes.filter((time) => !bookedTimes.includes(time));
+      setAvailableTimes(available);
+    } catch (error) {
+      console.error("Error fetching unavailable times:", error);
+    }
   };
   useEffect(() => {
-    if (isOpen) {
+    if (isOpen && selectedDate) {
       handleDateChange(selectedDate);
     }
-  }, [isOpen]);
+  }, [isOpen,selectedDate]);
   const handleRequestClose = () => {
     setShowConfirmation(true);
   };
