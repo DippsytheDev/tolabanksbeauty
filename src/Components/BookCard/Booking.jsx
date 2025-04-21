@@ -122,6 +122,7 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
   
     const formattedDate = moment(date)
       .tz("America/Edmonton")
+      .set({hour: 12, minute: 0})
       .format("YYYY-MM-DD");
   
     setFormData((prev) => ({
