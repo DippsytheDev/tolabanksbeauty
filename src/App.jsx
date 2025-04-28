@@ -66,7 +66,7 @@ function App() {
       </div>
       <div className="first">
         <div className="main-img squareee">
-          <img src="public/Images/IMG_6686 3.jpg" alt="" />
+          <img src="/Images/img21.jpg" alt="" />
         </div>
         <div className="about-me squareee">
           <h1>About Me</h1>
@@ -95,7 +95,7 @@ function App() {
           </ul>
         </div>
         <div className="image-grid squareee ">
-          <img src="public/Images/IMG_1058 3.jpg" alt="" />
+          <img src="/Images/img19.jpg" alt="" />
         </div>
         <div className="hide clients squareee">
           <div className="clients-heading">
@@ -108,7 +108,7 @@ function App() {
           </ul>
         </div>
         <div className="image-grids squareee">
-          <img src="public/Images/IMG_6685 3.jpg" alt="" />
+          <img src="/Images/img20.jpg" alt="" />
         </div>
       </div>
       <div className="bookCard__container" id="Bookings">
