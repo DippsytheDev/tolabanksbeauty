@@ -85,7 +85,7 @@ a:link {
   display: flex;
   justify-content: center;
   align-items: center;
-  filter: brightness(0.7);
+  filter: brightness(0.8);
   max-width: 1300px;
 }
 .main-img img {
@@ -187,10 +187,10 @@ a:link {
   object-fit: cover;
 }
 .image-grid img {
-  filter: brightness(0.9);
+  filter: brightness(0.8);
 }
 .image-grids img {
-  filter: brightness(0.7);
+  filter: brightness(0.8);
 }
 .unicode {
   font-size: clamp(2rem, 3vw, 3rem);
