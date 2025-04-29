@@ -127,7 +127,7 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
   
       setFormData((prev) => ({
         ...prev,
-        date: moment(date).tz("America/Edmonton").format("YYYY-MM-DD"),
+        date: moment(date).format("YYYY-MM-DD"),
       }));
   
     try {
@@ -358,10 +358,10 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
                   <p>Additional Service: {additionService}</p>
                 )}
                 <p>
-                  Date:
-                  {formData.date
-                    ? new Date(formData.date).toLocaleDateString()
-                    : "Date not set"}
+{formData.date
+  ? formData.date
+  : "Date not set"}
+
                 </p>
                 <p>Time: {formData.time}</p>
                 <p>Name: {formData.name}</p>
