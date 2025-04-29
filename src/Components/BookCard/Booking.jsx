@@ -125,10 +125,10 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
       .set({hour: 12, minute: 0})
       .format("YYYY-MM-DD");
   
-    setFormData((prev) => ({
-      ...prev,
-      date: date.toISOString(),
-    }));
+      setFormData((prev) => ({
+        ...prev,
+        date: moment(date).tz("America/Edmonton").format("YYYY-MM-DD"),
+      }));
   
     try {
       const response = await axios.get(
