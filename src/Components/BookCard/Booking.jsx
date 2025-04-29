@@ -84,7 +84,7 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
     setError(null);
 
     try {
-    const dateOnly = moment(selectedDate).tz("America/Edmonton").format("YYYY-MM-DD");
+    const dateOnly = moment(selectedDate).format("YYYY-MM-DD");
       // Send the booking data to the backend
       await axios.post("https://end8.vercel.app/book", {
         name: formData.name,
@@ -369,7 +369,7 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
                 <p>Number: {formData.number}</p>
                 <p>Address: {formData.address}</p>
                 <p>Message: {formData.message}</p>
-                {loading && <p>Loading...</p>}
+                {loading && <p>Loading.</p>}
                 {error && <p>{error}</p>}
                 <div className="btns">
                   <button className="btn-back" onClick={handleBack}>
