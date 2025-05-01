@@ -10,7 +10,7 @@ function App() {
   gsap.registerPlugin(useGSAP);
   gsap.registerPlugin(ScrollTrigger);
 
-  const container = useRef();
+ 
 
   useGSAP(() => {
     // gsap code here...
@@ -103,7 +103,6 @@ function App() {
           </div>
           <h1 className="unicode">&#9013;</h1>
           <ul>
-            <li>Cornrows</li>
             <li>Semi-Permanent Makeup</li>
           </ul>
         </div>
