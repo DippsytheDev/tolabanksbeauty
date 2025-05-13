@@ -20,6 +20,16 @@ export const people = [
     Price: "$450",
   },
   {
+    id: 3,
+    img: "/Images/img14.jpg",
+    name: "CIVIL WEDDING",
+    Location: "Within Calgary",
+    description:
+      "This session includes a free consultation only, looking for a more intimate and minimalist bridal look, this session is for you.",
+    Duration: "2hrs",
+    Price: "$350",
+  },
+  {
     id: 4,
     img: "/Images/img10.jpg",
     name: "NON-BRIDAL SESSION(Home Service)",
@@ -40,12 +50,5 @@ export const people = [
     name: "BRIDAL TRAIN MAKEUP",
     Duration: "1hr 30mins",
     Price: "$200",
-  },
-  {
-    id: 7,
-    img: "/Images/img14.jpg",
-    name: "DIY MAKEUP CLASS",
-    Duration: "3hrs",
-    Price: "$250",
   },
 ];
