@@ -49,6 +49,6 @@ export const people = [
     img: "/Images/img1.jpg",
     name: "BRIDAL TRAIN MAKEUP",
     Duration: "1hr 30mins",
-    Price: "$200",
+    Price: "$220",
   },
 ];
