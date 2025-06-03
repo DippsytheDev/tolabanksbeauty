@@ -11,6 +11,15 @@ import moment from "moment-timezone";
 Modal.setAppElement("#root");
 
 const Booking = ({ isOpen, onRequestClose, service }) => {
+  const isMaintenanceMode = true; // Ensure maintenance mode is enabled
+  if (isMaintenanceMode) {
+    return (
+      <div className="maintenance-container">
+        <h1>Website Under Maintenance</h1>
+        <p>We are currently performing scheduled maintenance. Please check back later.</p>
+      </div>
+    );
+  }
   const [step, setStep] = useState(1);
   const [additionService, setAdditionalService] = useState("");
   const [selectedDate, setSelectedDate] = useState(new Date());
