@@ -11,15 +11,7 @@ import moment from "moment-timezone";
 Modal.setAppElement("#root");
 
 const Booking = ({ isOpen, onRequestClose, service }) => {
-  const isMaintenanceMode = true; // Ensure maintenance mode is enabled
-  if (isMaintenanceMode) {
-    return (
-      <div className="maintenance-container">
-        <h1>Website Under Maintenance</h1>
-        <p>We are currently performing scheduled maintenance. Please check back later.</p>
-      </div>
-    );
-  }
+ 
   const [step, setStep] = useState(1);
   const [additionService, setAdditionalService] = useState("");
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -138,6 +130,21 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
         ...prev,
         date: moment(date).format("YYYY-MM-DD"),
       }));
+        // Block all times for dates between June 3 and June 15
+  const blockStartDate = moment("2025-06-03", "YYYY-MM-DD");
+  const blockEndDate = moment("2025-06-15", "YYYY-MM-DD");
+
+  if (moment(date).isBetween(blockStartDate, blockEndDate, null, "[]")) {
+    const allTimes = [
+      "06:30", "07:00", "07:30", "08:00", "08:30", "09:00", "09:30",
+      "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00",
+      "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30",
+      "17:00", "17:30", "18:00", "18:30", "19:00",
+    ];
+    setAvailableTimes([]); // Block all times
+    console.log(`All times blocked for ${formattedDate}`);
+    return;
+  }
   
     try {
       const response = await axios.get(
