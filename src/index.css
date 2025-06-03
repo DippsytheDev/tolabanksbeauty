@@ -341,3 +341,24 @@ a:link {
   margin-top: 20px;
   min-height: 400px;
 }
+.maintenance-container {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  background-color: black;
+  color: white;
+  text-align: center;
+}
+
+.maintenance-container h1 {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-bottom: 1rem;
+}
+
+.maintenance-container p {
+  font-size: 1.2rem;
+  line-height: 1.5;
+}
