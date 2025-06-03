@@ -117,22 +117,6 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
       );
     }
   };
-  const restDays = [
-    "2025-06-02",
-    "2025-06-03",
-    "2025-06-04",
-    "2025-06-05",
-    "2025-06-06",
-    "2025-06-07",
-    "2025-06-08",
-    "2025-06-09",
-    "2025-06-10",
-    "2025-06-11",
-    "2025-06-12",
-    "2025-06-13",
-    "2025-06-14",
-    "2025-06-15",
-  ];
   const handleDateChange = async (date) => {
     setSelectedDate(date);
   
@@ -145,10 +129,6 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
         ...prev,
         date: moment(date).format("YYYY-MM-DD"),
       }));
-      if(restDays.includes(formattedDate)){
-        setAvailableTimes([]);
-        return;
-      }
   
     try {
       const response = await axios.get(
@@ -163,7 +143,6 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
         "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30",
         "17:00", "17:30", "18:00", "18:30", "19:00",
       ];
- 
   
       const available = allTimes.filter((time) => !bookedTimes.includes(time));
       setAvailableTimes(available);
