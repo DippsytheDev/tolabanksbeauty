@@ -341,7 +341,7 @@ a:link {
   margin-top: 20px;
   min-height: 400px;
 }
-.maintenance-container {
+/* .maintenance-container {
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -361,4 +361,4 @@ a:link {
 .maintenance-container p {
   font-size: 1.2rem;
   line-height: 1.5;
-}
+} */

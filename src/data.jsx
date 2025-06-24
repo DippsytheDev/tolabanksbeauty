@@ -21,6 +21,16 @@ export const people = [
   },
   {
     id: 3,
+    img: "/Images/IMG_3209.png-2-2.jpeg",
+    name: "BRIDAL SESSION(Outside Calgary)",
+    Location: "Out of Calgary",
+    description:
+      "This session includes free consultation only before your wedding day. N.B: No bridal trial is included.",
+    Duration: "2hrs",
+    Price: "From $450",
+  },
+  {
+    id: 4,
     img: "/Images/img14.jpg",
     name: "CIVIL WEDDING",
     Location: "Within Calgary",
@@ -30,14 +40,14 @@ export const people = [
     Price: "$350",
   },
   {
-    id: 4,
+    id: 5,
     img: "/Images/img10.jpg",
     name: "NON-BRIDAL SESSION(Home Service)",
     Duration: "1hr 30mins",
     Price: "$200",
   },
   {
-    id: 5,
+    id: 6,
     img: "/Images/img11.jpeg",
     name: "NON-BRIDAL SESSION(In-Studio)",
     Location: "Livingston,NW",
@@ -45,10 +55,11 @@ export const people = [
     Price: "$150",
   },
   {
-    id: 6,
+    id: 7,
     img: "/Images/img1.jpg",
     name: "BRIDAL TRAIN MAKEUP",
     Duration: "1hr 30mins",
     Price: "$220",
-  },
+  },  
+
 ];
