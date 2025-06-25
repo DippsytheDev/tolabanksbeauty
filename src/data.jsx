@@ -27,7 +27,7 @@ export const people = [
     description:
       "This session includes free consultation only before your wedding day. N.B: No bridal trial is included.",
     Duration: "2hrs",
-    Price: "From $450",
+    Price: "From $650",
   },
   {
     id: 4,
