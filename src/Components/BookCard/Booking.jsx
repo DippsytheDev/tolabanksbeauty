@@ -11,7 +11,6 @@ import moment from "moment-timezone";
 Modal.setAppElement("#root");
 
 const Booking = ({ isOpen, onRequestClose, service }) => {
- 
   const [step, setStep] = useState(1);
   const [additionService, setAdditionalService] = useState("");
   const [selectedDate, setSelectedDate] = useState(new Date());
@@ -28,6 +27,13 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
   const [showConfirmation, setShowConfirmation] = useState(false);
+  const [weekendMessage, setWeekendMessage] = useState("");
+
+  // Function to filter out weekdays (only allow weekends)
+  const filterWeekends = (date) => {
+    const day = moment(date).day();
+    return day === 0 || day === 6; // 0 = Sunday, 6 = Saturday
+  };
 
   const handleBack = () => {
     if (step === 3) {
@@ -85,7 +91,7 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
     setError(null);
 
     try {
-    const dateOnly = moment(selectedDate).format("YYYY-MM-DD");
+      const dateOnly = moment(selectedDate).format("YYYY-MM-DD");
       // Send the booking data to the backend
       await axios.post("https://end8.vercel.app/book", {
         name: formData.name,
@@ -97,7 +103,7 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
         additionService: additionService ? additionService : "",
         price: service.Price ? service.Price : null,
         date: dateOnly,
-         time: formData.time,
+        time: formData.time,
       });
 
       // If successful, display success message and reset
@@ -120,46 +126,108 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
   };
   const handleDateChange = async (date) => {
     setSelectedDate(date);
-  
+    setWeekendMessage(""); // Clear any previous message
+
     const formattedDate = moment(date)
       .tz("America/Edmonton")
-      .set({hour: 12, minute: 0})
+      .set({ hour: 12, minute: 0 })
       .format("YYYY-MM-DD");
-  
-      setFormData((prev) => ({
-        ...prev,
-        date: moment(date).format("YYYY-MM-DD"),
-      }));
-        // Block all times for dates between June 3 and June 15
-  const blockStartDate = moment("2025-06-03", "YYYY-MM-DD");
-  const blockEndDate = moment("2025-06-15", "YYYY-MM-DD");
 
-  if (moment(date).isBetween(blockStartDate, blockEndDate, null, "[]")) {
-    const allTimes = [
-      "06:30", "07:00", "07:30", "08:00", "08:30", "09:00", "09:30",
-      "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00",
-      "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30",
-      "17:00", "17:30", "18:00", "18:30", "19:00",
-    ];
-    setAvailableTimes([]); // Block all times
-    console.log(`All times blocked for ${formattedDate}`);
-    return;
-  }
-  
+    setFormData((prev) => ({
+      ...prev,
+      date: moment(date).format("YYYY-MM-DD"),
+    }));
+
+    // Check if the selected date is a weekend (Saturday = 6, Sunday = 0)
+    const dayOfWeek = moment(date).day();
+    if (dayOfWeek !== 0 && dayOfWeek !== 6) {
+      // Block all times for weekdays (Monday to Friday)
+      setAvailableTimes([]);
+      setWeekendMessage(
+        "Bookings are only available on weekends (Saturday and Sunday). Please select a weekend date."
+      );
+      console.log(
+        `Weekday selected (${moment(date).format(
+          "dddd"
+        )}) - No bookings available`
+      );
+      return;
+    }
+
+    // Block all times for dates between June 3 and June 15
+    const blockStartDate = moment("2025-06-03", "YYYY-MM-DD");
+    const blockEndDate = moment("2025-06-15", "YYYY-MM-DD");
+
+    if (moment(date).isBetween(blockStartDate, blockEndDate, null, "[]")) {
+      const allTimes = [
+        "06:30",
+        "07:00",
+        "07:30",
+        "08:00",
+        "08:30",
+        "09:00",
+        "09:30",
+        "10:00",
+        "10:30",
+        "11:00",
+        "11:30",
+        "12:00",
+        "12:30",
+        "13:00",
+        "13:30",
+        "14:00",
+        "14:30",
+        "15:00",
+        "15:30",
+        "16:00",
+        "16:30",
+        "17:00",
+        "17:30",
+        "18:00",
+        "18:30",
+        "19:00",
+      ];
+      setAvailableTimes([]); // Block all times
+      console.log(`All times blocked for ${formattedDate}`);
+      return;
+    }
+
     try {
       const response = await axios.get(
         `https://end8.vercel.app/bookings/unavailable-times?date=${formattedDate}`
       );
       const bookedTimes = response.data;
       console.log(`Unavailable times for ${formattedDate}:`, bookedTimes);
-  
+
       const allTimes = [
-        "06:30", "07:00", "07:30", "08:00", "08:30", "09:00", "09:30",
-        "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00",
-        "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30",
-        "17:00", "17:30", "18:00", "18:30", "19:00",
+        "06:30",
+        "07:00",
+        "07:30",
+        "08:00",
+        "08:30",
+        "09:00",
+        "09:30",
+        "10:00",
+        "10:30",
+        "11:00",
+        "11:30",
+        "12:00",
+        "12:30",
+        "13:00",
+        "13:30",
+        "14:00",
+        "14:30",
+        "15:00",
+        "15:30",
+        "16:00",
+        "16:30",
+        "17:00",
+        "17:30",
+        "18:00",
+        "18:30",
+        "19:00",
       ];
-  
+
       const available = allTimes.filter((time) => !bookedTimes.includes(time));
       setAvailableTimes(available);
     } catch (error) {
@@ -170,7 +238,7 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
     if (isOpen && selectedDate) {
       handleDateChange(selectedDate);
     }
-  }, [isOpen,selectedDate]);
+  }, [isOpen, selectedDate]);
   const handleRequestClose = () => {
     setShowConfirmation(true);
   };
@@ -240,9 +308,24 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
               selected={selectedDate}
               onChange={handleDateChange}
               minDate={new Date()}
+              filterDate={filterWeekends}
               className="date-picker-input"
               required
+              placeholderText="Select a weekend date"
             />
+
+            {weekendMessage && (
+              <p
+                className="error"
+                style={{
+                  color: "#ff6b6b",
+                  marginTop: "10px",
+                  fontSize: "14px",
+                }}
+              >
+                {weekendMessage}
+              </p>
+            )}
 
             <label className="step-label">Select Time:</label>
             <select
@@ -252,9 +335,12 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
               }
               className="time-select"
               required
+              disabled={availableTimes.length === 0}
             >
               <option value="" disabled>
-                Select Time
+                {availableTimes.length > 0
+                  ? "Select Time"
+                  : "No available times"}
               </option>
               {availableTimes.length > 0 ? (
                 availableTimes.map((time) => (
@@ -373,12 +459,7 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
                 {additionService && (
                   <p>Additional Service: {additionService}</p>
                 )}
-                <p>
-{formData.date
-  ? formData.date
-  : "Date not set"}
-
-                </p>
+                <p>{formData.date ? formData.date : "Date not set"}</p>
                 <p>Time: {formData.time}</p>
                 <p>Name: {formData.name}</p>
                 <p>Email: {formData.email}</p>
