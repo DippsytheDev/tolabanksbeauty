@@ -29,8 +29,16 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
   const [showConfirmation, setShowConfirmation] = useState(false);
   const [weekendMessage, setWeekendMessage] = useState("");
 
-  // Function to filter out weekdays (only allow weekends)
+  // Function to filter out weekdays (only allow weekends) - until December 31, 2025
   const filterWeekends = (date) => {
+    const januaryFirst2026 = moment("2026-01-01", "YYYY-MM-DD");
+
+    // If date is on or after January 1st, 2026, allow all days
+    if (moment(date).isSameOrAfter(januaryFirst2026)) {
+      return true;
+    }
+
+    // Before January 1st, 2026, only allow weekends
     const day = moment(date).day();
     return day === 0 || day === 6; // 0 = Sunday, 6 = Saturday
   };
@@ -138,20 +146,23 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
       date: moment(date).format("YYYY-MM-DD"),
     }));
 
-    // Check if the selected date is a weekend (Saturday = 6, Sunday = 0)
-    const dayOfWeek = moment(date).day();
-    if (dayOfWeek !== 0 && dayOfWeek !== 6) {
-      // Block all times for weekdays (Monday to Friday)
-      setAvailableTimes([]);
-      setWeekendMessage(
-        "Bookings are only available on weekends (Saturday and Sunday). Please select a weekend date."
-      );
-      console.log(
-        `Weekday selected (${moment(date).format(
-          "dddd"
-        )}) - No bookings available`
-      );
-      return;
+    // Check if the selected date is a weekend (Saturday = 6, Sunday = 0) - only until December 31, 2025
+    const januaryFirst2026 = moment("2026-01-01", "YYYY-MM-DD");
+
+    // Only apply weekend restriction before January 1st, 2026
+    if (moment(date).isBefore(januaryFirst2026)) {
+      const dayOfWeek = moment(date).day();
+      if (dayOfWeek !== 0 && dayOfWeek !== 6) {
+        // Block all times for weekdays (Monday to Friday) before 2026
+        setAvailableTimes([]);
+
+        console.log(
+          `Weekday selected (${moment(date).format(
+            "dddd"
+          )}) - No bookings available before 2026`
+        );
+        return;
+      }
     }
 
     // Block all times for dates between June 3 and June 15
@@ -311,7 +322,7 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
               filterDate={filterWeekends}
               className="date-picker-input"
               required
-              placeholderText="Select a weekend date"
+              placeholderText="Select a date"
             />
 
             {weekendMessage && (
