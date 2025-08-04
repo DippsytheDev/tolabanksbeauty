@@ -7,7 +7,7 @@ export const people = [
     description:
       "This session includes free consultation and a bridal trial,before your wedding day.",
     Duration: "2hrs",
-    Price: "$500",
+    Price: "$650",
   },
   {
     id: 2,
@@ -17,7 +17,7 @@ export const people = [
     description:
       "This session includes free consultation only before your wedding day. N.B: No bridal trial is included.",
     Duration: "2hrs",
-    Price: "$450",
+    Price: "$500",
   },
   {
     id: 3,
@@ -60,6 +60,5 @@ export const people = [
     name: "BRIDAL TRAIN MAKEUP",
     Duration: "1hr 30mins",
     Price: "$220",
-  },  
-
+  },
 ];
