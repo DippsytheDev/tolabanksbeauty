@@ -6,20 +6,18 @@ import ContactCard from "./Components/ContactCard/ContactCard";
 import BookCard from "./Components/BookCard/BookCard";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 
-const isMaintenanceMode = true;
+const isMaintenanceMode = false;
 function App() {
-   if (isMaintenanceMode) {
+  /*   if (isMaintenanceMode) {
     return (
       <div className="maintenance-container">
         <h1>Website Under Maintenance</h1>
         <p>We are currently performing scheduled maintenance. Please check back later.</p>
       </div>
     );
-  } 
+  }  */
   gsap.registerPlugin(useGSAP);
   gsap.registerPlugin(ScrollTrigger);
-
- 
 
   useGSAP(() => {
     // gsap code here...
