@@ -46,11 +46,16 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
       return false; // Block all dates in October 2025
     }
 
-    // Block November 1st, 2025
-    const isNovemberFirst2025 = moment(date).isSame("2025-11-01", "day");
+    // Block all dates from November 2025 to December 2025
+    const isNovemberToDecember2025 = moment(date).isBetween(
+      moment("2025-11-01", "YYYY-MM-DD"),
+      moment("2025-12-31", "YYYY-MM-DD"),
+      null,
+      "[]"
+    );
 
-    if (isNovemberFirst2025) {
-      return false; // Block this specific date
+    if (isNovemberToDecember2025) {
+      return false; // Block all dates in November and December 2025
     }
 
     if (moment(date).isSameOrAfter(janFirst2026)) {
