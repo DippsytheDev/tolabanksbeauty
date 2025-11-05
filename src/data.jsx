@@ -7,7 +7,7 @@ export const people = [
     description:
       "This session includes free consultation and a bridal trial,before your wedding day.",
     Duration: "2hrs",
-    Price: "$600",
+    Price: "$650",
   },
   {
     id: 2,
