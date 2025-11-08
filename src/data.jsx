@@ -27,7 +27,7 @@ export const people = [
     description:
       "This session includes free consultation only before your wedding day. N.B: No bridal trial is included.",
     Duration: "2hrs",
-    Price: "From $800",
+    Price: "From $850",
   },
   {
     id: 4,
@@ -44,7 +44,7 @@ export const people = [
     img: "/Images/img10.jpg",
     name: "NON-BRIDAL SESSION(Home Service)",
     Duration: "1hr 30mins",
-    Price: "$200",
+    Price: "From $200",
   },
   {
     id: 6,
