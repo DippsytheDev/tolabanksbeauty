@@ -153,99 +153,28 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
       date: moment(date).format("YYYY-MM-DD"),
     }));
 
-    // Block all times for dates between June 3 and June 15
-    const blockStartDate = moment("2025-06-03", "YYYY-MM-DD");
-    const blockEndDate = moment("2025-06-15", "YYYY-MM-DD");
-    if (moment(date).isBetween(blockStartDate, blockEndDate, null, "[]")) {
-      setAvailableTimes([]);
-      return;
+    let allTimes = [];
+    const dayOfWeek = moment(date).day();
+    const isNextYear = moment(date).year() >= 2024;
+
+    if (isNextYear) {
+      if (dayOfWeek >= 1 && dayOfWeek <= 4) {
+        // Monday to Thursday: 6pm to 7pm
+        allTimes = ["18:00", "18:30", "19:00"];
+      } else if (dayOfWeek === 5) {
+        // Friday: 5pm to 7pm
+        allTimes = ["17:00", "17:30", "18:00", "18:30", "19:00"];
+      } else if (dayOfWeek === 0 || dayOfWeek === 6) {
+        // Saturday and Sunday: normal times
+        allTimes = [
+          "06:30", "07:00", "07:30", "08:00", "08:30", "09:00", "09:30",
+          "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00",
+          "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30",
+          "17:00", "17:30", "18:00", "18:30", "19:00"
+        ];
+      }
     }
 
-    // Time slot logic
-    let allTimes = [
-      "06:30",
-      "07:00",
-      "07:30",
-      "08:00",
-      "08:30",
-      "09:00",
-      "09:30",
-      "10:00",
-      "10:30",
-      "11:00",
-      "11:30",
-      "12:00",
-      "12:30",
-      "13:00",
-      "13:30",
-      "14:00",
-      "14:30",
-      "15:00",
-      "15:30",
-      "16:00",
-      "16:30",
-      "17:00",
-      "17:30",
-      "18:00",
-      "18:30",
-      "19:00",
-    ];
-    if (
-      moment(date).isSameOrAfter(septFirst2025) &&
-      moment(date).isBefore(janFirst2026)
-    ) {
-      const dayOfWeek = moment(date).day();
-      if (dayOfWeek === 0 || dayOfWeek === 6) {
-        // Weekend: all times available
-        allTimes = [
-          "06:30",
-          "07:00",
-          "07:30",
-          "08:00",
-          "08:30",
-          "09:00",
-          "09:30",
-          "10:00",
-          "10:30",
-          "11:00",
-          "11:30",
-          "12:00",
-          "12:30",
-          "13:00",
-          "13:30",
-          "14:00",
-          "14:30",
-          "15:00",
-          "15:30",
-          "16:00",
-          "16:30",
-          "17:00",
-          "17:30",
-          "18:00",
-          "18:30",
-          "19:00",
-        ];
-      } else {
-        // Weekday: only 16:00–19:00
-        allTimes = [
-          "16:00",
-          "16:30",
-          "17:00",
-          "17:30",
-          "18:00",
-          "18:30",
-          "19:00",
-        ];
-      }
-    }
-    // Before September 1, 2025: only weekends allowed
-    if (moment(date).isBefore(septFirst2025)) {
-      const dayOfWeek = moment(date).day();
-      if (dayOfWeek !== 0 && dayOfWeek !== 6) {
-        setAvailableTimes([]);
-        return;
-      }
-    }
     try {
       const response = await axios.get(
         `https://end8.vercel.app/bookings/unavailable-times?date=${formattedDate}`
