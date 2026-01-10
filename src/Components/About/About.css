@@ -73,6 +73,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
+  object-position: center 20%;
   border-radius: 8px;
 }
 
@@ -151,6 +152,10 @@
     max-width: 100%;
   }
 
+  .about-image-right img {
+    object-position: center 15%;
+  }
+
   .watermark-left {
     display: none;
   }
@@ -182,6 +187,10 @@
   .about-image-right {
     height: 400px;
   }
+
+  .about-image-right img {
+    object-position: center 10%;
+  }
 }
 
 @media screen and (max-width: 480px) {
@@ -201,6 +210,10 @@
 
   .about-image-right {
     height: 300px;
+  }
+
+  .about-image-right img {
+    object-position: center 5%;
   }
 }
 

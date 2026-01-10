@@ -35,6 +35,7 @@ const Booking = () => {
   const [error, setError] = useState(null);
   const [success, setSuccess] = useState(false);
   const hasHandledInitialNavigation = useRef(false);
+  const isNavigatingFromHistory = useRef(false);
 
   // Group services by category
   const bridalServices = people.filter(service => 
@@ -84,7 +85,7 @@ const Booking = () => {
     {
       id: "training",
       title: "TRAINING",
-      price: "Contact Us",
+      price: "From $280",
       description: "Master the art of makeup with personalized training sessions designed for all skill levels.",
       image: "/Images/img1.jpg",
       services: trainingServices
@@ -92,7 +93,7 @@ const Booking = () => {
     {
       id: "diy",
       title: "DIY",
-      price: "Contact Us",
+      price: "From $280",
       description: "Get expert guidance to do your own makeup with confidence. Perfect for brides to be and beauty enthusiasts.",
       image: "/Images/img19.jpg",
       services: diyServices
@@ -100,14 +101,29 @@ const Booking = () => {
   ];
 
   const handleServiceClick = (serviceCard) => {
+    // Set selected service category
+    setSelectedServiceCategory(serviceCard);
+    
+    // For Training and DIY services, skip package selection and go directly to date/time
+    if (serviceCard.id === "training" || serviceCard.id === "diy") {
+      const placeholderPackage = {
+        id: serviceCard.id,
+        name: serviceCard.title,
+        Price: serviceCard.price,
+        Duration: "Contact Us",
+        description: serviceCard.description
+      };
+      setSelectedPackage(placeholderPackage);
+      setCurrentStep(3); // Go directly to date/time step
+      setBookingOpen(true);
+      return;
+    }
+    
     // If there are no services, show a message
     if (serviceCard.services.length === 0) {
       alert("Please contact us directly for this service.");
       return;
     }
-    
-    // Set selected service category and move to next step
-    setSelectedServiceCategory(serviceCard);
     
     // If there's only one service, skip package selection and go to date/time
     if (serviceCard.services.length === 1) {
@@ -133,24 +149,40 @@ const Booking = () => {
   };
 
   const handleBackToPackages = () => {
-    setCurrentStep(2);
-    setSelectedPackage(null);
-    setBookingOpen(false);
+    // For Training and DIY, go back to services instead of packages
+    if (selectedServiceCategory && (selectedServiceCategory.id === "training" || selectedServiceCategory.id === "diy")) {
+      setCurrentStep(1);
+      setSelectedServiceCategory(null);
+      setSelectedPackage(null);
+      setBookingOpen(false);
+    } else {
+      setCurrentStep(2);
+      setSelectedPackage(null);
+      setBookingOpen(false);
+    }
   };
 
   const closeBooking = () => {
     setBookingOpen(false);
-    // If closing from date/time step, go back to package selection
+    // If closing from date/time step, go back appropriately
     if (currentStep === 3) {
-      setCurrentStep(2);
+      // For Training and DIY, go back to services
+      if (selectedServiceCategory && (selectedServiceCategory.id === "training" || selectedServiceCategory.id === "diy")) {
+        setCurrentStep(1);
+      } else {
+        setCurrentStep(2);
+      }
     }
   };
 
   const handleModalClose = () => {
     setBookingOpen(false);
-    // Reset to package selection if we were in the modal steps
+    // Reset appropriately if we were in the modal steps
     if (currentStep >= 3 && selectedServiceCategory) {
-      if (selectedServiceCategory.services.length > 1) {
+      // For Training and DIY, go back to services
+      if (selectedServiceCategory.id === "training" || selectedServiceCategory.id === "diy") {
+        setCurrentStep(1);
+      } else if (selectedServiceCategory.services.length > 1) {
         setCurrentStep(2);
       } else {
         setCurrentStep(1);
@@ -267,6 +299,47 @@ const Booking = () => {
   useEffect(() => {
     window.scrollTo({ top: 0, behavior: 'instant' });
   }, [currentStep]);
+
+  // Handle browser back/forward button - update step from location state
+  useEffect(() => {
+    // When location state changes (including browser back/forward), update currentStep
+    // Only update if step is different to avoid unnecessary re-renders
+    if (location.state?.step && location.state.step !== currentStep) {
+      const newStep = location.state.step;
+      // Validate step exists in our booking flow
+      if (newStep >= 1 && newStep <= 5) {
+        isNavigatingFromHistory.current = true;
+        setCurrentStep(newStep);
+        // Reset flag after state update completes
+        setTimeout(() => {
+          isNavigatingFromHistory.current = false;
+        }, 0);
+      }
+    } else if (!location.state?.step && currentStep > 1 && location.pathname === '/booking') {
+      // If no step in state but we're past step 1 and on booking page, go to step 1
+      isNavigatingFromHistory.current = true;
+      setCurrentStep(1);
+      setTimeout(() => {
+        isNavigatingFromHistory.current = false;
+      }, 0);
+    }
+  }, [location]); // Depend on entire location object to catch state changes
+
+  // Push current step to history when step changes (so back button works)
+  useEffect(() => {
+    // Skip if we're navigating from history or handling initial service selection
+    if (isNavigatingFromHistory.current || location.state?.serviceId) {
+      return;
+    }
+
+    // Push to history when user navigates to a new step
+    if (currentStep >= 1) {
+      navigate(location.pathname, {
+        state: { step: currentStep },
+        replace: currentStep === 1 // Replace only on step 1 to avoid cluttering history
+      });
+    }
+  }, [currentStep, navigate, location.pathname]);
 
   // Handle initial service selection from navigation
   useEffect(() => {
@@ -522,10 +595,12 @@ const Booking = () => {
         )}
 
         {currentStep === 3 && selectedPackage && (
-          <div className="date-time-selection">
+            <div className="date-time-selection">
             <div className="back-to-package">
               <button className="back-link" onClick={handleBackToPackages}>
-                ← Back to Package
+                {selectedServiceCategory && (selectedServiceCategory.id === "training" || selectedServiceCategory.id === "diy") 
+                  ? "← Back to Services" 
+                  : "← Back to Package"}
               </button>
             </div>
             <div className="package-name-display">

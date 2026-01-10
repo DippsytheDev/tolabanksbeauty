@@ -167,7 +167,7 @@
   width: 100%;
   height: 100%;
   object-fit: cover;
-  object-position: center;
+  object-position: center 25%;
   transition: transform 0.3s ease;
 }
 
@@ -283,6 +283,10 @@
     height: 300px;
   }
 
+  .service-card-image img {
+    object-position: center 20%;
+  }
+
   .service-card-content {
     height: auto;
     min-height: 160px;
@@ -309,6 +313,10 @@
 
   .service-card-image {
     height: 250px;
+  }
+
+  .service-card-image img {
+    object-position: center 15%;
   }
 
   .service-card-header {

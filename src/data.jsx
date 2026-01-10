@@ -5,7 +5,7 @@ export const people = [
     name: "BRIDAL SESSION(Gold Package)",
     Location: "Within Calgary",
     description:
-      "This session includes free consultation and a bridal trial,before your wedding day.",
+      "This package includes a complimentary 30mins consultation and a bridal trial, before your wedding day, Every detail is thoughtfully curated to ensure a flawless long lasting look that enhances your beauty and photographs beautifully.",
     Duration: "2hrs",
     Price: "$650",
   },
@@ -15,9 +15,9 @@ export const people = [
     name: "BRIDAL SESSION(Silver Package)",
     Location: "Within Calgary",
     description:
-      "This session includes free consultation only before your wedding day. N.B: No bridal trial is included.",
+      "This package includes a complimentary 30mins consultation and a bridal trial, before your wedding day. Please note a bridal trail is not included, Ideal for brides who are confident in their vision , and desire a flawless,radiant makeup experience from start to finish .",
     Duration: "2hrs",
-    Price: "$500",
+    Price: "$550",
   },
   {
     id: 3,
@@ -25,9 +25,9 @@ export const people = [
     name: "BRIDAL SESSION(Outside Calgary)",
     Location: "Out of Calgary",
     description:
-      "This session includes free consultation only before your wedding day. N.B: No bridal trial is included.",
+      "Designed for brides whose weddings celebrations take place outside of Calgary, but within Canada. This services includes a complimentary consultation and wait time of 3 hours ",
     Duration: "2hrs",
-    Price: "From $850",
+    Price: "From $1900",
   },
   {
     id: 4,
@@ -35,7 +35,7 @@ export const people = [
     name: "CIVIL WEDDING",
     Location: "Within Calgary",
     description:
-      "This session includes a free consultation only, looking for a more intimate and minimalist bridal look, this session is for you.",
+      "This service is designed for registry or courthouse marriage ceremonies, ideal for brides planning a small intimate legal ceremony. No bridal trial is included.",
     Duration: "2hrs",
     Price: "$350",
   },

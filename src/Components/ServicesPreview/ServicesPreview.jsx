@@ -54,14 +54,14 @@ const ServicesPreview = () => {
     {
       id: "training",
       name: "1-on-1 Makeup Class",
-      price: "From $350",
+      price: "From $280",
       image: "/Images/img1.jpg",
       navigateTo: "datetime" // Goes to step 3 (date/time selection)
     },
     {
       id: "diy",
       name: "DIY Makeup Session",
-      price: "From $200",
+      price: "From $280",
       image: "/Images/img19.jpg",
       navigateTo: "datetime" // Goes to step 3 (date/time selection)
     }
@@ -107,9 +107,6 @@ const ServicesPreview = () => {
                   <div className="service-card-overlay"></div>
                 </div>
                 <div className="service-card-content">
-                  {serviceCard.price && (
-                    <p className="service-price">{serviceCard.price}</p>
-                  )}
                   {serviceCard.name && (
                     <h3 className="service-name">{serviceCard.name}</h3>
                   )}
