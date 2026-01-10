@@ -1,20 +1,31 @@
-@import url("https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&display=swap");
-
 .booking-container {
   width: 100%;
   font-size: clamp(1rem, 2vw, 1.5rem);
 }
-.make {
-  text-align: center;
-  margin-bottom: -3rem;
-  /* 
-  font-family: "DM sans", sans-serif;
-  color: #ffdd57;
- */
-  font-family: "Playfair Display", serif;
-  color: black;
 
+.booking-header {
+  text-align: center;
+  margin-bottom: 3rem;
+}
+
+.booking-header .section-label {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--text-dark);
+  letter-spacing: 0.8px;
+  margin-bottom: 24px;
+}
+
+.booking-header .label-accent {
+  color: var(--beige-accent);
+}
+
+.make {
+  font-family: "DM Serif Text", serif;
+  color: var(--text-dark);
   font-size: clamp(2rem, 3vw, 5rem);
+  margin: 0;
 }
 
 .second {
@@ -37,9 +48,10 @@
   margin: 0rem auto;
   text-align: center;
   align-items: flex-start;
-  border: 1px solid black;
-  background-color: #ffe6a7;
-  color: black;
+  border: 1px solid var(--beige-accent);
+  background-color: var(--light-background);
+  color: var(--text-dark);
+  border-radius: 8px;
 }
 
 .list-tile img {
@@ -72,17 +84,22 @@
 }
 
 .btn {
-  background-color: black;
-  color: #ffe6a7;
+  background-color: var(--dark-brown);
+  color: var(--white);
   font-size: 0.75rem;
   display: inline-block;
   width: 149px;
   height: 35px;
   cursor: pointer;
   margin-top: 1rem;
+  border: none;
+  border-radius: 4px;
+  transition: all 0.3s ease;
+  font-family: "Instrument Sans", sans-serif;
 }
 .btn:hover {
-  background-color: white;
+  background-color: var(--primary-pink);
+  color: var(--white);
 }
 .center {
   text-align: center;
@@ -408,4 +425,205 @@ input[type="text"] {
 .btn1 {
   background-color: #000;
   color: white;
+}
+
+/* New Step 3 Design Styles */
+.step-3-new {
+  padding: 2rem;
+  background-color: white;
+  font-family: "Instrument Sans", sans-serif;
+  max-width: 900px;
+  margin: 0 auto;
+  width: 100%;
+}
+
+.back-to-package {
+  margin-bottom: 1.5rem;
+}
+
+.back-link {
+  background: none;
+  border: none;
+  color: var(--text-dark);
+  font-size: 14px;
+  cursor: pointer;
+  padding: 0;
+  font-family: "Instrument Sans", sans-serif;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  transition: color 0.3s ease;
+}
+
+.back-link:hover {
+  color: var(--primary-pink);
+}
+
+.package-name-display {
+  font-size: 18px;
+  color: var(--beige-accent);
+  text-transform: uppercase;
+  text-align: center;
+  margin-bottom: 1rem;
+  font-weight: 500;
+  letter-spacing: 0.5px;
+}
+
+.step-title-new {
+  font-family: "DM Serif Text", serif;
+  font-size: 32px;
+  font-weight: bold;
+  color: var(--text-dark);
+  text-align: center;
+  margin-bottom: 0.5rem;
+}
+
+.step-subtitle {
+  font-size: 14px;
+  color: #666;
+  text-align: center;
+  margin-bottom: 2rem;
+  font-family: "Instrument Sans", sans-serif;
+}
+
+.date-time-container {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2rem;
+  margin-bottom: 2rem;
+}
+
+.date-picker-card,
+.time-picker-card {
+  background: white;
+  border-radius: 8px;
+  padding: 1.5rem;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card-title {
+  font-size: 18px;
+  font-weight: bold;
+  color: var(--text-dark);
+  margin-bottom: 1rem;
+  font-family: "Instrument Sans", sans-serif;
+}
+
+.custom-calendar {
+  width: 100% !important;
+  border: none !important;
+  font-family: "Instrument Sans", sans-serif;
+}
+
+.custom-calendar .react-calendar__tile {
+  padding: 0.75rem;
+  font-size: 14px;
+}
+
+.custom-calendar .react-calendar__tile--active {
+  background: var(--primary-pink) !important;
+  color: white !important;
+}
+
+.custom-calendar .react-calendar__tile--now {
+  background: #f0f0f0;
+}
+
+.custom-calendar .react-calendar__tile:disabled {
+  background: #f5f5f5;
+  color: #ccc;
+  cursor: not-allowed;
+}
+
+.custom-calendar .react-calendar__navigation {
+  margin-bottom: 1rem;
+}
+
+.custom-calendar .react-calendar__navigation button {
+  font-size: 16px;
+  min-width: 44px;
+}
+
+.time-slots-grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 0.75rem;
+}
+
+.time-slot-btn {
+  padding: 0.75rem 1rem;
+  border: 1px solid #ddd;
+  background: white;
+  color: var(--text-dark);
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-family: "Instrument Sans", sans-serif;
+  transition: all 0.3s ease;
+}
+
+.time-slot-btn:hover {
+  border-color: var(--primary-pink);
+  background: #fff5f0;
+}
+
+.time-slot-btn.selected {
+  background: var(--primary-pink);
+  color: white;
+  border-color: var(--primary-pink);
+}
+
+.no-times-message {
+  grid-column: 1 / -1;
+  text-align: center;
+  color: #999;
+  padding: 2rem;
+  font-size: 14px;
+}
+
+.proceed-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 2rem;
+}
+
+.btn-proceed {
+  background: var(--primary-pink);
+  color: white;
+  border: none;
+  padding: 1rem 3rem;
+  font-size: 16px;
+  font-weight: 600;
+  border-radius: 4px;
+  cursor: pointer;
+  font-family: "Instrument Sans", sans-serif;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  transition: all 0.3s ease;
+}
+
+.btn-proceed:hover {
+  background: var(--dark-brown);
+  transform: translateY(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+}
+
+@media screen and (max-width: 768px) {
+  .date-time-container {
+    grid-template-columns: 1fr;
+    gap: 1.5rem;
+  }
+
+  .step-3-new {
+    padding: 1rem;
+  }
+
+  .time-slots-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+
+  .step-title-new {
+    font-size: 24px;
+  }
 }

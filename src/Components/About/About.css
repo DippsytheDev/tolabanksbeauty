@@ -1,0 +1,206 @@
+.about-section {
+  padding: 80px 32px;
+  max-width: 1512px;
+  margin: 0 auto;
+  position: relative;
+}
+
+.about-header {
+  margin-bottom: 80px;
+}
+
+.section-label {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--text-dark);
+  letter-spacing: 0.8px;
+  margin-bottom: 24px;
+}
+
+.label-accent {
+  color: var(--beige-accent);
+}
+
+.section-heading {
+  font-family: "DM Serif Text", serif;
+  font-size: 64px;
+  font-weight: 400;
+  color: var(--text-dark);
+  line-height: 1.2;
+}
+
+.about-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  margin-bottom: 80px;
+  align-items: start;
+}
+
+.about-text-left {
+  max-width: 448px;
+}
+
+.about-intro {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--text-dark);
+  line-height: 1.5;
+  margin-bottom: 12px;
+}
+
+.about-description {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--text-dark);
+  line-height: 1.5;
+  text-align: justify;
+  letter-spacing: 0.8px;
+}
+
+.about-image-right {
+  position: relative;
+  width: 100%;
+  max-width: 480px;
+  height: 584px;
+  margin: 0 auto;
+}
+
+.about-image-right img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.watermark-text {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 120px;
+  font-weight: 700;
+  color: rgba(48, 40, 37, 0.1);
+  line-height: 120px;
+  letter-spacing: 4.8px;
+  pointer-events: none;
+  white-space: nowrap;
+}
+
+.watermark-right {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 1;
+}
+
+.watermark-left {
+  position: absolute;
+  top: 0;
+  right: 0;
+  text-align: right;
+  transform: translateX(100%);
+}
+
+.about-content-bottom {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 32px;
+  align-items: start;
+  position: relative;
+}
+
+.about-text-right {
+  max-width: 448px;
+  margin-left: auto;
+}
+
+.about-portfolio-btn {
+  background-color: var(--white);
+  border: 1px solid var(--dark-brown);
+  color: var(--dark-brown);
+  padding: 12px 20px;
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  cursor: pointer;
+  margin-top: 24px;
+  transition: all 0.3s ease;
+}
+
+.about-portfolio-btn:hover {
+  background-color: var(--dark-brown);
+  color: var(--white);
+}
+
+@media screen and (max-width: 1024px) {
+  .about-content,
+  .about-content-bottom {
+    grid-template-columns: 1fr;
+    gap: 40px;
+  }
+
+  .about-text-left,
+  .about-text-right {
+    max-width: 100%;
+  }
+
+  .about-image-right {
+    max-width: 100%;
+  }
+
+  .watermark-left {
+    display: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .about-section {
+    padding: 60px 16px;
+  }
+
+  .section-heading {
+    font-size: 48px;
+  }
+
+  .section-label {
+    font-size: 16px;
+  }
+
+  .about-intro,
+  .about-description {
+    font-size: 18px;
+  }
+
+  .watermark-text {
+    font-size: 80px;
+    line-height: 80px;
+  }
+
+  .about-image-right {
+    height: 400px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .section-heading {
+    font-size: 36px;
+  }
+
+  .about-intro,
+  .about-description {
+    font-size: 16px;
+  }
+
+  .watermark-text {
+    font-size: 60px;
+    line-height: 60px;
+  }
+
+  .about-image-right {
+    height: 300px;
+  }
+}
+

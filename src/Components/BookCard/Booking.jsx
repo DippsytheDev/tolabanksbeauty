@@ -5,21 +5,47 @@ import "./BookCard.css";
 import "react-datepicker/dist/react-datepicker.css";
 import { people } from "../../data";
 import "react-calendar/dist/Calendar.css";
-import DatePicker from "react-datepicker";
+import Calendar from "react-calendar";
 import moment from "moment-timezone";
 
 Modal.setAppElement("#root");
 
-const Booking = ({ isOpen, onRequestClose, service }) => {
-  const [step, setStep] = useState(1);
-  const [selectedDate, setSelectedDate] = useState(new Date());
+const Booking = ({
+  isOpen,
+  onRequestClose,
+  service,
+  onStepChange,
+  initialStep = 1,
+  selectedDate: propSelectedDate,
+  selectedTime: propSelectedTime,
+  formData: propFormData,
+}) => {
+  const [step, setStep] = useState(initialStep);
+
+  // Update step when initialStep prop changes
+  useEffect(() => {
+    if (isOpen && initialStep) {
+      setStep(initialStep);
+    }
+  }, [isOpen, initialStep]);
+
+  // Notify parent of step changes
+  useEffect(() => {
+    if (onStepChange && isOpen) {
+      onStepChange(step);
+    }
+  }, [step, onStepChange, isOpen]);
+  const [selectedDate, setSelectedDate] = useState(
+    propSelectedDate || new Date()
+  );
   const [formData, setFormData] = useState({
-    name: "",
-    email: "",
-    date: "",
-    time: "",
-    number: "",
-    address: "",
+    name: propFormData?.name || "",
+    email: propFormData?.email || "",
+    date: propSelectedDate ? moment(propSelectedDate).format("YYYY-MM-DD") : "",
+    time: propSelectedTime || "",
+    number: propFormData?.number || "",
+    address: propFormData?.address || "",
+    message: propFormData?.message || "",
   });
   const [availableTimes, setAvailableTimes] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -71,7 +97,9 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
 
   const handleBack = () => {
     if (step > 1) {
-      setStep(step - 1);
+      const prevStep = step - 1;
+      setStep(prevStep);
+      if (onStepChange) onStepChange(prevStep);
     }
   };
   const [formErrors, setFormErrors] = useState({
@@ -98,16 +126,22 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
     if (step === 3) {
       // For step 3, validate time before proceeding
       if (formData.time) {
-        setStep(step + 1);
+        const nextStep = step + 1;
+        setStep(nextStep);
+        if (onStepChange) onStepChange(nextStep);
       } else {
         setFormErrors({ ...formErrors, time: "Time is required" });
       }
     } else if (step === 4) {
       if (validateStep4Fields()) {
-        setStep(step + 1);
+        const nextStep = step + 1;
+        setStep(nextStep);
+        if (onStepChange) onStepChange(nextStep);
       }
     } else {
-      setStep(step + 1);
+      const nextStep = step + 1;
+      setStep(nextStep);
+      if (onStepChange) onStepChange(nextStep);
     }
   };
 
@@ -129,9 +163,11 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
       });
       setLoading(false);
       setSuccess(true);
+      // Notify parent that we've reached the final step
+      if (onStepChange) onStepChange(5);
       setTimeout(() => {
         onRequestClose();
-        setStep(1);
+        setStep(initialStep || 1);
       }, 3000);
     } catch (error) {
       setLoading(false);
@@ -167,10 +203,32 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
       } else if (dayOfWeek === 0 || dayOfWeek === 6) {
         // Saturday and Sunday: normal times
         allTimes = [
-          "06:30", "07:00", "07:30", "08:00", "08:30", "09:00", "09:30",
-          "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00",
-          "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30",
-          "17:00", "17:30", "18:00", "18:30", "19:00"
+          "06:30",
+          "07:00",
+          "07:30",
+          "08:00",
+          "08:30",
+          "09:00",
+          "09:30",
+          "10:00",
+          "10:30",
+          "11:00",
+          "11:30",
+          "12:00",
+          "12:30",
+          "13:00",
+          "13:30",
+          "14:00",
+          "14:30",
+          "15:00",
+          "15:30",
+          "16:00",
+          "16:30",
+          "17:00",
+          "17:30",
+          "18:00",
+          "18:30",
+          "19:00",
         ];
       }
     }
@@ -180,18 +238,148 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
         `https://end8.vercel.app/bookings/unavailable-times?date=${formattedDate}`
       );
       const bookedTimes = response.data;
-      const available = allTimes.filter((time) => !bookedTimes.includes(time));
+
+      // Block the booked time, the next 2 hours, and the 1.5 hours before the booking
+      const extendedBlockedTimes = new Set();
+      bookedTimes.forEach((time) => {
+        const bookingMoment = moment(time, "HH:mm");
+
+        // Block the booked time itself
+        extendedBlockedTimes.add(bookingMoment.format("HH:mm"));
+
+        // Block 2 hours after the booked time (4 slots of 30 minutes each)
+        const afterMoment = moment(time, "HH:mm");
+        for (let i = 1; i <= 4; i++) {
+          afterMoment.add(30, "minutes");
+          extendedBlockedTimes.add(afterMoment.format("HH:mm"));
+        }
+
+        // Block 1.5 hours before the booked time (3 slots of 30 minutes each)
+        const beforeMoment = moment(time, "HH:mm");
+        for (let i = 1; i <= 3; i++) {
+          beforeMoment.subtract(30, "minutes");
+          extendedBlockedTimes.add(beforeMoment.format("HH:mm"));
+        }
+      });
+
+      const available = allTimes.filter(
+        (time) => !extendedBlockedTimes.has(time)
+      );
       setAvailableTimes(available);
     } catch (error) {
       setAvailableTimes([]);
     }
   };
 
+  // Update selectedDate and formData when props change
   useEffect(() => {
-    if (isOpen && selectedDate) {
-      handleDateChange(selectedDate);
+    if (propSelectedDate) {
+      setSelectedDate(propSelectedDate);
+      setFormData((prev) => ({
+        ...prev,
+        date: moment(propSelectedDate).format("YYYY-MM-DD"),
+      }));
     }
-  }, [isOpen, selectedDate]);
+    if (propSelectedTime) {
+      setFormData((prev) => ({
+        ...prev,
+        time: propSelectedTime,
+      }));
+    }
+  }, [propSelectedDate, propSelectedTime]);
+
+  useEffect(() => {
+    if (isOpen && initialStep >= 4) {
+      // Only fetch times if we're starting from step 4 (details)
+      // For step 3, times are already fetched in the parent component
+      const fetchUnavailableTimes = async () => {
+        const formattedDate = moment(selectedDate)
+          .tz("America/Edmonton")
+          .set({ hour: 12, minute: 0 })
+          .format("YYYY-MM-DD");
+
+        let allTimes = [];
+        const dayOfWeek = moment(selectedDate).day();
+        const isNextYear = moment(selectedDate).year() >= 2024;
+
+        if (isNextYear) {
+          if (dayOfWeek >= 1 && dayOfWeek <= 4) {
+            allTimes = ["18:00", "18:30", "19:00"];
+          } else if (dayOfWeek === 5) {
+            allTimes = ["17:00", "17:30", "18:00", "18:30", "19:00"];
+          } else if (dayOfWeek === 0 || dayOfWeek === 6) {
+            allTimes = [
+              "06:30",
+              "07:00",
+              "07:30",
+              "08:00",
+              "08:30",
+              "09:00",
+              "09:30",
+              "10:00",
+              "10:30",
+              "11:00",
+              "11:30",
+              "12:00",
+              "12:30",
+              "13:00",
+              "13:30",
+              "14:00",
+              "14:30",
+              "15:00",
+              "15:30",
+              "16:00",
+              "16:30",
+              "17:00",
+              "17:30",
+              "18:00",
+              "18:30",
+              "19:00",
+            ];
+          }
+        }
+
+        try {
+          const response = await axios.get(
+            `https://end8.vercel.app/bookings/unavailable-times?date=${formattedDate}`
+          );
+          const bookedTimes = response.data;
+
+          const extendedBlockedTimes = new Set();
+          bookedTimes.forEach((time) => {
+            const bookingMoment = moment(time, "HH:mm");
+
+            // Block the booked time itself
+            extendedBlockedTimes.add(bookingMoment.format("HH:mm"));
+
+            // Block 2 hours after the booked time (4 slots of 30 minutes each)
+            const afterMoment = moment(time, "HH:mm");
+            for (let i = 1; i <= 4; i++) {
+              afterMoment.add(30, "minutes");
+              extendedBlockedTimes.add(afterMoment.format("HH:mm"));
+            }
+
+            // Block 1.5 hours before the booked time (3 slots of 30 minutes each)
+            const beforeMoment = moment(time, "HH:mm");
+            for (let i = 1; i <= 3; i++) {
+              beforeMoment.subtract(30, "minutes");
+              extendedBlockedTimes.add(beforeMoment.format("HH:mm"));
+            }
+          });
+
+          const available = allTimes.filter(
+            (time) => !extendedBlockedTimes.has(time)
+          );
+          setAvailableTimes(available);
+        } catch (error) {
+          setAvailableTimes([]);
+        }
+      };
+
+      fetchUnavailableTimes();
+    }
+  }, [isOpen, selectedDate, initialStep]);
+
   const handleRequestClose = () => {
     setShowConfirmation(true);
   };
@@ -211,74 +399,78 @@ const Booking = ({ isOpen, onRequestClose, service }) => {
         {step === 1 && (
           <div className="step">
             <h2>Your Appointment</h2>
-            <p>{service.name}</p>
-            <p>{service.Location && <p>{service.Location}</p>}</p>
-            <p>{service.Duration}</p>
-            <p>{service.Price}</p>
+            <p>{service?.name}</p>
+            <p>{service?.Location && <p>{service.Location}</p>}</p>
+            <p>{service?.Duration}</p>
+            <p>{service?.Price}</p>
             <button className="btn-service" onClick={() => setStep(3)}>
               Select Date and Time
             </button>
           </div>
         )}
-        {step === 3 && (
-          <div className="step step-3">
-            <h2 className="step-title">Select Your Date and Time</h2>
-            <label className="step-label">Select Date:</label>
-            <DatePicker
-              selected={selectedDate}
-              onChange={handleDateChange}
-              minDate={new Date()}
-              filterDate={filterBookingDates}
-              className="date-picker-input"
-              required
-              placeholderText="Select a date"
-            />
-            {weekendMessage && (
-              <p
-                className="error"
-                style={{
-                  color: "#ff6b6b",
-                  marginTop: "10px",
-                  fontSize: "14px",
-                }}
-              >
-                {weekendMessage}
-              </p>
-            )}
-            <label className="step-label">Select Time:</label>
-            <select
-              value={formData.time}
-              onChange={(e) =>
-                setFormData({ ...formData, time: e.target.value })
-              }
-              className="time-select"
-              required
-              disabled={availableTimes.length === 0}
-            >
-              <option value="" disabled>
-                {availableTimes.length > 0
-                  ? "Select Time"
-                  : "No available times"}
-              </option>
-              {availableTimes.length > 0 ? (
-                availableTimes.map((time) => (
-                  <option key={time} value={time}>
-                    {time}
-                  </option>
-                ))
-              ) : (
-                <option value="" disabled>
-                  No available times
-                </option>
-              )}
-            </select>
-            {formErrors.time && <p className="error">{formErrors.time}</p>}
-            <div className="btns">
-              <button className="btn-back" onClick={handleBack}>
-                Back
+        {step === 3 && service && (
+          <div className="step step-3-new">
+            <div className="back-to-package">
+              <button className="back-link" onClick={handleBack}>
+                ← Back to Package
               </button>
-              <button className="btn-next" onClick={handleNext}>
-                Next
+            </div>
+            <div className="package-name-display">{service.name}</div>
+            <h2 className="step-title-new">Select Date & Time</h2>
+            <p className="step-subtitle">
+              Choose your preferred appointment date and time
+            </p>
+
+            <div className="date-time-container">
+              {/* Date Picker Card */}
+              <div className="date-picker-card">
+                <h3 className="card-title">Select Date</h3>
+                <Calendar
+                  onChange={handleDateChange}
+                  value={selectedDate}
+                  minDate={new Date()}
+                  tileDisabled={({ date }) => !filterBookingDates(date)}
+                  className="custom-calendar"
+                />
+              </div>
+
+              {/* Time Picker Card */}
+              <div className="time-picker-card">
+                <h3 className="card-title">Select Time</h3>
+                <div className="time-slots-grid">
+                  {availableTimes.length > 0 ? (
+                    availableTimes.map((time) => {
+                      const isSelected = formData.time === time;
+                      const time12h = moment(time, "HH:mm").format("h:mmA");
+                      return (
+                        <button
+                          key={time}
+                          type="button"
+                          className={`time-slot-btn ${
+                            isSelected ? "selected" : ""
+                          }`}
+                          onClick={() =>
+                            setFormData({ ...formData, time: time })
+                          }
+                        >
+                          {time12h}
+                        </button>
+                      );
+                    })
+                  ) : (
+                    <p className="no-times-message">
+                      No available times for this date
+                    </p>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {formErrors.time && <p className="error">{formErrors.time}</p>}
+
+            <div className="proceed-button-container">
+              <button className="btn-proceed" onClick={handleNext}>
+                PROCEED
               </button>
             </div>
           </div>

@@ -1,155 +1,64 @@
 import React from "react";
-import { useRef } from "react";
+import { Routes, Route } from "react-router-dom";
 import gsap from "gsap";
 import { useGSAP } from "@gsap/react";
-import ContactCard from "./Components/ContactCard/ContactCard";
-import BookCard from "./Components/BookCard/BookCard";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import Header from "./Components/Header/Header";
+import ContactCard from "./Components/ContactCard/ContactCard";
+import ScrollToTop from "./Components/ScrollToTop/ScrollToTop";
+import Home from "./pages/Home";
+import Services from "./pages/Services";
+import Booking from "./pages/Booking";
+import "./App.css";
 
 const isMaintenanceMode = false;
+
 function App() {
-  /*   if (isMaintenanceMode) {
-    return (
-      <div className="maintenance-container">
-        <h1>Website Under Maintenance</h1>
-        <p>We are currently performing scheduled maintenance. Please check back later.</p>
-      </div>
-    );
-  }  */
   gsap.registerPlugin(useGSAP);
   gsap.registerPlugin(ScrollTrigger);
 
   useGSAP(() => {
-    // gsap code here...
-    gsap.from(".squareee", {
+    // Fade in animations for portfolio images
+    gsap.from(".portfolio-item", {
       scrollTrigger: {
-        trigger: ".squareee",
+        trigger: ".portfolio-grid",
+        start: "top 80%",
         toggleActions: "play none none none",
       },
-      stagger: 0.3,
+      stagger: 0.15,
       opacity: 0,
-      duration: 1.2,
-      ease: "bounce",
-      x: 200,
+      duration: 0.8,
+      y: 50,
+      ease: "power2.out",
     });
-    gsap.from(".squaree", {
+
+    // Fade in for testimonial card
+    gsap.from(".testimonial-card", {
       scrollTrigger: {
-        trigger: ".squaree",
+        trigger: ".testimonial-card",
+        start: "top 80%",
         toggleActions: "play none none none",
       },
-      stagger: 0.25,
       opacity: 0,
       duration: 1,
-      x: 200,
-    });
-    gsap.from(".square", {
-      scrollTrigger: {
-        trigger: ".square",
-        toggleActions: "play none none none",
-      },
-      stagger: 0.25,
-      opacity: 0,
-      duration: 1,
-      y: 150,
+      y: 30,
+      ease: "power2.out",
     });
   });
+
   return (
-    <div className="app-container" id="Home">
-      <div className="container">
-        <ul className="navbar">
-          <li>
-            <a href="#Home">Home</a>
-          </li>
-          <li>
-            <a href="#Bookings">Bookings</a>
-          </li>
-          <li>
-            <a href="#Portfolio">Portfolio</a>
-          </li>
-          <li>
-            <a href="#Contact">Contact</a>
-          </li>
-        </ul>
-      </div>
-      <div className="first">
-        <div className="main-img squareee">
-          <img src="/Images/img21.jpg" alt="" />
-        </div>
-        <div className="about-me squareee">
-          <h1>About Me</h1>
-          <h1 className="unicode">&#9013;</h1>
-          <p>
-            <span className="one">Hi, I’m Bims...</span>I'm a Calgary-based
-            makeup artist with over eight years of experience in the beauty
-            industry, specializing in glamorous and skin-enhancing makeup for
-            various occasions, including weddings, birthday parties, and other
-            social events. My goal at Makeupbybims is to not only enhance
-            natural beauty but also to boost individuals' confidence, surpassing
-            expectations and setting a new benchmark in the makeup industry.
-          </p>
-        </div>
-
-        <div className="services squareee">
-          <div className="service-heading">
-            <h1>SERVICES</h1>
-          </div>
-          <h1 className="unicode">&#9013;</h1>
-          <ul>
-            <li>Bridal Makeup</li>
-            <li>Non-Bridal Makeup</li>
-            <li>1on1 Master Class</li>
-            <li>DIY Makeup Class</li>
-          </ul>
-        </div>
-        <div className="image-grid squareee ">
-          <img src="/Images/img19.jpg" alt="" />
-        </div>
-        <div className="hide clients squareee">
-          <div className="clients-heading">
-            <h1>NON-MAKEUP</h1>
-          </div>
-          <h1 className="unicode">&#9013;</h1>
-          <ul>
-            <li>Semi-Permanent Makeup</li>
-          </ul>
-        </div>
-        <div className="image-grids squareee">
-          <img src="/Images/img20.jpg" alt="" />
-        </div>
-      </div>
-      <div className="bookCard__container" id="Bookings">
-        <BookCard />
-      </div>
-      <section className="Portfolio" id="Portfolio">
-        <h1 className="center port topic-text">PORTFOLIO</h1>
-        <div className="third">
-          <div className="item square">
-            <img src="/Images/img10.jpg" alt="" />
-          </div>
-          <div className="item square">
-            <img src="/Images/img2.jpg" alt="" />
-          </div>
-          <div className="item square">
-            <img src="/Images/img3.jpg" alt="" />
-          </div>
-          <div className="item square">
-            <img src="/Images/img16.jpeg" alt="" />
-          </div>
-          <div className="item square">
-            <img src="/Images/img5.jpg" alt="" />
-          </div>
-          <div className="item square">
-            <img src="/Images/img14.jpg" alt="" />
-          </div>
-          <div className="item square">
-            <img src="/Images/img1.jpg" alt="" />
-          </div>
-        </div>
-      </section>
-
-      <div id="Contact">
-        <ContactCard />
-      </div>
+    <div className="app-container">
+      <ScrollToTop />
+      <Header />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/services" element={<Services />} />
+        <Route path="/booking" element={<Booking />} />
+      </Routes>
+      <Routes>
+        <Route path="/booking" element={null} />
+        <Route path="*" element={<ContactCard />} />
+      </Routes>
     </div>
   );
 }

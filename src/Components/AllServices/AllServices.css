@@ -1,0 +1,357 @@
+.all-services-section {
+  padding: 80px 0 0;
+  background-color: var(--light-background);
+  min-height: 100vh;
+}
+
+.all-services-header {
+  background-color: var(--light-background);
+  padding: 80px 32px 40px;
+  text-align: center;
+  position: relative;
+  overflow: hidden;
+}
+
+.all-services-header::before {
+  content: "MAKEUPBIMS";
+  position: absolute;
+  right: 0;
+  top: 52px;
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 200px;
+  font-weight: 700;
+  color: rgba(48, 40, 37, 0.1);
+  letter-spacing: 8px;
+  line-height: 200px;
+  pointer-events: none;
+  transform: translateX(50%);
+}
+
+.section-label {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--text-dark);
+  letter-spacing: 0.8px;
+  margin-bottom: 24px;
+}
+
+.label-accent {
+  color: var(--beige-accent);
+}
+
+.section-heading {
+  font-family: "DM Serif Text", serif;
+  font-size: 64px;
+  font-weight: 400;
+  color: var(--text-dark);
+  line-height: 1.2;
+}
+
+.services-filter {
+  display: flex;
+  justify-content: center;
+  gap: 40px;
+  padding: 20px 32px;
+  background-color: var(--white);
+  border-bottom: 1px solid #e9e4e2;
+  position: sticky;
+  top: 80px;
+  z-index: 100;
+}
+
+.filter-btn {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 16px;
+  font-weight: 400;
+  color: var(--text-dark);
+  background: none;
+  border: none;
+  cursor: pointer;
+  letter-spacing: 0.64px;
+  padding: 10px 0;
+  transition: color 0.3s ease;
+  position: relative;
+}
+
+.filter-btn:hover {
+  color: var(--primary-pink);
+}
+
+.filter-btn.active {
+  color: var(--primary-pink);
+}
+
+.filter-btn.active::after {
+  content: "";
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  height: 2px;
+  background-color: var(--primary-pink);
+}
+
+.all-services-content {
+  padding: 60px 69px;
+  max-width: 1512px;
+  margin: 0 auto;
+}
+
+.service-group {
+  margin-bottom: 100px;
+}
+
+.service-group:last-child {
+  margin-bottom: 0;
+}
+
+.service-group-content {
+  display: flex;
+  gap: 48px;
+  align-items: flex-start;
+}
+
+.service-group-content.image-left {
+  flex-direction: row;
+}
+
+.service-group-content.image-right {
+  flex-direction: row-reverse;
+}
+
+.service-group-image {
+  flex: 0 0 600px;
+  height: 518px;
+  overflow: hidden;
+  border-radius: 8px;
+}
+
+.service-group-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  object-position: center;
+}
+
+.service-group-details {
+  flex: 1;
+  min-width: 0;
+}
+
+.service-group-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 32px;
+  gap: 32px;
+}
+
+.service-group-title {
+  flex: 1;
+}
+
+.service-number {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--beige-accent);
+  letter-spacing: 0.8px;
+  margin-bottom: 8px;
+}
+
+.service-group-name {
+  font-family: "DM Serif Text", serif;
+  font-size: 48px;
+  font-weight: 400;
+  color: var(--text-dark);
+  line-height: 1.2;
+  margin: 0;
+}
+
+.service-book-btn {
+  background-color: var(--primary-pink);
+  color: var(--white);
+  border: none;
+  padding: 12px 20px;
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 20px;
+  font-weight: 500;
+  letter-spacing: 0.8px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+  white-space: nowrap;
+  flex-shrink: 0;
+}
+
+.service-book-btn:hover {
+  background-color: #b06a74;
+}
+
+.service-packages {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.service-package-card {
+  background-color: var(--light-background);
+  border: 1px solid var(--beige-accent);
+  padding: 19px 23px;
+  border-radius: 4px;
+  min-height: 188px;
+  position: relative;
+}
+
+.package-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-start;
+  margin-bottom: 20px;
+  gap: 20px;
+}
+
+.package-name {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--dark-brown);
+  margin: 0;
+  flex: 1;
+}
+
+.package-price {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 24px;
+  font-weight: 700;
+  color: var(--dark-brown);
+  margin: 0;
+  white-space: nowrap;
+}
+
+.package-description {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--text-dark);
+  line-height: 1.5;
+  text-align: justify;
+  letter-spacing: 0.8px;
+  margin-bottom: 20px;
+}
+
+.package-duration {
+  font-family: "Instrument Sans", sans-serif;
+  font-size: 20px;
+  font-weight: 400;
+  color: var(--primary-pink);
+  letter-spacing: 0.8px;
+  margin: 0;
+}
+
+@media screen and (max-width: 1200px) {
+  .all-services-content {
+    padding: 60px 32px;
+  }
+
+  .service-group-content {
+    flex-direction: column !important;
+  }
+
+  .service-group-image {
+    width: 100%;
+    flex: none;
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .all-services-header {
+    padding: 60px 16px 30px;
+  }
+
+  .all-services-header::before {
+    font-size: 120px;
+    line-height: 120px;
+  }
+
+  .section-heading {
+    font-size: 48px;
+  }
+
+  .section-label {
+    font-size: 16px;
+  }
+
+  .services-filter {
+    padding: 15px 16px;
+    gap: 20px;
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .filter-btn {
+    font-size: 14px;
+  }
+
+  .all-services-content {
+    padding: 40px 16px;
+  }
+
+  .service-group {
+    margin-bottom: 60px;
+  }
+
+  .service-group-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .service-group-name {
+    font-size: 36px;
+  }
+
+  .service-book-btn {
+    width: 100%;
+    font-size: 18px;
+  }
+
+  .service-group-image {
+    height: 400px;
+  }
+
+  .package-name,
+  .package-price {
+    font-size: 20px;
+  }
+
+  .package-description {
+    font-size: 18px;
+  }
+
+  .package-duration {
+    font-size: 18px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .section-heading {
+    font-size: 36px;
+  }
+
+  .service-group-name {
+    font-size: 28px;
+  }
+
+  .service-group-image {
+    height: 300px;
+  }
+
+  .package-name,
+  .package-price {
+    font-size: 18px;
+  }
+
+  .package-description {
+    font-size: 16px;
+  }
+}

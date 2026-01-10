@@ -19,7 +19,12 @@ const BookCard = () => {
   return (
     <>
       <article className="booking-container">
-        <h1 className="make">MAKE A BOOKING</h1>
+        <div className="booking-header">
+          <p className="section-label">
+            <span className="label-accent">MAKEUPBYBIMS</span> | BOOK YOUR SESSION
+          </p>
+          <h1 className="make">Make a Booking</h1>
+        </div>
         <ul className="second">
           {people.map((service, index) => {
             const { id, img, name, description, Duration, Price, Location } =
