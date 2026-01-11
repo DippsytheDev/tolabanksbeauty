@@ -38,17 +38,21 @@ const Booking = () => {
   const isNavigatingFromHistory = useRef(false);
 
   // Group services by category
-  const bridalServices = people.filter(service => 
-    service.name.toLowerCase().includes("bridal session")
+  const bridalServices = people.filter(
+    (service) =>
+      (service.name.toLowerCase().includes("bridal session") ||
+        service.name.toLowerCase().includes("civil wedding")) &&
+      !service.name.toLowerCase().includes("home service") &&
+      !service.name.toLowerCase().includes("in-studio")
   );
-  
-  const nonBridalServices = people.filter(service => 
+
+  const nonBridalServices = people.filter((service) =>
     service.name.toLowerCase().includes("non-bridal")
   );
-  
+
   // For training - we'll use a placeholder since it's not in the data yet
   const trainingServices = [];
-  
+
   // For DIY - we'll use a placeholder since it's not in the data yet
   const diyServices = [];
 
@@ -56,9 +60,9 @@ const Booking = () => {
   const getMinPrice = (services) => {
     if (services.length === 0) return "Contact Us";
     const prices = services
-      .map(s => s.Price)
-      .map(p => p.replace(/[^0-9]/g, ''))
-      .filter(p => p)
+      .map((s) => s.Price)
+      .map((p) => p.replace(/[^0-9]/g, ""))
+      .filter((p) => p)
       .map(Number);
     if (prices.length === 0) return "Contact Us";
     return `FROM $${Math.min(...prices)}`;
@@ -70,40 +74,45 @@ const Booking = () => {
       id: "bridal",
       title: "BRIDAL SESSION",
       price: getMinPrice(bridalServices),
-      description: "Your special day deserved flawless, long-lasting make-up that photographs beautifully and stays on till it's ready to come off.",
+      description:
+        "Your special day deserved flawless, long-lasting make-up that photographs beautifully and stays on till it's ready to come off.",
       image: bridalServices[0]?.img || "/Images/img16.jpeg",
-      services: bridalServices
+      services: bridalServices,
     },
     {
       id: "non-bridal",
       title: "NON-BRIDAL SESSION",
       price: getMinPrice(nonBridalServices),
-      description: "Look stunning for any occasion with professional makeup artistry tailored to your style and the event.",
+      description:
+        "Look stunning for any occasion with professional makeup artistry tailored to your style and the event.",
       image: nonBridalServices[0]?.img || "/Images/img10.jpg",
-      services: nonBridalServices
+      services: nonBridalServices,
     },
     {
       id: "training",
-      title: "TRAINING",
-      price: "From $280",
-      description: "Master the art of makeup with personalized training sessions designed for all skill levels.",
+      title: "BRIDAL PARTY",
+      price: "From $230",
+      description:
+        "This service is ideal for bridesmaids,mother of the bride/groom.",
       image: "/Images/img1.jpg",
-      services: trainingServices
+      services: trainingServices,
     },
+
     {
       id: "diy",
       title: "DIY",
       price: "From $280",
-      description: "Get expert guidance to do your own makeup with confidence. Perfect for brides to be and beauty enthusiasts.",
+      description:
+        "Get expert guidance to do your own makeup with confidence. Perfect for brides to be and beauty enthusiasts.",
       image: "/Images/img19.jpg",
-      services: diyServices
-    }
+      services: diyServices,
+    },
   ];
 
   const handleServiceClick = (serviceCard) => {
     // Set selected service category
     setSelectedServiceCategory(serviceCard);
-    
+
     // For Training and DIY services, skip package selection and go directly to date/time
     if (serviceCard.id === "training" || serviceCard.id === "diy") {
       const placeholderPackage = {
@@ -111,20 +120,20 @@ const Booking = () => {
         name: serviceCard.title,
         Price: serviceCard.price,
         Duration: "Contact Us",
-        description: serviceCard.description
+        description: serviceCard.description,
       };
       setSelectedPackage(placeholderPackage);
       setCurrentStep(3); // Go directly to date/time step
       setBookingOpen(true);
       return;
     }
-    
+
     // If there are no services, show a message
     if (serviceCard.services.length === 0) {
       alert("Please contact us directly for this service.");
       return;
     }
-    
+
     // If there's only one service, skip package selection and go to date/time
     if (serviceCard.services.length === 1) {
       setSelectedPackage(serviceCard.services[0]);
@@ -150,7 +159,11 @@ const Booking = () => {
 
   const handleBackToPackages = () => {
     // For Training and DIY, go back to services instead of packages
-    if (selectedServiceCategory && (selectedServiceCategory.id === "training" || selectedServiceCategory.id === "diy")) {
+    if (
+      selectedServiceCategory &&
+      (selectedServiceCategory.id === "training" ||
+        selectedServiceCategory.id === "diy")
+    ) {
       setCurrentStep(1);
       setSelectedServiceCategory(null);
       setSelectedPackage(null);
@@ -167,7 +180,11 @@ const Booking = () => {
     // If closing from date/time step, go back appropriately
     if (currentStep === 3) {
       // For Training and DIY, go back to services
-      if (selectedServiceCategory && (selectedServiceCategory.id === "training" || selectedServiceCategory.id === "diy")) {
+      if (
+        selectedServiceCategory &&
+        (selectedServiceCategory.id === "training" ||
+          selectedServiceCategory.id === "diy")
+      ) {
         setCurrentStep(1);
       } else {
         setCurrentStep(2);
@@ -180,7 +197,10 @@ const Booking = () => {
     // Reset appropriately if we were in the modal steps
     if (currentStep >= 3 && selectedServiceCategory) {
       // For Training and DIY, go back to services
-      if (selectedServiceCategory.id === "training" || selectedServiceCategory.id === "diy") {
+      if (
+        selectedServiceCategory.id === "training" ||
+        selectedServiceCategory.id === "diy"
+      ) {
         setCurrentStep(1);
       } else if (selectedServiceCategory.services.length > 1) {
         setCurrentStep(2);
@@ -247,10 +267,32 @@ const Booking = () => {
         allTimes = ["17:00", "17:30", "18:00", "18:30", "19:00"];
       } else if (dayOfWeek === 0 || dayOfWeek === 6) {
         allTimes = [
-          "06:30", "07:00", "07:30", "08:00", "08:30", "09:00", "09:30",
-          "10:00", "10:30", "11:00", "11:30", "12:00", "12:30", "13:00",
-          "13:30", "14:00", "14:30", "15:00", "15:30", "16:00", "16:30",
-          "17:00", "17:30", "18:00", "18:30", "19:00"
+          "06:30",
+          "07:00",
+          "07:30",
+          "08:00",
+          "08:30",
+          "09:00",
+          "09:30",
+          "10:00",
+          "10:30",
+          "11:00",
+          "11:30",
+          "12:00",
+          "12:30",
+          "13:00",
+          "13:30",
+          "14:00",
+          "14:30",
+          "15:00",
+          "15:30",
+          "16:00",
+          "16:30",
+          "17:00",
+          "17:30",
+          "18:00",
+          "18:30",
+          "19:00",
         ];
       }
     }
@@ -264,7 +306,7 @@ const Booking = () => {
       const extendedBlockedTimes = new Set();
       bookedTimes.forEach((time) => {
         const bookingMoment = moment(time, "HH:mm");
-        
+
         // Block the booked time itself
         extendedBlockedTimes.add(bookingMoment.format("HH:mm"));
 
@@ -283,7 +325,9 @@ const Booking = () => {
         }
       });
 
-      const available = allTimes.filter((time) => !extendedBlockedTimes.has(time));
+      const available = allTimes.filter(
+        (time) => !extendedBlockedTimes.has(time)
+      );
       setAvailableTimes(available);
     } catch (error) {
       setAvailableTimes([]);
@@ -292,12 +336,12 @@ const Booking = () => {
 
   // Scroll to top on mount/navigation
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    window.scrollTo({ top: 0, behavior: "instant" });
   }, [location.pathname]);
 
   // Scroll to top whenever the booking step changes
   useEffect(() => {
-    window.scrollTo({ top: 0, behavior: 'instant' });
+    window.scrollTo({ top: 0, behavior: "instant" });
   }, [currentStep]);
 
   // Handle browser back/forward button - update step from location state
@@ -315,7 +359,11 @@ const Booking = () => {
           isNavigatingFromHistory.current = false;
         }, 0);
       }
-    } else if (!location.state?.step && currentStep > 1 && location.pathname === '/booking') {
+    } else if (
+      !location.state?.step &&
+      currentStep > 1 &&
+      location.pathname === "/booking"
+    ) {
       // If no step in state but we're past step 1 and on booking page, go to step 1
       isNavigatingFromHistory.current = true;
       setCurrentStep(1);
@@ -336,7 +384,7 @@ const Booking = () => {
     if (currentStep >= 1) {
       navigate(location.pathname, {
         state: { step: currentStep },
-        replace: currentStep === 1 // Replace only on step 1 to avoid cluttering history
+        replace: currentStep === 1, // Replace only on step 1 to avoid cluttering history
       });
     }
   }, [currentStep, navigate, location.pathname]);
@@ -346,11 +394,11 @@ const Booking = () => {
     if (location.state?.serviceId && !hasHandledInitialNavigation.current) {
       hasHandledInitialNavigation.current = true;
       const { serviceId, initialStep } = location.state;
-      const serviceCard = serviceCards.find(card => card.id === serviceId);
-      
+      const serviceCard = serviceCards.find((card) => card.id === serviceId);
+
       if (serviceCard) {
         setSelectedServiceCategory(serviceCard);
-        
+
         if (initialStep === 2) {
           // Go to package selection
           setCurrentStep(2);
@@ -362,7 +410,7 @@ const Booking = () => {
               name: serviceCard.title,
               Price: serviceCard.price,
               Duration: "Contact Us",
-              description: serviceCard.description
+              description: serviceCard.description,
             };
             setSelectedPackage(placeholderPackage);
             setCurrentStep(3);
@@ -377,11 +425,11 @@ const Booking = () => {
           }
         }
       }
-      
+
       // Clear location state to prevent re-triggering
       navigate(location.pathname, { replace: true, state: null });
     }
-    
+
     // Reset the ref when component unmounts or location changes without state
     if (!location.state?.serviceId) {
       hasHandledInitialNavigation.current = false;
@@ -415,12 +463,12 @@ const Booking = () => {
     if (!formData.name.trim()) errors.name = "Full name is required";
     if (!formData.email.trim()) errors.email = "Email address is required";
     if (!formData.number.trim()) errors.number = "Phone number is required";
-    
+
     // Email validation
     if (formData.email && !/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(formData.email)) {
       errors.email = "Please enter a valid email address";
     }
-    
+
     setFormErrors(errors);
     return Object.keys(errors).length === 0;
   };
@@ -455,7 +503,9 @@ const Booking = () => {
       setSuccess(true);
     } catch (error) {
       setLoading(false);
-      setError("There was a problem submitting your booking. Please try again.");
+      setError(
+        "There was a problem submitting your booking. Please try again."
+      );
     }
   };
 
@@ -487,28 +537,46 @@ const Booking = () => {
       {/* Progress Steps - Only top section with cream background */}
       <div className="booking-progress">
         <div className="progress-steps">
-          <div className={`progress-step ${currentStep >= 1 ? 'active' : ''}`}>
-            <div className={`step-circle ${currentStep >= 1 ? 'active' : ''}`}>1</div>
+          <div className={`progress-step ${currentStep >= 1 ? "active" : ""}`}>
+            <div className={`step-circle ${currentStep >= 1 ? "active" : ""}`}>
+              1
+            </div>
             <span className="step-label">SERVICE</span>
           </div>
-          <div className={`progress-line ${currentStep >= 2 ? 'active' : ''}`}></div>
-          <div className={`progress-step ${currentStep >= 2 ? 'active' : ''}`}>
-            <div className={`step-circle ${currentStep >= 2 ? 'active' : ''}`}>2</div>
+          <div
+            className={`progress-line ${currentStep >= 2 ? "active" : ""}`}
+          ></div>
+          <div className={`progress-step ${currentStep >= 2 ? "active" : ""}`}>
+            <div className={`step-circle ${currentStep >= 2 ? "active" : ""}`}>
+              2
+            </div>
             <span className="step-label">PACKAGE</span>
           </div>
-          <div className={`progress-line ${currentStep >= 3 ? 'active' : ''}`}></div>
-          <div className={`progress-step ${currentStep >= 3 ? 'active' : ''}`}>
-            <div className={`step-circle ${currentStep >= 3 ? 'active' : ''}`}>3</div>
+          <div
+            className={`progress-line ${currentStep >= 3 ? "active" : ""}`}
+          ></div>
+          <div className={`progress-step ${currentStep >= 3 ? "active" : ""}`}>
+            <div className={`step-circle ${currentStep >= 3 ? "active" : ""}`}>
+              3
+            </div>
             <span className="step-label">DATE &amp; TIME</span>
           </div>
-          <div className={`progress-line ${currentStep >= 4 ? 'active' : ''}`}></div>
-          <div className={`progress-step ${currentStep >= 4 ? 'active' : ''}`}>
-            <div className={`step-circle ${currentStep >= 4 ? 'active' : ''}`}>4</div>
+          <div
+            className={`progress-line ${currentStep >= 4 ? "active" : ""}`}
+          ></div>
+          <div className={`progress-step ${currentStep >= 4 ? "active" : ""}`}>
+            <div className={`step-circle ${currentStep >= 4 ? "active" : ""}`}>
+              4
+            </div>
             <span className="step-label">DETAILS</span>
           </div>
-          <div className={`progress-line ${currentStep >= 5 ? 'active' : ''}`}></div>
-          <div className={`progress-step ${currentStep >= 5 ? 'active' : ''}`}>
-            <div className={`step-circle ${currentStep >= 5 ? 'active' : ''}`}>5</div>
+          <div
+            className={`progress-line ${currentStep >= 5 ? "active" : ""}`}
+          ></div>
+          <div className={`progress-step ${currentStep >= 5 ? "active" : ""}`}>
+            <div className={`step-circle ${currentStep >= 5 ? "active" : ""}`}>
+              5
+            </div>
             <span className="step-label">CONFIRM</span>
           </div>
         </div>
@@ -520,7 +588,9 @@ const Booking = () => {
           <>
             <div className="booking-header">
               <h1 className="booking-title">Choose your Service</h1>
-              <p className="booking-subtitle">Choose the type of service you're interested in</p>
+              <p className="booking-subtitle">
+                Choose the type of service you're interested in
+              </p>
             </div>
 
             <div className="service-cards-grid">
@@ -535,10 +605,14 @@ const Booking = () => {
                   </div>
                   <div className="service-card-content">
                     <div className="service-card-header">
-                      <h3 className="service-card-title">{serviceCard.title}</h3>
+                      <h3 className="service-card-title">
+                        {serviceCard.title}
+                      </h3>
                       <p className="service-card-price">{serviceCard.price}</p>
                     </div>
-                    <p className="service-card-description">{serviceCard.description}</p>
+                    <p className="service-card-description">
+                      {serviceCard.description}
+                    </p>
                   </div>
                 </div>
               ))}
@@ -550,7 +624,10 @@ const Booking = () => {
           <>
             <div className="booking-header">
               <h1 className="booking-title">Select Package</h1>
-              <p className="booking-subtitle">Choose your preferred package for {selectedServiceCategory.title}</p>
+              <p className="booking-subtitle">
+                Choose your preferred package for{" "}
+                {selectedServiceCategory.title}
+              </p>
               <button className="back-button" onClick={handleBackToServices}>
                 ← Back to Services
               </button>
@@ -561,11 +638,14 @@ const Booking = () => {
                 // Extract package name
                 let packageName = service.name;
                 if (service.name.includes("(")) {
-                  packageName = service.name.match(/\(([^)]+)\)/)?.[1] || service.name;
+                  packageName =
+                    service.name.match(/\(([^)]+)\)/)?.[1] || service.name;
                 } else {
-                  packageName = service.name.replace(selectedServiceCategory.title, "").trim();
+                  packageName = service.name
+                    .replace(selectedServiceCategory.title, "")
+                    .trim();
                 }
-                
+
                 return (
                   <div
                     key={service.id}
@@ -574,17 +654,25 @@ const Booking = () => {
                   >
                     <div className="package-card-content">
                       <div className="package-card-header">
-                        <h3 className="package-card-title">{packageName || service.name}</h3>
+                        <h3 className="package-card-title">
+                          {packageName || service.name}
+                        </h3>
                         <p className="package-card-price">{service.Price}</p>
                       </div>
                       {service.description && (
-                        <p className="package-card-description">{service.description}</p>
+                        <p className="package-card-description">
+                          {service.description}
+                        </p>
                       )}
                       {service.Duration && (
-                        <p className="package-card-duration">{service.Duration.toUpperCase()}</p>
+                        <p className="package-card-duration">
+                          {service.Duration.toUpperCase()}
+                        </p>
                       )}
                       {service.Location && (
-                        <p className="package-card-location">{service.Location}</p>
+                        <p className="package-card-location">
+                          {service.Location}
+                        </p>
                       )}
                     </div>
                   </div>
@@ -595,20 +683,22 @@ const Booking = () => {
         )}
 
         {currentStep === 3 && selectedPackage && (
-            <div className="date-time-selection">
+          <div className="date-time-selection">
             <div className="back-to-package">
               <button className="back-link" onClick={handleBackToPackages}>
-                {selectedServiceCategory && (selectedServiceCategory.id === "training" || selectedServiceCategory.id === "diy") 
-                  ? "← Back to Services" 
+                {selectedServiceCategory &&
+                (selectedServiceCategory.id === "training" ||
+                  selectedServiceCategory.id === "diy")
+                  ? "← Back to Services"
                   : "← Back to Package"}
               </button>
             </div>
-            <div className="package-name-display">
-              {selectedPackage.name}
-            </div>
+            <div className="package-name-display">{selectedPackage.name}</div>
             <h2 className="date-time-title">Select Date & Time</h2>
-            <p className="date-time-subtitle">Choose your preferred appointment date and time</p>
-            
+            <p className="date-time-subtitle">
+              Choose your preferred appointment date and time
+            </p>
+
             <div className="date-time-container">
               {/* Date Picker Card */}
               <div className="date-picker-card">
@@ -634,7 +724,9 @@ const Booking = () => {
                         <button
                           key={time}
                           type="button"
-                          className={`time-slot-btn ${isSelected ? "selected" : ""}`}
+                          className={`time-slot-btn ${
+                            isSelected ? "selected" : ""
+                          }`}
                           onClick={() => handleTimeSelect(time)}
                         >
                           {time12h}
@@ -642,15 +734,17 @@ const Booking = () => {
                       );
                     })
                   ) : (
-                    <p className="no-times-message">No available times for this date</p>
+                    <p className="no-times-message">
+                      No available times for this date
+                    </p>
                   )}
                 </div>
               </div>
             </div>
 
             <div className="proceed-button-container">
-              <button 
-                className="btn-proceed" 
+              <button
+                className="btn-proceed"
                 onClick={handleProceedToDetails}
                 disabled={!selectedTime}
               >
@@ -667,12 +761,12 @@ const Booking = () => {
                 ← Back to Date and Time
               </button>
             </div>
-            <div className="package-name-display">
-              {selectedPackage.name}
-            </div>
+            <div className="package-name-display">{selectedPackage.name}</div>
             <h2 className="details-title">Your Details</h2>
-            <p className="details-subtitle">Please provide your correct information</p>
-            
+            <p className="details-subtitle">
+              Please provide your correct information
+            </p>
+
             <div className="details-form">
               <div className="form-field">
                 <label className="form-label">
@@ -689,7 +783,9 @@ const Booking = () => {
                   className="form-input"
                   required
                 />
-                {formErrors.name && <p className="form-error">{formErrors.name}</p>}
+                {formErrors.name && (
+                  <p className="form-error">{formErrors.name}</p>
+                )}
               </div>
 
               <div className="form-field">
@@ -707,7 +803,9 @@ const Booking = () => {
                   className="form-input"
                   required
                 />
-                {formErrors.email && <p className="form-error">{formErrors.email}</p>}
+                {formErrors.email && (
+                  <p className="form-error">{formErrors.email}</p>
+                )}
               </div>
 
               <div className="form-field">
@@ -725,7 +823,9 @@ const Booking = () => {
                   className="form-input"
                   required
                 />
-                {formErrors.number && <p className="form-error">{formErrors.number}</p>}
+                {formErrors.number && (
+                  <p className="form-error">{formErrors.number}</p>
+                )}
               </div>
 
               <div className="form-field">
@@ -764,16 +864,18 @@ const Booking = () => {
               {(() => {
                 let serviceType = "";
                 let packageName = "";
-                
+
                 if (selectedPackage.name.includes("BRIDAL SESSION")) {
                   serviceType = "BRIDAL";
                   if (selectedPackage.name.includes("(")) {
-                    packageName = selectedPackage.name.match(/\(([^)]+)\)/)?.[1] || "";
+                    packageName =
+                      selectedPackage.name.match(/\(([^)]+)\)/)?.[1] || "";
                   }
                 } else if (selectedPackage.name.includes("NON-BRIDAL")) {
                   serviceType = "NON-BRIDAL";
                   if (selectedPackage.name.includes("(")) {
-                    packageName = selectedPackage.name.match(/\(([^)]+)\)/)?.[1] || "";
+                    packageName =
+                      selectedPackage.name.match(/\(([^)]+)\)/)?.[1] || "";
                   } else if (selectedPackage.name.includes("Home Service")) {
                     packageName = "HOME SERVICE";
                   } else if (selectedPackage.name.includes("In-Studio")) {
@@ -784,13 +886,17 @@ const Booking = () => {
                 } else if (selectedPackage.name.includes("TRAIN")) {
                   return selectedPackage.name;
                 }
-                
-                return packageName ? `${serviceType} - ${packageName.toUpperCase()}` : selectedPackage.name;
+
+                return packageName
+                  ? `${serviceType} - ${packageName.toUpperCase()}`
+                  : selectedPackage.name;
               })()}
             </div>
             <h2 className="confirm-title">Confirm your Booking</h2>
-            <p className="confirm-subtitle">Please review your booking details before confirming</p>
-            
+            <p className="confirm-subtitle">
+              Please review your booking details before confirming
+            </p>
+
             <div className="confirm-card">
               <div className="confirm-details">
                 <div className="confirm-section">
@@ -798,11 +904,15 @@ const Booking = () => {
                   <div className="confirm-row">
                     <span className="confirm-label">Service:</span>
                     <span className="confirm-value">
-                      {selectedPackage.name.includes("BRIDAL") ? "Bridal" : 
-                       selectedPackage.name.includes("NON-BRIDAL") ? "Non-Bridal" :
-                       selectedPackage.name.includes("CIVIL") ? "Civil Wedding" :
-                       selectedPackage.name.includes("TRAIN") ? "Bridal Train Makeup" :
-                       "Service"}
+                      {selectedPackage.name.includes("BRIDAL")
+                        ? "Bridal"
+                        : selectedPackage.name.includes("NON-BRIDAL")
+                        ? "Non-Bridal"
+                        : selectedPackage.name.includes("CIVIL")
+                        ? "Civil Wedding"
+                        : selectedPackage.name.includes("TRAIN")
+                        ? "Bridal Train Makeup"
+                        : "Service"}
                     </span>
                   </div>
                   <div className="confirm-row">
@@ -810,19 +920,31 @@ const Booking = () => {
                     <span className="confirm-value">
                       {(() => {
                         if (selectedPackage.name.includes("(")) {
-                          const packageName = selectedPackage.name.match(/\(([^)]+)\)/)?.[1];
+                          const packageName =
+                            selectedPackage.name.match(/\(([^)]+)\)/)?.[1];
                           return packageName || "N/A";
-                        } else if (selectedPackage.name.includes("BRIDAL SESSION")) {
-                          const packageName = selectedPackage.name.replace("BRIDAL SESSION", "").trim();
+                        } else if (
+                          selectedPackage.name.includes("BRIDAL SESSION")
+                        ) {
+                          const packageName = selectedPackage.name
+                            .replace("BRIDAL SESSION", "")
+                            .trim();
                           return packageName || "Standard";
-                        } else if (selectedPackage.name.includes("NON-BRIDAL SESSION")) {
+                        } else if (
+                          selectedPackage.name.includes("NON-BRIDAL SESSION")
+                        ) {
                           if (selectedPackage.name.includes("Home Service")) {
                             return "Home Service";
-                          } else if (selectedPackage.name.includes("In-Studio")) {
+                          } else if (
+                            selectedPackage.name.includes("In-Studio")
+                          ) {
                             return "In-Studio";
                           }
                           return "Standard";
-                        } else if (selectedPackage.name.includes("CIVIL") || selectedPackage.name.includes("TRAIN")) {
+                        } else if (
+                          selectedPackage.name.includes("CIVIL") ||
+                          selectedPackage.name.includes("TRAIN")
+                        ) {
                           return "N/A";
                         }
                         return "Standard";
@@ -832,7 +954,9 @@ const Booking = () => {
                   {selectedPackage.Duration && (
                     <div className="confirm-row">
                       <span className="confirm-label">Duration:</span>
-                      <span className="confirm-value">{selectedPackage.Duration}</span>
+                      <span className="confirm-value">
+                        {selectedPackage.Duration}
+                      </span>
                     </div>
                   )}
                 </div>
@@ -868,8 +992,12 @@ const Booking = () => {
                     <span className="confirm-value">{formData.number}</span>
                   </div>
                   <div className="confirm-row">
-                    <span className="confirm-label">Additional Information:</span>
-                    <span className="confirm-value">{formData.message || "None"}</span>
+                    <span className="confirm-label">
+                      Additional Information:
+                    </span>
+                    <span className="confirm-value">
+                      {formData.message || "None"}
+                    </span>
                   </div>
                 </div>
 
@@ -877,10 +1005,14 @@ const Booking = () => {
                   <div className="confirm-total-content">
                     <div className="confirm-total-left">
                       <span className="confirm-total-label">Total:</span>
-                      <span className="confirm-total-note">Payment will be collected at the appointment</span>
+                      <span className="confirm-total-note">
+                        Payment will be collected at the appointment
+                      </span>
                     </div>
                     <div className="confirm-total-right">
-                      <span className="confirm-total-price">{selectedPackage.Price}</span>
+                      <span className="confirm-total-price">
+                        {selectedPackage.Price}
+                      </span>
                     </div>
                   </div>
                 </div>
@@ -889,8 +1021,8 @@ const Booking = () => {
               {error && <p className="confirm-error">{error}</p>}
 
               <div className="confirm-button-container">
-                <button 
-                  className="btn-confirm-booking" 
+                <button
+                  className="btn-confirm-booking"
                   onClick={handleConfirmBooking}
                   disabled={loading}
                 >
@@ -907,16 +1039,18 @@ const Booking = () => {
               {(() => {
                 let serviceType = "";
                 let packageName = "";
-                
+
                 if (selectedPackage.name.includes("BRIDAL SESSION")) {
                   serviceType = "BRIDAL";
                   if (selectedPackage.name.includes("(")) {
-                    packageName = selectedPackage.name.match(/\(([^)]+)\)/)?.[1] || "";
+                    packageName =
+                      selectedPackage.name.match(/\(([^)]+)\)/)?.[1] || "";
                   }
                 } else if (selectedPackage.name.includes("NON-BRIDAL")) {
                   serviceType = "NON-BRIDAL";
                   if (selectedPackage.name.includes("(")) {
-                    packageName = selectedPackage.name.match(/\(([^)]+)\)/)?.[1] || "";
+                    packageName =
+                      selectedPackage.name.match(/\(([^)]+)\)/)?.[1] || "";
                   } else if (selectedPackage.name.includes("Home Service")) {
                     packageName = "HOME SERVICE";
                   } else if (selectedPackage.name.includes("In-Studio")) {
@@ -927,16 +1061,19 @@ const Booking = () => {
                 } else if (selectedPackage.name.includes("TRAIN")) {
                   return selectedPackage.name;
                 }
-                
-                return packageName ? `${serviceType} - ${packageName.toUpperCase()}` : selectedPackage.name;
+
+                return packageName
+                  ? `${serviceType} - ${packageName.toUpperCase()}`
+                  : selectedPackage.name;
               })()}
             </div>
             <h2 className="booking-confirmed-title">Booking Confirmed!</h2>
             <p className="booking-confirmed-message">
-              Thank you for booking with makeupbybims. We have sent a confirmation email to{" "}
+              Thank you for booking with makeupbybims. We have sent a
+              confirmation email to{" "}
               <span className="booking-confirmed-email">{formData.email}</span>
             </p>
-            
+
             <div className="booking-confirmed-card">
               <div className="booking-summary-section">
                 <h3 className="booking-summary-title">Booking Summary</h3>
@@ -944,26 +1081,41 @@ const Booking = () => {
                   <span className="booking-summary-label">Service:</span>
                   <span className="booking-summary-value">
                     {(() => {
-                      const serviceName = selectedPackage.name.includes("BRIDAL") ? "Bridal" : 
-                       selectedPackage.name.includes("NON-BRIDAL") ? "Non-Bridal" :
-                       selectedPackage.name.includes("CIVIL") ? "Civil Wedding" :
-                       selectedPackage.name.includes("TRAIN") ? "Bridal Train Makeup" :
-                       "Service";
-                      
+                      const serviceName = selectedPackage.name.includes(
+                        "BRIDAL"
+                      )
+                        ? "Bridal"
+                        : selectedPackage.name.includes("NON-BRIDAL")
+                        ? "Non-Bridal"
+                        : selectedPackage.name.includes("CIVIL")
+                        ? "Civil Wedding"
+                        : selectedPackage.name.includes("TRAIN")
+                        ? "Bridal Train Makeup"
+                        : "Service";
+
                       let packagePart = "";
                       if (selectedPackage.name.includes("(")) {
-                        packagePart = selectedPackage.name.match(/\(([^)]+)\)/)?.[1] || "";
-                      } else if (selectedPackage.name.includes("BRIDAL SESSION")) {
-                        packagePart = selectedPackage.name.replace("BRIDAL SESSION", "").trim();
-                      } else if (selectedPackage.name.includes("NON-BRIDAL SESSION")) {
+                        packagePart =
+                          selectedPackage.name.match(/\(([^)]+)\)/)?.[1] || "";
+                      } else if (
+                        selectedPackage.name.includes("BRIDAL SESSION")
+                      ) {
+                        packagePart = selectedPackage.name
+                          .replace("BRIDAL SESSION", "")
+                          .trim();
+                      } else if (
+                        selectedPackage.name.includes("NON-BRIDAL SESSION")
+                      ) {
                         if (selectedPackage.name.includes("Home Service")) {
                           packagePart = "Home Service";
                         } else if (selectedPackage.name.includes("In-Studio")) {
                           packagePart = "In-Studio";
                         }
                       }
-                      
-                      return packagePart ? `${serviceName} - ${packagePart}` : serviceName;
+
+                      return packagePart
+                        ? `${serviceName} - ${packagePart}`
+                        : serviceName;
                     })()}
                   </span>
                 </div>
@@ -981,7 +1133,9 @@ const Booking = () => {
                 </div>
                 <div className="booking-summary-row">
                   <span className="booking-summary-label">Amount:</span>
-                  <span className="booking-summary-amount">{selectedPackage.Price}</span>
+                  <span className="booking-summary-amount">
+                    {selectedPackage.Price}
+                  </span>
                 </div>
               </div>
 
@@ -989,7 +1143,10 @@ const Booking = () => {
                 <button className="btn-return-home" onClick={handleReturnHome}>
                   RETURN HOME
                 </button>
-                <button className="btn-book-another" onClick={handleBookAnother}>
+                <button
+                  className="btn-book-another"
+                  onClick={handleBookAnother}
+                >
                   BOOK ANOTHER SESSION
                 </button>
               </div>
@@ -997,7 +1154,7 @@ const Booking = () => {
           </div>
         )}
       </div>
-      
+
       {/* Footer - Show on steps 1-5 */}
       {currentStep >= 1 && currentStep <= 5 && <ContactCard />}
     </div>
@@ -1005,4 +1162,3 @@ const Booking = () => {
 };
 
 export default Booking;
-

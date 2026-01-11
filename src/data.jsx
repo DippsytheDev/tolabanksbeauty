@@ -27,7 +27,7 @@ export const people = [
     description:
       "Designed for brides whose weddings celebrations take place outside of Calgary, but within Canada. This services includes a complimentary consultation and wait time of 3 hours ",
     Duration: "2hrs",
-    Price: "From $1900",
+    Price: "From $900",
   },
   {
     id: 4,
@@ -37,7 +37,7 @@ export const people = [
     description:
       "This service is designed for registry or courthouse marriage ceremonies, ideal for brides planning a small intimate legal ceremony. No bridal trial is included.",
     Duration: "2hrs",
-    Price: "$350",
+    Price: "$450",
   },
   {
     id: 5,
