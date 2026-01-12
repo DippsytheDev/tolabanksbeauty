@@ -94,7 +94,7 @@ const Booking = () => {
       price: "From $230",
       description:
         "This service is ideal for bridesmaids,mother of the bride/groom.",
-      image: "/Images/img1.jpg",
+      image: "/Images/img42.jpg",
       services: trainingServices,
     },
 

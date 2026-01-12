@@ -27,9 +27,8 @@ const About = () => {
 
       <div className="about-content">
         <div className="about-text-left">
-          <p className="about-intro">Hi there!</p>
           <p className="about-description">
-            I'm Bims, a Calgary-based makeup artist with over eight years of
+            I'm a Calgary-based makeup artist with over eight years of
             experience in the beauty industry, specializing in glamorous and
             skin-enhancing makeup for various occasions including weddings,
             birthday parties,photo shoots,commercials and other special events.

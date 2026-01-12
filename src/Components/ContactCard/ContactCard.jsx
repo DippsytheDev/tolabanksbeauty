@@ -16,11 +16,12 @@ const ContactCard = () => {
           const element = document.getElementById(sectionId);
           if (element) {
             const headerHeight = 80;
-            const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+            const elementPosition =
+              element.getBoundingClientRect().top + window.pageYOffset;
             const offsetPosition = elementPosition - headerHeight;
             window.scrollTo({
               top: offsetPosition,
-              behavior: "smooth"
+              behavior: "smooth",
             });
           } else if (attempts < 5) {
             // Retry up to 5 times with increasing delay
@@ -34,11 +35,12 @@ const ContactCard = () => {
       const element = document.getElementById(sectionId);
       if (element) {
         const headerHeight = 80;
-        const elementPosition = element.getBoundingClientRect().top + window.pageYOffset;
+        const elementPosition =
+          element.getBoundingClientRect().top + window.pageYOffset;
         const offsetPosition = elementPosition - headerHeight;
         window.scrollTo({
           top: offsetPosition,
-          behavior: "smooth"
+          behavior: "smooth",
         });
       }
     }
@@ -51,29 +53,54 @@ const ContactCard = () => {
         <div className="footer-about">
           <h2 className="footer-logo">makeup by bims</h2>
           <p className="footer-description">
-            Creating stunning personalized looks for special occasions, brides and creative projects. Let's help you elevate your beauty!
+            Creating stunning personalized looks for special occasions, brides
+            and creative projects. Let's help you elevate your beauty!
           </p>
         </div>
         <div className="footer-links">
           <h3 className="footer-links-title">QUICK LINKS</h3>
           <ul className="footer-links-list">
             <li>
-              <a href="#About" onClick={(e) => { e.preventDefault(); scrollToSection("About"); }}>
+              <a
+                href="#About"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection("About");
+                }}
+              >
                 About
               </a>
             </li>
             <li>
-              <a href="/booking" onClick={(e) => { e.preventDefault(); navigate("/booking"); }}>
+              <a
+                href="/booking"
+                onClick={(e) => {
+                  e.preventDefault();
+                  navigate("/booking");
+                }}
+              >
                 Services
               </a>
             </li>
             <li>
-              <a href="#Portfolio" onClick={(e) => { e.preventDefault(); scrollToSection("Portfolio"); }}>
+              <a
+                href="#Portfolio"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection("Portfolio");
+                }}
+              >
                 Portfolio
               </a>
             </li>
             <li>
-              <a href="#Contact" onClick={(e) => { e.preventDefault(); scrollToSection("Contact"); }}>
+              <a
+                href="#Contact"
+                onClick={(e) => {
+                  e.preventDefault();
+                  scrollToSection("Contact");
+                }}
+              >
                 Contact
               </a>
             </li>
@@ -85,11 +112,13 @@ const ContactCard = () => {
             <li>
               <a href="mailto:Bimstudios@yahoo.com">email</a>
             </li>
+
             <li>
-              <a href="https://wa.me/14035963770">whatsapp</a>
-            </li>
-            <li>
-              <a href="https://www.instagram.com/makeupbybims" target="_blank" rel="noopener noreferrer">
+              <a
+                href="https://www.instagram.com/makeupbybims"
+                target="_blank"
+                rel="noopener noreferrer"
+              >
                 instagram
               </a>
             </li>

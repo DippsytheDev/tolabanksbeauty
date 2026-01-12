@@ -24,22 +24,16 @@ const Home = () => {
         </div>
         <div className="portfolio-grid">
           <div className="portfolio-item">
-            <img src="/Images/img2.jpg" alt="Portfolio work" />
+            <img src="/Images/img45.jpg" alt="Portfolio work" />
           </div>
           <div className="portfolio-item">
             <img src="/Images/img3.jpg" alt="Portfolio work" />
-            <div className="portfolio-overlay">
-              <div className="portfolio-overlay-content">
-                <p className="portfolio-category">CIVIL WEDDING</p>
-                <p className="portfolio-title-overlay">Civil Wedding</p>
-              </div>
-            </div>
           </div>
           <div className="portfolio-item">
-            <img src="/Images/img21.jpg" alt="Portfolio work" />
+            <img src="/Images/img44.jpg" alt="Portfolio work" />
           </div>
           <div className="portfolio-item">
-            <img src="/Images/img1.jpg" alt="Portfolio work" />
+            <img src="/Images/img41.jpg" alt="Portfolio work" />
           </div>
           <div className="portfolio-item">
             <img src="/Images/img16.jpeg" alt="Portfolio work" />
@@ -55,4 +49,3 @@ const Home = () => {
 };
 
 export default Home;
-

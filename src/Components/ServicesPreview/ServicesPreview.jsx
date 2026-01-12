@@ -55,7 +55,7 @@ const ServicesPreview = () => {
       id: "training",
       name: "Bridal Party",
       price: "From $230",
-      image: "/Images/img1.jpg",
+      image: "/Images/img42.jpg",
       navigateTo: "datetime", // Goes to step 3 (date/time selection)
     },
     {
