@@ -41,28 +41,28 @@ const ServicesPreview = () => {
       id: "bridal",
       name: "Bridal Session",
       price: getMinPrice(bridalServices),
-      image: bridalServices[0]?.img || "/Images/img16.jpeg",
+      image: "/Images/img45.jpg",
       navigateTo: "package", // Goes to step 2 (package selection)
     },
     {
       id: "non-bridal",
       name: "Non-Bridal Session",
       price: getMinPrice(nonBridalServices),
-      image: nonBridalServices[0]?.img || "/Images/img10.jpg",
+      image: "/Images/img41.jpg",
       navigateTo: "package", // Goes to step 2 (package selection)
     },
     {
       id: "training",
       name: "Bridal Party",
       price: "From $230",
-      image: "/Images/img42.jpg",
+      image: "/Images/img43.jpg",
       navigateTo: "datetime", // Goes to step 3 (date/time selection)
     },
     {
       id: "diy",
       name: "DIY Makeup Session",
       price: "From $280",
-      image: "/Images/img19.jpg",
+      image: nonBridalServices[0]?.img || "",
       navigateTo: "datetime", // Goes to step 3 (date/time selection)
     },
   ];

@@ -76,7 +76,7 @@ const Booking = () => {
       price: getMinPrice(bridalServices),
       description:
         "Your special day deserved flawless, long-lasting make-up that photographs beautifully and stays on till it's ready to come off.",
-      image: bridalServices[0]?.img || "/Images/img16.jpeg",
+      image: "/Images/img45.jpg",
       services: bridalServices,
     },
     {
@@ -85,7 +85,7 @@ const Booking = () => {
       price: getMinPrice(nonBridalServices),
       description:
         "Look stunning for any occasion with professional makeup artistry tailored to your style and the event.",
-      image: nonBridalServices[0]?.img || "/Images/img10.jpg",
+      image: "/Images/img41.jpg",
       services: nonBridalServices,
     },
     {
@@ -94,17 +94,17 @@ const Booking = () => {
       price: "From $230",
       description:
         "This service is ideal for bridesmaids,mother of the bride/groom.",
-      image: "/Images/img42.jpg",
+      image: "/Images/img43.jpg",
       services: trainingServices,
     },
 
     {
       id: "diy",
       title: "DIY",
-      price: "From $280",
+      price: "$280",
       description:
         "Get expert guidance to do your own makeup with confidence. Perfect for brides to be and beauty enthusiasts.",
-      image: "/Images/img19.jpg",
+      image: nonBridalServices[0]?.img || "/Images/img10.jpg",
       services: diyServices,
     },
   ];
