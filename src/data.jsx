@@ -15,7 +15,7 @@ export const people = [
     name: "BRIDAL SESSION(Silver Package)",
     Location: "Within Calgary",
     description:
-      "This package includes a complimentary 30mins consultation and a bridal trial, before your wedding day. Please note a bridal trail is not included, Ideal for brides who are confident in their vision , and desire a flawless,radiant makeup experience from start to finish .",
+      "This package includes a complimentary 30mins consultation and a bridal trial, before your wedding day. Please note: a bridal trial is not included, Ideal for brides who are confident in their vision , and desire a flawless,radiant makeup experience from start to finish .",
     Duration: "2hrs",
     Price: "$550",
   },
@@ -25,7 +25,7 @@ export const people = [
     name: "BRIDAL SESSION(Outside Calgary)",
     Location: "Out of Calgary",
     description:
-      "Designed for brides whose weddings celebrations take place outside of Calgary, but within Canada. This services includes a complimentary consultation and wait time of 3 hours ",
+      "Designed for brides whose wedding celebrations take place outside of Calgary, but within Canada. This services includes a complimentary consultation and wait time of 3 hours ",
     Duration: "2hrs",
     Price: "From $900",
   },
