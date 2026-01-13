@@ -37,12 +37,10 @@ const About = () => {
 
         <div className="about-image-right">
           <img src="/Images/img46.jpg" alt="Bims - Makeup Artist" />
-          <div className="watermark-text watermark-right">MAKEUP ARTIST</div>
         </div>
       </div>
 
       <div className="about-content-bottom">
-        <div className="watermark-text watermark-left">MAKEUP ARTIST</div>
         <div className="about-text-right">
           <p className="about-description">
             My goal at MakeupByBims is not only to enhance natural beauty but to

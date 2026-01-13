@@ -408,7 +408,10 @@
   line-height: 1.5;
   letter-spacing: 0.8px;
   margin: 0;
-  text-align: justify;
+  text-align: left;
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+  hyphens: auto;
 }
 
 .package-card-duration {
@@ -439,6 +442,33 @@
     line-height: 120px;
     top: 30px;
     right: 20px;
+  }
+
+  .package-card-description {
+    font-size: 16px;
+    letter-spacing: 0.5px;
+    line-height: 1.6;
+  }
+
+  .package-card-title,
+  .package-card-price {
+    font-size: 20px;
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .package-card-description {
+    font-size: 14px;
+    letter-spacing: 0.4px;
+  }
+
+  .package-card-title,
+  .package-card-price {
+    font-size: 18px;
+  }
+
+  .package-card {
+    padding: 16px;
   }
 }
 

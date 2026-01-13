@@ -75,7 +75,7 @@ const Booking = () => {
       title: "BRIDAL SESSION",
       price: getMinPrice(bridalServices),
       description:
-        "Your special day deserved flawless, long-lasting make-up that photographs beautifully and stays on till it's ready to come off.",
+        "Your special day deserves flawless, long-lasting make-up that photographs beautifully and stays on till it's ready to come off.",
       image: "/Images/img45.jpg",
       services: bridalServices,
     },
@@ -103,7 +103,7 @@ const Booking = () => {
       title: "DIY",
       price: "$280",
       description:
-        "Get expert guidance to do your own makeup with confidence. Perfect for brides to be and beauty enthusiasts.",
+        "Get expert guidance to do your own makeup with confidence. Perfect for beauty enthusiasts and makeup lovers.",
       image: nonBridalServices[0]?.img || "/Images/img10.jpg",
       services: diyServices,
     },
