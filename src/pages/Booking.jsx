@@ -344,52 +344,7 @@ const Booking = () => {
     window.scrollTo({ top: 0, behavior: "instant" });
   }, [currentStep]);
 
-  // Handle browser back/forward button - update step from location state
-  useEffect(() => {
-    // When location state changes (including browser back/forward), update currentStep
-    // Only update if step is different to avoid unnecessary re-renders
-    if (location.state?.step && location.state.step !== currentStep) {
-      const newStep = location.state.step;
-      // Validate step exists in our booking flow
-      if (newStep >= 1 && newStep <= 5) {
-        isNavigatingFromHistory.current = true;
-        setCurrentStep(newStep);
-        // Reset flag after state update completes
-        setTimeout(() => {
-          isNavigatingFromHistory.current = false;
-        }, 0);
-      }
-    } else if (
-      !location.state?.step &&
-      currentStep > 1 &&
-      location.pathname === "/booking"
-    ) {
-      // If no step in state but we're past step 1 and on booking page, go to step 1
-      isNavigatingFromHistory.current = true;
-      setCurrentStep(1);
-      setTimeout(() => {
-        isNavigatingFromHistory.current = false;
-      }, 0);
-    }
-  }, [location]); // Depend on entire location object to catch state changes
-
-  // Push current step to history when step changes (so back button works)
-  useEffect(() => {
-    // Skip if we're navigating from history or handling initial service selection
-    if (isNavigatingFromHistory.current || location.state?.serviceId) {
-      return;
-    }
-
-    // Push to history when user navigates to a new step
-    if (currentStep >= 1) {
-      navigate(location.pathname, {
-        state: { step: currentStep },
-        replace: currentStep === 1, // Replace only on step 1 to avoid cluttering history
-      });
-    }
-  }, [currentStep, navigate, location.pathname]);
-
-  // Handle initial service selection from navigation
+  // Handle initial service selection from navigation - MUST run first
   useEffect(() => {
     if (location.state?.serviceId && !hasHandledInitialNavigation.current) {
       hasHandledInitialNavigation.current = true;
@@ -425,9 +380,6 @@ const Booking = () => {
           }
         }
       }
-
-      // Clear location state to prevent re-triggering
-      navigate(location.pathname, { replace: true, state: null });
     }
 
     // Reset the ref when component unmounts or location changes without state
@@ -436,12 +388,63 @@ const Booking = () => {
     }
   }, [location.state]);
 
+  // Handle browser back/forward button - update step from location state
+  useEffect(() => {
+    // Skip if we're handling initial service selection from navigation
+    if (location.state?.serviceId) {
+      return;
+    }
+
+    // When location state changes (including browser back/forward), update currentStep
+    // Only update if step is different to avoid unnecessary re-renders
+    if (location.state?.step && location.state.step !== currentStep) {
+      const newStep = location.state.step;
+      // Validate step exists in our booking flow
+      if (newStep >= 1 && newStep <= 5) {
+        isNavigatingFromHistory.current = true;
+        setCurrentStep(newStep);
+        // Reset flag after state update completes
+        setTimeout(() => {
+          isNavigatingFromHistory.current = false;
+        }, 0);
+      }
+    } else if (
+      !location.state?.step &&
+      !location.state?.serviceId &&
+      currentStep > 1 &&
+      location.pathname === "/booking"
+    ) {
+      // If no step in state but we're past step 1 and on booking page, go to step 1
+      isNavigatingFromHistory.current = true;
+      setCurrentStep(1);
+      setTimeout(() => {
+        isNavigatingFromHistory.current = false;
+      }, 0);
+    }
+  }, [location]); // Depend on entire location object to catch state changes
+
+  // Push current step to history when step changes (so back button works)
+  useEffect(() => {
+    // Skip if we're navigating from history or handling initial service selection
+    if (isNavigatingFromHistory.current || location.state?.serviceId) {
+      return;
+    }
+
+    // Push to history when user navigates to a new step
+    if (currentStep >= 1) {
+      navigate(location.pathname, {
+        state: { step: currentStep },
+        replace: currentStep === 1, // Replace only on step 1 to avoid cluttering history
+      });
+    }
+  }, [currentStep, navigate, location.pathname]);
+
   // Fetch unavailable times on mount and date change
   useEffect(() => {
     if (currentStep === 3 && selectedPackage) {
       handleDateChange(selectedDate);
     }
-  }, [currentStep, selectedPackage]);
+  }, [currentStep, selectedPackage, selectedDate]);
 
   const handleTimeSelect = (time) => {
     setSelectedTime(time);
