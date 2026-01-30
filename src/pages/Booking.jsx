@@ -212,6 +212,24 @@ const Booking = () => {
 
   // Date filter function
   const filterBookingDates = (date) => {
+    // Block specific dates in 2026
+    const blockedDates2026 = [
+      "2026-02-21", // February 21st
+      "2026-05-16", // May 16th
+      "2026-06-11", // June 11th
+      "2026-06-14", // June 14th
+      "2026-06-20", // June 20th
+      "2026-08-01", // August 1st
+      "2026-08-29", // August 29th
+      "2026-09-10", // September 10th
+      "2026-09-12", // September 12th
+    ];
+
+    const dateString = moment(date).format("YYYY-MM-DD");
+    if (blockedDates2026.includes(dateString)) {
+      return false; // Block these specific dates
+    }
+
     const isOctober2025 = moment(date).isBetween(
       moment("2025-10-01", "YYYY-MM-DD"),
       moment("2025-10-31", "YYYY-MM-DD"),
