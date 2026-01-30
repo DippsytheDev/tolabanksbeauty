@@ -265,7 +265,8 @@ const Booking = () => {
         allTimes = ["18:00", "18:30", "19:00"];
       } else if (dayOfWeek === 5) {
         allTimes = ["17:00", "17:30", "18:00", "18:30", "19:00"];
-      } else if (dayOfWeek === 0 || dayOfWeek === 6) {
+      } else if (dayOfWeek === 6) {
+        // Saturday: full day times
         allTimes = [
           "06:30",
           "07:00",
@@ -282,6 +283,21 @@ const Booking = () => {
           "12:30",
           "13:00",
           "13:30",
+          "14:00",
+          "14:30",
+          "15:00",
+          "15:30",
+          "16:00",
+          "16:30",
+          "17:00",
+          "17:30",
+          "18:00",
+          "18:30",
+          "19:00",
+        ];
+      } else if (dayOfWeek === 0) {
+        // Sunday: only times from 2pm onwards
+        allTimes = [
           "14:00",
           "14:30",
           "15:00",
