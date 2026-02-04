@@ -55,11 +55,16 @@ const Booking = ({
   const [weekendMessage, setWeekendMessage] = useState("");
 
   // Date boundaries
-  const septFirst2025 = moment("2025-09-01", "YYYY-MM-DD");
+  const octoberFirst2025 = moment("2025-10-01", "YYYY-MM-DD");
   const janFirst2026 = moment("2026-01-01", "YYYY-MM-DD");
 
   // Date filter for DatePicker
   const filterBookingDates = (date) => {
+    // Block all dates (including weekends) before October 1, 2025
+    if (moment(date).isBefore(octoberFirst2025)) {
+      return false;
+    }
+
     // Block specific dates in 2026
     const blockedDates2026 = [
       "2026-02-21", // February 21st
@@ -105,12 +110,13 @@ const Booking = ({
     if (moment(date).isSameOrAfter(janFirst2026)) {
       return true; // All days open from 2026
     }
-    if (moment(date).isSameOrAfter(septFirst2025)) {
-      return true; // All days open from Sept 1, 2025
+    
+    // From October 1, 2025 onwards (but before 2026), all days are available
+    if (moment(date).isSameOrAfter(octoberFirst2025)) {
+      return true;
     }
-    // Before Sept 1, 2025: only weekends
-    const day = moment(date).day();
-    return day === 0 || day === 6;
+    
+    return false;
   };
 
   const handleBack = () => {

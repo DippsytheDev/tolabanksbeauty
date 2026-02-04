@@ -212,6 +212,13 @@ const Booking = () => {
 
   // Date filter function
   const filterBookingDates = (date) => {
+    const octoberFirst2025 = moment("2025-10-01", "YYYY-MM-DD");
+    
+    // Block all dates (including weekends) before October 1, 2025
+    if (moment(date).isBefore(octoberFirst2025)) {
+      return false;
+    }
+
     // Block specific dates in 2026
     const blockedDates2026 = [
       "2026-02-21", // February 21st
@@ -253,16 +260,17 @@ const Booking = () => {
     }
 
     const janFirst2026 = moment("2026-01-01", "YYYY-MM-DD");
-    const septFirst2025 = moment("2025-09-01", "YYYY-MM-DD");
 
     if (moment(date).isSameOrAfter(janFirst2026)) {
       return true;
     }
-    if (moment(date).isSameOrAfter(septFirst2025)) {
+    
+    // From October 1, 2025 onwards (but before 2026), all days are available
+    if (moment(date).isSameOrAfter(octoberFirst2025)) {
       return true;
     }
-    const day = moment(date).day();
-    return day === 0 || day === 6;
+    
+    return false;
   };
 
   // Handle date change
