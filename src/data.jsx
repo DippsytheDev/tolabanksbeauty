@@ -44,7 +44,7 @@ export const people = [
     img: "/Images/img10.jpg",
     name: "NON-BRIDAL SESSION(Home Service)",
     Duration: "1hr 30mins",
-    Price: "From $200",
+    Price: "From $220",
   },
   {
     id: 6,
@@ -52,7 +52,7 @@ export const people = [
     name: "NON-BRIDAL SESSION(In-Studio)",
     Location: "Livingston,NW",
     Duration: "1hr 30mins",
-    Price: "$150",
+    Price: "$170",
   },
   {
     id: 7,
