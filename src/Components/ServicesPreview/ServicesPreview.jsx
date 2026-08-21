@@ -28,40 +28,35 @@ const ServicesPreview = () => {
 
   // Group services
   const bridalServices = people.filter((service) =>
-    service.name.toLowerCase().includes("bridal session")
+    service.name.toLowerCase().includes("bridal session"),
   );
 
   const nonBridalServices = people.filter((service) =>
-    service.name.toLowerCase().includes("non-bridal")
+    service.name.toLowerCase().includes("non-bridal"),
   );
 
-  // Create service cards matching the Figma design
   const serviceCards = [
     {
       id: "bridal",
       name: "Bridal Session",
-      price: getMinPrice(bridalServices),
       image: "/Images/img45.jpg",
       navigateTo: "package", // Goes to step 2 (package selection)
     },
     {
       id: "non-bridal",
       name: "Non-Bridal Session",
-      price: getMinPrice(nonBridalServices),
       image: "/Images/img41.jpg",
       navigateTo: "package", // Goes to step 2 (package selection)
     },
     {
       id: "training",
       name: "Bridal Party",
-      price: "From $230",
       image: "/Images/img43.jpg",
       navigateTo: "datetime", // Goes to step 3 (date/time selection)
     },
     {
       id: "diy",
       name: "DIY Makeup Session",
-      price: "From $280",
       image: nonBridalServices[0]?.img || "",
       navigateTo: "datetime", // Goes to step 3 (date/time selection)
     },

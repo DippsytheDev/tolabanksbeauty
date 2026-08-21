@@ -36,7 +36,7 @@ const Booking = ({
     }
   }, [step, onStepChange, isOpen]);
   const [selectedDate, setSelectedDate] = useState(
-    propSelectedDate || new Date()
+    propSelectedDate || new Date(),
   );
   const [formData, setFormData] = useState({
     name: propFormData?.name || "",
@@ -86,7 +86,7 @@ const Booking = ({
     if (moment(date).isSameOrAfter(octoberFirst2026)) {
       return true;
     }
-    
+
     return false;
   };
 
@@ -167,7 +167,7 @@ const Booking = ({
     } catch (error) {
       setLoading(false);
       setError(
-        "There was a problem submitting your booking. Please try again."
+        "There was a problem submitting your booking. Please try again.",
       );
     }
   };
@@ -245,7 +245,7 @@ const Booking = ({
 
     try {
       const response = await axios.get(
-        `https://end8.vercel.app/bookings/unavailable-times?date=${formattedDate}`
+        `https://end8.vercel.app/bookings/unavailable-times?date=${formattedDate}`,
       );
       const bookedTimes = response.data;
 
@@ -273,7 +273,7 @@ const Booking = ({
       });
 
       const available = allTimes.filter(
-        (time) => !extendedBlockedTimes.has(time)
+        (time) => !extendedBlockedTimes.has(time),
       );
       setAvailableTimes(available);
     } catch (error) {
@@ -367,7 +367,7 @@ const Booking = ({
 
         try {
           const response = await axios.get(
-            `https://end8.vercel.app/bookings/unavailable-times?date=${formattedDate}`
+            `https://end8.vercel.app/bookings/unavailable-times?date=${formattedDate}`,
           );
           const bookedTimes = response.data;
 
@@ -394,7 +394,7 @@ const Booking = ({
           });
 
           const available = allTimes.filter(
-            (time) => !extendedBlockedTimes.has(time)
+            (time) => !extendedBlockedTimes.has(time),
           );
           setAvailableTimes(available);
         } catch (error) {

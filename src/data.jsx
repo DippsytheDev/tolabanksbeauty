@@ -27,7 +27,7 @@ export const people = [
     description:
       "Designed for brides whose wedding celebrations take place outside of Calgary, but within Canada. This services includes a complimentary consultation and wait time of 3 hours ",
     Duration: "2hrs",
-    Price: "From $900",
+    Price: "From $1000",
   },
   {
     id: 4,
